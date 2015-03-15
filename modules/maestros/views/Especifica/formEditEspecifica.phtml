@@ -1,0 +1,186 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 30-01-2015 12:01:46 
+* Descripcion : formEditEspecifica.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: ESPE debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("ESPEACT");
+    
+$found = Obj::run()->EspecificaController->findEspecifica();
+
+?>
+<form id="<?php echo ESPE; ?>formEditEspecifica" name="<?php echo ESPE; ?>formEditEspecifica" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo ESPE_5?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo CLSF_4; ?></label>
+                        <div class="col col-3">
+                            <label class="input state-disabled"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo ESPE; ?>txt_codigo" name="<?php echo ESPE; ?>txt_codigo" value="<?php echo $found['codigo'] ?>" disabled >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo ESPE_4; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo CLSF_2; ?></label>
+                        <div class="col col-8">
+                            <label class="select state-disabled"> 
+                                <?php
+                                    $data = Obj::run()->EspecificaController->getAllClasificador();
+                                    
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>ESPE.'lst_clasificador',
+                                            'name'=>ESPE.'lst_clasificador',
+                                            'disabled'=> true,
+                                            'onchange'=>'Especifica.getSubClasificador(this.value);'
+                                        ),
+                                        'etiqueta'=>array('codigo','clasificador'),
+                                        'value'=>'id_clasificador',
+                                        'defaultEtiqueta'=>$found['id_clasificador'],
+                                        'txtSelect'=>true
+                                    ));
+                                ?><i></i>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo SBCLF_2; ?></label>
+                        <div class="col col-8">
+                            <label class="select state-disabled" id="cont_subclasificador"> 
+                                <select id="<?php echo ESPE; ?>lst_subclasificador" name="<?php echo ESPE; ?>lst_subclasificador" disabled>
+                                    <option value=""><?php echo $found['subclasificador']?></option>
+                                </select><i></i>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo CLSFD_1; ?></label>
+                        <div class="col col-8">
+                            <label class="select state-disabled" id="cont_clasificador_detalle"> 
+                                <select id="<?php echo ESPE; ?>lst_clasificadordetalle" name="<?php echo ESPE; ?>lst_clasificadordetalle" disabled>
+                                    <option value=""><?php echo $found['clasificadordetalle']?></option>
+                                </select><i></i>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo SBCLD_3; ?></label>
+                        <div class="col col-8">
+                            <label class="select state-disabled" id="cont_subclasificador_detalle"> 
+                                <select id="<?php echo ESPE; ?>lst_subclasificadordetalle" name="<?php echo ESPE; ?>lst_subclasificadordetalle" disabled>
+                                    <option value=""><?php echo $found['subclasificadordetalle']?></option>
+                                </select><i></i>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo ESPE_2; ?></label>
+                        <div class="col col-8">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo ESPE; ?>txt_especifica" name="<?php echo ESPE; ?>txt_especifica" value="<?php echo $found['especifica']?>" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo ESPE_3; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"></label>
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo ESPE; ?>chk_activo" id="<?php echo ESPE; ?>chk_activo" value="A" <?php echo ($found['estado'] == 'A')?'checked':'' ?>></input>
+                                <i></i>
+                                <?php echo CK_ACTIVO; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo ESPE; ?>btnEdEspecifica" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo ESPE; ?>formEditEspecifica");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo ESPE; ?>formEditEspecifica").validate({
+    // Rules for form validation
+    rules: {
+        <?php echo ESPE; ?>txt_codigo: {
+            required: true,
+            maxlength: 11
+        },
+        <?php echo ESPE; ?>lst_clasificador: {
+            required: true
+        },
+        <?php echo ESPE; ?>lst_subclasificador: {
+            required: true
+        },
+        <?php echo ESPE; ?>lst_clasificadordetalle: {
+            required: true
+        },
+        <?php echo ESPE; ?>lst_subclasificadordetalle: {
+            required: true
+        },
+        <?php echo ESPE; ?>txt_especifica: {
+            required: true
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        Especifica.postEditEspecifica();
+    }   
+});
+</script>
+</form>

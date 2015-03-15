@@ -1,0 +1,4 @@
+
+error...   (1717-1111-2014)
+error...   (17-11-2014 22:11:29)
+TypeError: DataTable.ext.oPagination[oSettings.sPaginationType] is undefined   (12-03-2015 17:03:32)

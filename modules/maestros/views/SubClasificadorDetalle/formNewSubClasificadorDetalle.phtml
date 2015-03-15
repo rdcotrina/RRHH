@@ -1,0 +1,151 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 28-01-2015 00:01:08 
+* Descripcion : formNewSubClasificadorDetalle.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: SBCLD debe ser alias en tabla men_menuprincipal*/
+$grabar = Session::getPermiso("SBCLDGR");
+    
+?>
+<form id="<?php echo SBCLD; ?>formNewSubClasificadorDetalle" name="<?php echo SBCLD; ?>formNewSubClasificadorDetalle" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo SBCLD_1?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo CLSF_4; ?></label>
+                        <div class="col col-3">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo SBCLD; ?>txt_codigo" name="<?php echo SBCLD; ?>txt_codigo" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo SBCLD_2; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo SBCLF_2; ?></label>
+                        <div class="col col-8">
+                            <label class="select"> 
+                                <?php
+                                    $data = Obj::run()->clasificadorDetalleController->getAllSubClasificador();
+                                    
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>SBCLD.'lst_subclasificador',
+                                            'name'=>SBCLD.'lst_subclasificador',
+                                            'onchange'=>'SubClasificadorDetalle.getClasificadorDetalle(this.value);'
+                                        ),
+                                        'etiqueta'=>array('codigo','subclasificador'),
+                                        'value'=>'id_subclasificador',
+                                        'defaultEtiqueta'=>'',
+                                        'txtSelect'=>true
+                                    ));
+                                ?><i></i>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo CLSFD_1; ?></label>
+                        <div class="col col-8">
+                            <label class="select" id="cont_lst_clasificador_detalle"> 
+                                <select id="<?php echo SBCLD; ?>lst_clasificadordetalle" name="<?php echo SBCLD; ?>lst_clasificadordetalle">
+                                    <option value="">Seleccionar</option>
+                                </select><i></i>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo SBCLD_3; ?></label>
+                        <div class="col col-8">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo SBCLD; ?>txt_subclasificadordetalle" name="<?php echo SBCLD; ?>txt_subclasificadordetalle" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo SBCLD_4; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"></label>
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" checked="checked" name="<?php echo SBCLD; ?>chk_activo" id="<?php echo SBCLD; ?>chk_activo" value="A"></input>
+                                <i></i>
+                                <?php echo CK_ACTIVO; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($grabar["permiso"]):?>
+                <button id="<?php echo SBCLD; ?>btnGrSubClasificadorDetalle" type="submit" class="<?php echo $grabar["theme"]; ?>">
+                    <i class="<?php echo $grabar["icono"]; ?>"></i> <?php echo $grabar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$grabar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo SBCLD; ?>formNewSubClasificadorDetalle");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo SBCLD; ?>formNewSubClasificadorDetalle").validate({
+    // Rules for form validation
+    rules: {
+        <?php echo SBCLD; ?>txt_codigo: {
+            required: true,
+            maxlength: 11
+        },
+        <?php echo SBCLD; ?>lst_subclasificador: {
+            required: true
+        },
+        <?php echo SBCLD; ?>lst_clasificadordetalle: {
+            required: true
+        },        
+        <?php echo SBCLD; ?>txt_subclasificadordetalle: {
+            required: true
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        SubClasificadorDetalle.postNewSubClasificadorDetalle();
+    }   
+});
+</script>
+</form>

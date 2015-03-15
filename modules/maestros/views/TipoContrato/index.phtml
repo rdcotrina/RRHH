@@ -1,0 +1,32 @@
+<?php 
+/*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 27-02-2015 23:02:52 
+* Descripcion : indexTipoContrato.phtml
+* ---------------------------------------
+*/
+$nuevo    = Session::getPermiso("CTPCTNEW");
+$eliminar = Session::getPermiso("CTPCTDE");
+    
+echo Functions::widgetOpen(array(
+        "id"=>CTPCT,
+        "title"=>CTPCT_1
+    )); 
+?>
+<div id="<?php echo CTPCT; ?>gridTipoContrato_btns">
+    <!-- verificar permisos -->
+    <?php if($nuevo["permiso"]): ?>
+    <button id="<?php echo CTPCT; ?>btnNewTipoContrato" type="button" onclick="TipoContrato.getFormNewTipoContrato(this);" class="<?php echo $nuevo["theme"]; ?>">
+        <i class="<?php echo $nuevo["icono"]; ?>"></i> <?php echo $nuevo["accion"]; ?>
+    </button>
+    <?php endif; ?>
+</div>
+<table id="<?php echo CTPCT; ?>gridTipoContrato" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
+<?php echo Functions::widgetClose(); ?>
+<script>
+simpleScript.removeAttr.click({
+    container: "#"+tabs.CTPCT+"gridTipoContrato_tools",
+    typeElement: "button"
+});      
+</script>

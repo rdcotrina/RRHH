@@ -1,0 +1,32 @@
+<?php 
+/*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 25-01-2015 15:01:09 
+* Descripcion : indexSubClasificador.phtml
+* ---------------------------------------
+*/
+$nuevo    = Session::getPermiso("SBCLFNEW");
+$eliminar = Session::getPermiso("SBCLFDE");
+    
+echo Functions::widgetOpen(array(
+        "id"=>SBCLF,
+        "title"=>SBCLF_2
+    )); 
+?>
+<div id="<?php echo SBCLF; ?>gridSubClasificador_btns">
+    <!-- verificar permisos -->
+    <?php if($nuevo["permiso"]): ?>
+    <button id="<?php echo SBCLF; ?>btnNewSubClasificador" type="button" onclick="subClasificador.getFormNewSubClasificador(this);" class="<?php echo $nuevo["theme"]; ?>">
+        <i class="<?php echo $nuevo["icono"]; ?>"></i> <?php echo $nuevo["accion"]; ?>
+    </button>
+    <?php endif; ?>
+</div>
+<table id="<?php echo SBCLF; ?>gridSubClasificador" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
+<?php echo Functions::widgetClose(); ?>
+<script>
+simpleScript.removeAttr.click({
+    container: "#"+tabs.SBCLF+"gridSubClasificador_tools",
+    typeElement: "button"
+});      
+</script>

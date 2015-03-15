@@ -1,0 +1,167 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 13-03-2015 18:03:31 
+* Descripcion : formEditClasificadorDerivado.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: DVCL debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("DVCLACT");
+    
+$found = Obj::run()->ClasificadorDerivadoController->findClasificadorDerivado();
+
+?>
+<form id="<?php echo DVCL; ?>formEditClasificadorDerivado" name="<?php echo DVCL; ?>formEditClasificadorDerivado" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo DVCL_6 ?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo CLSF_4; ?></label>
+                        <div class="col col-3">
+                            <label class="input state-disabled"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo DVCL; ?>txt_codigo" name="<?php echo DVCL; ?>txt_codigo" disabled value="<?php echo $found['codigo']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo CLSF_5; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo ESPE_2; ?></label>
+                        <div class="col col-8">
+                            <label class="select"> 
+                                <?php
+                                    $data = Obj::run()->ActividadController->getEspecificas(21);
+                                    
+                                    echo Functions::groupSelectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>DVCL.'lst_especifica',
+                                            'name'=>DVCL.'lst_especifica',
+                                            'data-placeholder'=>'Seleccionar',
+                                            'disabled'=>'disabled'
+                                        ),
+                                        'levels'=>array(
+                                                'value'=>'id_clasificador',
+                                                'label'=>array('codigoclasificador','clasificador'),
+                                                'disabled'=>true,
+                                                'levels'=>array(
+                                                        'parent'=>'id_clasificador',
+                                                        'value'=>'id_subclasificador',
+                                                        'label'=>array('codigosubclasificador','subclasificador'),
+                                                        'disabled'=>true,
+                                                        'levels'=>array(
+                                                                'parent'=>array('id_clasificador','id_subclasificador'),
+                                                                'value'=>'id_clasificadordetalle',
+                                                                'label'=>array('codigoclasificadordetalle','clasificadordetalle'),
+                                                                'disabled'=>true,
+                                                                'levels'=>array(
+                                                                        'parent'=>array('id_clasificador','id_subclasificador','id_clasificadordetalle'),
+                                                                        'value'=>'id_subclasificadordetalle',
+                                                                        'label'=>array('codigosubclasificadordetalle','subclasificadordetalle'),
+                                                                        'disabled'=>true,
+                                                                        'levels'=>array(
+                                                                                'parent'=>array('id_clasificador','id_subclasificador','id_clasificadordetalle','id_subclasificadordetalle'),
+                                                                                'value'=>'id_especifica',
+                                                                                'label'=>array('codigoespecifica','especifica')
+                                                                        )
+                                                                )
+                                                        ) 
+                                                )
+                                        ),
+                                        'defaultEtiqueta'=>$found['id_especifica'],
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo CLSF_2; ?></label>
+                        <div class="col col-8">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo DVCL; ?>txt_clasificador" name="<?php echo DVCL; ?>txt_clasificador" value="<?php echo $found['clasificadorderivado']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo DVCL_3; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"></label>
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo DVCL; ?>chk_activo" id="<?php echo DVCL; ?>chk_activo" value="A" <?php echo ($found['estado'] == 'A')?'checked':'' ?>></input>
+                                <i></i>
+                                <?php echo CK_ACTIVO; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo DVCL; ?>btnEdClasificadorDerivado" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo DVCL; ?>formEditClasificadorDerivado");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+/*activa validacion a los chosen()*/
+$.validator.setDefaults({ ignore: ":hidden:not(select)" });
+$("#<?php echo DVCL; ?>formEditClasificadorDerivado").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo DVCL; ?>txt_codigo : {
+            required : true,
+            minlength: 3
+        },
+        <?php echo DVCL; ?>lst_especifica : {
+            required : true
+        },
+        <?php echo DVCL; ?>txt_clasificador : {
+            required : true,
+            minlength: 3
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        ClasificadorDerivado.postEditClasificadorDerivado();
+    }   
+});
+</script>
+</form>

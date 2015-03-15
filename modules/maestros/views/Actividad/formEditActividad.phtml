@@ -1,0 +1,156 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 12-03-2015 16:03:52 
+* Descripcion : formEditActividad.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: HACT debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("HACTACT");
+    
+$found = Obj::run()->ActividadController->findActividad();
+
+?>
+<form id="<?php echo HACT; ?>formEditActividad" name="<?php echo HACT; ?>formEditActividad" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo HACT_3 ?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo CLSF_2; ?></label>
+                        <div class="col col-8">
+                            <label class="select"> 
+                                <?php
+                                    $data = Obj::run()->ActividadController->getEspecificas(23);
+                                    
+                                    echo Functions::groupSelectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>HACT.'lst_clasificador',
+                                            'name'=>HACT.'lst_clasificador',
+                                            'data-placeholder'=>'Seleccionar',
+                                            'disabled'=>'disabled'
+                                        ),
+                                        'levels'=>array(
+                                                'value'=>'id_clasificador',
+                                                'label'=>array('codigoclasificador','clasificador'),
+                                                'disabled'=>true,
+                                                'levels'=>array(
+                                                        'parent'=>'id_clasificador',
+                                                        'value'=>'id_subclasificador',
+                                                        'label'=>array('codigosubclasificador','subclasificador'),
+                                                        'disabled'=>true,
+                                                        'levels'=>array(
+                                                                'parent'=>array('id_clasificador','id_subclasificador'),
+                                                                'value'=>'id_clasificadordetalle',
+                                                                'label'=>array('codigoclasificadordetalle','clasificadordetalle'),
+                                                                'disabled'=>true,
+                                                                'levels'=>array(
+                                                                        'parent'=>array('id_clasificador','id_subclasificador','id_clasificadordetalle'),
+                                                                        'value'=>'id_subclasificadordetalle',
+                                                                        'label'=>array('codigosubclasificadordetalle','subclasificadordetalle'),
+                                                                        'disabled'=>true,
+                                                                        'levels'=>array(
+                                                                                'parent'=>array('id_clasificador','id_subclasificador','id_clasificadordetalle','id_subclasificadordetalle'),
+                                                                                'value'=>'id_especifica',
+                                                                                'label'=>array('codigoespecifica','especifica'),
+                                                                                'disabled'=>true,
+                                                                                'levels'=>array(
+                                                                                    'parent'=>array('id_clasificador','id_subclasificador','id_clasificadordetalle','id_subclasificadordetalle','id_especifica'),
+                                                                                    'value'=>'id_clasificadorderivado',
+                                                                                    'label'=>array('codigoderivado','clasificadorderivado'),
+                                                                                )
+                                                                        )
+                                                                )
+                                                        ) 
+                                                )
+                                        ),
+                                        'defaultEtiqueta'=>$found['id_clasificadorderivado'],
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo HACT_4; ?></label>
+                        <div class="col col-8">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo HACT; ?>txt_actividad" name="<?php echo HACT; ?>txt_actividad" value="<?php echo $found['actividad'] ?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo HACT_5; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"></label>
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo HACT; ?>chk_activo" id="<?php echo HACT; ?>chk_activo" value="A" <?php echo ($found['estado'] == 'A')?'checked':'' ?> ></input>
+                                <i></i>
+                                <?php echo CK_ACTIVO; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo HACT; ?>btnEdActividad" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo HACT; ?>formEditActividad");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+/*activa validacion a los chosen()*/
+$.validator.setDefaults({ ignore: ":hidden:not(select)" });
+$("#<?php echo HACT; ?>formEditActividad").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo HACT; ?>lst_clasificador : {
+            required : true
+        },
+        <?php echo HACT; ?>txt_actividad : {
+            required : true,
+            minlength: 3
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        Actividad.postEditActividad();
+    }   
+});
+</script>
+</form>

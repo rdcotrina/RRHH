@@ -1,0 +1,32 @@
+<?php 
+/*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 07-03-2015 18:03:04 
+* Descripcion : indexArea.phtml
+* ---------------------------------------
+*/
+$nuevo    = Session::getPermiso("AARANEW");
+$eliminar = Session::getPermiso("AARADE");
+    
+echo Functions::widgetOpen(array(
+        "id"=>AARA,
+        "title"=>AARA_1
+    )); 
+?>
+<div id="<?php echo AARA; ?>gridArea_btns">
+    <!-- verificar permisos -->
+    <?php if($nuevo["permiso"]): ?>
+    <button id="<?php echo AARA; ?>btnNewArea" type="button" onclick="Area.getFormNewArea(this);" class="<?php echo $nuevo["theme"]; ?>">
+        <i class="<?php echo $nuevo["icono"]; ?>"></i> <?php echo $nuevo["accion"]; ?>
+    </button>
+    <?php endif; ?>
+</div>
+<table id="<?php echo AARA; ?>gridArea" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
+<?php echo Functions::widgetClose(); ?>
+<script>
+simpleScript.removeAttr.click({
+    container: "#"+tabs.AARA+"gridArea_tools",
+    typeElement: "button"
+});      
+</script>

@@ -1,0 +1,32 @@
+<?php 
+/*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 12-03-2015 08:03:42 
+* Descripcion : indexConceptoPlanilla.phtml
+* ---------------------------------------
+*/
+$nuevo    = Session::getPermiso("PCNCPNEW");
+$eliminar = Session::getPermiso("PCNCPDE");
+    
+echo Functions::widgetOpen(array(
+        "id"=>PCNCP,
+        "title"=>PCNCP_1
+    )); 
+?>
+<div id="<?php echo PCNCP; ?>gridConceptoPlanilla_btns">
+    <!-- verificar permisos -->
+    <?php if($nuevo["permiso"]): ?>
+    <button id="<?php echo PCNCP; ?>btnNewConceptoPlanilla" type="button" onclick="ConceptoPlanilla.getFormNewConceptoPlanilla(this);" class="<?php echo $nuevo["theme"]; ?>">
+        <i class="<?php echo $nuevo["icono"]; ?>"></i> <?php echo $nuevo["accion"]; ?>
+    </button>
+    <?php endif; ?>
+</div>
+<table id="<?php echo PCNCP; ?>gridConceptoPlanilla" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
+<?php echo Functions::widgetClose(); ?>
+<script>
+simpleScript.removeAttr.click({
+    container: "#"+tabs.PCNCP+"gridConceptoPlanilla_tools",
+    typeElement: "button"
+});      
+</script>

@@ -1,0 +1,32 @@
+<?php 
+/*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 27-02-2015 19:02:59 
+* Descripcion : indexTipoPago.phtml
+* ---------------------------------------
+*/
+$nuevo    = Session::getPermiso("PTPGNEW");
+$eliminar = Session::getPermiso("PTPGDE");
+    
+echo Functions::widgetOpen(array(
+        "id"=>PTPG,
+        "title"=>PTPG_1
+    )); 
+?>
+<div id="<?php echo PTPG; ?>gridTipoPago_btns">
+    <!-- verificar permisos -->
+    <?php if($nuevo["permiso"]): ?>
+    <button id="<?php echo PTPG; ?>btnNewTipoPago" type="button" onclick="TipoPago.getFormNewTipoPago(this);" class="<?php echo $nuevo["theme"]; ?>">
+        <i class="<?php echo $nuevo["icono"]; ?>"></i> <?php echo $nuevo["accion"]; ?>
+    </button>
+    <?php endif; ?>
+</div>
+<table id="<?php echo PTPG; ?>gridTipoPago" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
+<?php echo Functions::widgetClose(); ?>
+<script>
+simpleScript.removeAttr.click({
+    container: "#"+tabs.PTPG+"gridTipoPago_tools",
+    typeElement: "button"
+});      
+</script>

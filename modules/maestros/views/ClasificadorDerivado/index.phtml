@@ -1,0 +1,32 @@
+<?php 
+/*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 13-03-2015 18:03:31 
+* Descripcion : indexClasificadorDerivado.phtml
+* ---------------------------------------
+*/
+$nuevo    = Session::getPermiso("DVCLNEW");
+$eliminar = Session::getPermiso("DVCLDE");
+    
+echo Functions::widgetOpen(array(
+        "id"=>DVCL,
+        "title"=>DVCL_2
+    )); 
+?>
+<div id="<?php echo DVCL; ?>gridClasificadorDerivado_btns">
+    <!-- verificar permisos -->
+    <?php if($nuevo["permiso"]): ?>
+    <button id="<?php echo DVCL; ?>btnNewClasificadorDerivado" type="button" onclick="ClasificadorDerivado.getFormNewClasificadorDerivado(this);" class="<?php echo $nuevo["theme"]; ?>">
+        <i class="<?php echo $nuevo["icono"]; ?>"></i> <?php echo $nuevo["accion"]; ?>
+    </button>
+    <?php endif; ?>
+</div>
+<table id="<?php echo DVCL; ?>gridClasificadorDerivado" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
+<?php echo Functions::widgetClose(); ?>
+<script>
+simpleScript.removeAttr.click({
+    container: "#"+tabs.DVCL+"gridClasificadorDerivado_tools",
+    typeElement: "button"
+});      
+</script>

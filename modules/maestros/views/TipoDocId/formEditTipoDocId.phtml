@@ -1,0 +1,100 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 27-02-2015 18:02:03 
+* Descripcion : formEditTipoDocId.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: TDCID debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("TDCIDACT");
+    
+$found = Obj::run()->TipoDocIdController->findTipoDocId();
+
+?>
+<form id="<?php echo TDCID; ?>formEditTipoDocId" name="<?php echo TDCID; ?>formEditTipoDocId" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 60%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo TDCID_5?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo TDCID_4; ?></label>
+                        <div class="col col-8">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo TDCID; ?>txt_tipodoc" name="<?php echo TDCID; ?>txt_tipodoc" value="<?php echo $found['tipodocumentoidentidad']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo TDCID_3; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"></label>
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo TDCID; ?>chk_activo" id="<?php echo TDCID; ?>chk_activo" value="A" <?php echo ($found['estado'] == 'A')?'checked':'' ?> ></input>
+                                <i></i>
+                                <?php echo CK_ACTIVO; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo TDCID; ?>btnEdTipoDocId" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo TDCID; ?>formEditTipoDocId");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo TDCID; ?>formEditTipoDocId").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo TDCID; ?>txt_campo : {
+            required : true,
+            minlength: 3
+        }
+    },
+
+    // Msn para validacion -- es opcional -- se puede eliminar, validate tiene los msn configurados por defecto
+    messages : {
+        <?php echo TDCID; ?>txt_campo : {
+            required : "Campo requerido",
+            regular: "No se permite caracteres inválidos"
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        TipoDocId.postEditTipoDocId();
+    }   
+});
+</script>
+</form>
