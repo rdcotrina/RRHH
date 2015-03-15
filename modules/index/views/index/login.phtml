@@ -13,7 +13,7 @@
 -->
 </header>
 
-<div id="main" role="main">
+<div id="main" role="main" style="background:  url(public/img/back.png)">
 
     <!-- MAIN CONTENT -->
     <div id="content" class="container">
@@ -23,14 +23,20 @@
                 <h1 class="txt-color-red login-header-big">Bienvenido:</h1>
                 <div class="hero">
 
-                    <div class="pull-left login-desc-box-l">
-                        <h4 class="paragraph-header">HOLAAAAAA =>>>>> </h4>                                                
+                    <div class="pull-left login-desc-box-l well">
+                        <h4 class="paragraph-header">Sistema Integrado de la Municipalidad de Lancones:</h4>  
+                        <br>
+                        <ul>
+                            <li>Manejo de Recursos Humanos</li>
+                            <li>Control de Asistencia con Huella Digital</li>
+                            <li>Control Patrimonial (Proximamente)</li>
+                        </ul>
                         <div class="login-app-icons">                            
-                            <a href="javascript:void(0);" class="btn btn-danger btn-sm">Soporte técnico</a>                            
+                            <!--<a href="javascript:void(0);" class="btn btn-danger btn-sm">Soporte técnico</a>-->                            
                         </div>
                     </div>
 
-                    <img src="<?php echo $rutaLayout['_img']; ?>demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">
+                    <!--<img src="<?php echo $rutaLayout['_img']; ?>demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">-->
 
                 </div>
                  <!--
@@ -72,7 +78,7 @@
                                     <input type="password" name="txtClave" id="txtClave" value="">
                                     <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> <?php echo L_L_PASS; ?></b> </label>
                                 <div class="note">
-                                    <a href="forgotpassword.html"><?php echo L_OLVIDE; ?></a>
+                                    <!--<a href="forgotpassword.html"><?php echo L_OLVIDE; ?></a>-->
                                 </div>
                             </section>
                         </fieldset>

@@ -18,7 +18,6 @@ define("CTACT","CTACT");             /*tab opción CUENTACORRIENTE*/
 define("TDCID","TDCID");             /*tab opción TIPODOCID*/
 define("PTPG","PTPG");             /*tab opción TIPOPAGO*/
 define("CTPCT","CTPCT");             /*tab opción TIPOCONTRATO*/
-define("NVD","NVD");             /*tab opción NUEVODEMO*/
 define("KRGO","KRGO");             /*tab opción CARGO*/
 define("AARA","AARA");             /*tab opción AREA*/
 define("KTRBA","KTRBA");             /*tab opción CATEGORIATRABAJADOR*/

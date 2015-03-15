@@ -19,7 +19,6 @@ tabs.CTACT = '<?php echo CTACT; ?>';
 tabs.TDCID = '<?php echo TDCID; ?>';
 tabs.PTPG = '<?php echo PTPG; ?>';
 tabs.CTPCT = '<?php echo CTPCT; ?>';
-tabs.NVD = '<?php echo NVD; ?>';
 tabs.KRGO = '<?php echo KRGO; ?>';
 tabs.AARA = '<?php echo AARA; ?>';
 tabs.KTRBA = '<?php echo KTRBA; ?>';
