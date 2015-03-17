@@ -48,6 +48,34 @@ $grabar = Session::getPermiso("CLSFGR");
                 </section>
                 <section>
                     <div class="row">
+                        <label class="label col col-2"><?php echo CLSF_7; ?></label>
+                        <div class="col col-3">
+                            <label class="select"> 
+                                <?php
+                                    $data = array(
+                                        array('value'=>'I','label'=>'Ingreso'),
+                                        array('value'=>'G','label'=>'Gasto')
+                                    );
+                                    
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>CLSF.'lst_tipo',
+                                            'name'=>CLSF.'lst_tipo'
+                                        ),
+                                        'etiqueta'=>'label',
+                                        'value'=>'value',
+                                        'defaultEtiqueta'=>'',
+                                        'txtSelect'=>true
+                                    ));
+                                ?><i></i>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
                         <label class="label col col-2"></label>
                         <div class="col col-3">
                             <label class="checkbox">
@@ -91,7 +119,10 @@ $grabar = Session::getPermiso("CLSFGR");
                 },
                 <?php echo CLSF; ?>txt_clasificador: {
                     required: true
-                }
+                },
+                <?php echo CLSF; ?>lst_tipo: {
+                    required: true
+                }       
             },
                    
                     // No cambie el código de abajo

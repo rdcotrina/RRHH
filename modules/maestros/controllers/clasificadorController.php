@@ -29,11 +29,18 @@ class clasificadorController extends Controller{
                 $e = '<label class="label label-danger">Inactivo</label>';
             }
             
+            if($value["tipo"] == 'G'){
+                $t = '<label class="label label-danger">Gasto</label>';
+            }elseif($value["tipo"] == 'I'){
+                $t = '<label class="label label-success">Ingreso</label>';
+            }
+            
             $rows[] = array(
                 "id_clasificador"=>AesCtr::en($value["id_clasificador"]),
                 "codigo"=> $value["codigo"],
                 "clasificador"=> $value["clasificador"],
                 "estado"=> $e,
+                "tipo"=> $t,
                 "total"=> $value["total"]
             );
         }

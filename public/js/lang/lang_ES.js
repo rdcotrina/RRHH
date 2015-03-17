@@ -58,6 +58,7 @@ lang.confUsuario.ROLREQ= 'Seleccione al menos un rol.';
 lang.clasificador = {};
 lang.clasificador.CODIGO = 'Código';
 lang.clasificador.CLASIFICADOR = 'Clasificador';
+lang.clasificador.TIPO = 'Tipo';
 lang.clasificador.EXIST = 'Clasificador o código ya existe.';
 
 /*-----------------------MAESTROS/SUBCLASIFICADOR-------------------------*/

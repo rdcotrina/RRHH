@@ -13,6 +13,7 @@ class clasificadorModel extends Model{
     private $_idClasificador;
     private $_codigo;
     private $_clasificador;
+    private $_tipo;
     private $_activo;
     private $_usuario;
     
@@ -34,6 +35,7 @@ class clasificadorModel extends Model{
         $this->_idClasificador   = Aes::de(SimpleForm::getParam("_idClasificador"));    /*se decifra*/
         $this->_codigo =   SimpleForm::getParam(CLSF.'txt_codigo'); 
         $this->_clasificador =   SimpleForm::getParam(CLSF.'txt_clasificador'); 
+        $this->_tipo =   SimpleForm::getParam(CLSF.'lst_tipo'); 
         $this->_activo =   SimpleForm::getParam(CLSF.'chk_activo'); 
         $this->_usuario     = Session::get("sys_idUsuario");
         
@@ -62,12 +64,13 @@ class clasificadorModel extends Model{
     
     /*mantenimiento registro: Clasificador*/
     public function mantenimientoClasificador(){
-        $query = "call sp_maeClasificadorMantenimiento(:flag,:idClasificador,:codigo,:clasificador,:activo,:usuario);";
+        $query = "call sp_maeClasificadorMantenimiento(:flag,:idClasificador,:codigo,:clasificador,:tipo,:activo,:usuario);";
         $parms = array(
             ':flag' => $this->_flag,
             ':idClasificador' => $this->_idClasificador,
             ':codigo' => $this->_codigo,
             ':clasificador' => $this->_clasificador,
+            ':tipo' => $this->_tipo,
             ':activo' => (!empty($this->_activo))?$this->_activo:'I',
             ':usuario' => $this->_usuario
         );

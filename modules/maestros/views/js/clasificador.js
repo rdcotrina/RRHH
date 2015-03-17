@@ -60,6 +60,7 @@ var clasificador_ = function(){
             tColumns: [
                 {title: lang.clasificador.CODIGO,campo: "codigo",width: "70",sortable: true,search: {operator:"LIKE"}},
                 {title: lang.clasificador.CLASIFICADOR, campo: 'clasificador', width: "400", sortable: true,search:{operator:'LIKE'}},
+                {title: lang.clasificador.TIPO, campo: 'tipo', width: "50", sortable: true, class: "center"},
                 {title: lang.generic.EST, campo: 'estado', width: "50", sortable: true, class: "center"}
             ],
             pPaginate: true,

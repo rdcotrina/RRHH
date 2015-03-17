@@ -93,6 +93,7 @@ define('CLSF_3','Ingrese el nombre del clasificador');
 define('CLSF_4','Código');
 define('CLSF_5','Ingrese el código del clasificador');
 define('CLSF_6','Editar Clasificador General');
+define('CLSF_7','Tipo');
 
 /*==============================SUB CLASIFICADOR==============================*/
 define('SBCLF_1','Nuevo Sub Clasificador');
