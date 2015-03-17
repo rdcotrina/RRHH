@@ -201,3 +201,9 @@ define('DVCL_2','Clasificadores');
 define('DVCL_3','Ingrese el nombre del clasificador');
 define('DVCL_5','Ingrese el código del clasificador');
 define('DVCL_6','Editar Clasificador');
+
+/*==============================TIPO DE VINCULO FAMILIAR==============================*/
+define('VNFA_1','Tipo de Vínculo Familiar');
+define('VNFA_2','Nuevo Tipo de Vínculo Familiar');
+define('VNFA_3','Editar Tipo de Vínculo Familiar');
+define('VNFA_4','Ingrese el nombre del tipo de vínculo familiar');

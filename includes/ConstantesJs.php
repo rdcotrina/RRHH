@@ -25,3 +25,4 @@ tabs.KTRBA = '<?php echo KTRBA; ?>';
 tabs.PCNCP = '<?php echo PCNCP; ?>';
 tabs.HACT = '<?php echo HACT; ?>';
 tabs.DVCL = '<?php echo DVCL; ?>';
+tabs.VNFA = '<?php echo VNFA; ?>';

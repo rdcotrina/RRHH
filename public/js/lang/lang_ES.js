@@ -136,3 +136,8 @@ lang.Actividad = {};
 lang.Actividad.ACT = 'Actividad';
 lang.Actividad.CLAS = 'Clasificador';
 lang.Actividad.EXIST = 'Actividad ya existe';
+
+/*---------------------MAESTROS/TIPO DE VINCULO FAMILIAR--------------------*/
+lang.TipoVinculoFamiliar = {};
+lang.TipoVinculoFamiliar.VICNULO = 'Vínculo Familiar';
+lang.TipoVinculoFamiliar.EXIST = 'Vínculo Familiar ya existe';
