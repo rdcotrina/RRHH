@@ -208,3 +208,40 @@ define('VNFA_1','Tipo de Vínculo Familiar');
 define('VNFA_2','Nuevo Tipo de Vínculo Familiar');
 define('VNFA_3','Editar Tipo de Vínculo Familiar');
 define('VNFA_4','Ingrese el nombre del tipo de vínculo familiar');
+
+/*==============================EMPLEADOS==============================*/
+define('EMPL_1','Empleados');
+define('EMPL_2','Nuevo Empleado');
+define('EMPL_3','Datos Personales');
+define('EMPL_4','Primer Nombre');
+define('EMPL_5','Ingrese el primer nombre del empleado');
+define('EMPL_6','Segundo Nombre');
+define('EMPL_7','Ingrese el segundo nombre del empleado');
+define('EMPL_8','Apellido Paterno');
+define('EMPL_9','Ingrese el apellido paterno del empleado');
+define('EMPL_10','Apellido Materno');
+define('EMPL_11','Ingrese el apellido materno del empleado');
+define('EMPL_12','Sexo');
+define('EMPL_13','Masculino');
+define('EMPL_14','Femenino');
+define('EMPL_15','Dirección');
+define('EMPL_16','Ingrese la irección del empleado');
+define('EMPL_17','Email');
+define('EMPL_18','Ingrese el email del empleado');
+define('EMPL_19','Teléfonos');
+define('EMPL_20','Ingrese números telefónicos del empleado');
+define('EMPL_21','N° Documento');
+define('EMPL_22','Ingrese el número de documento del empleado');
+define('EMPL_23','Datos Laborales');
+define('EMPL_24','Actividad');
+define('EMPL_25','Datos de Nacimiento');
+define('EMPL_26','Datos de Domicilio');
+define('EMPL_27','Departamento');
+define('EMPL_28','Provincia');
+define('EMPL_29','Distrito');
+
+/*==============================ESTRUCTURA ORGANICA==============================*/
+define('ESOG_1','Estructura Orgánica');
+define('ESOG_2','Ingrese el nombre de la estructura orgánica');
+define('ESOG_3','Nueva Estructura');
+define('ESOG_4','Editar Estructura');

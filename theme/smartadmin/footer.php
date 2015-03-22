@@ -42,6 +42,8 @@
 <!-- browser msie issue fix -->
 <script src="<?php echo $rutaLayout['_js']; ?>plugin/msie-fix/jquery.mb.browser.min.js"></script>
 
+<script src="<?php echo $rutaLayout['_js']; ?>plugin/primitive/primitives.min.js"></script>
+
 <script src="<?php echo $rutaLayout['_js']; ?>plugin/datatables/jquery.dataTables-cust.js"></script> 
 <!--<script src="<?php echo $rutaLayout['_js']; ?>plugin/datatables/FixedColumns.min.js"></script>-->
 <script src="<?php echo $rutaLayout['_js']; ?>plugin/datatables/ColReorder.min.js"></script> 

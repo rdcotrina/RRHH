@@ -47,6 +47,8 @@
         <link rel="apple-touch-icon" sizes="120x120" href="<?php echo $rutaLayout['_img']; ?>splash/touch-icon-iphone-retina.png">
         <link rel="apple-touch-icon" sizes="152x152" href="<?php echo $rutaLayout['_img']; ?>splash/touch-icon-ipad-retina.png">
 
+        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>theme/smartadmin/js/plugin/primitive/primitives.css">
+
         <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">

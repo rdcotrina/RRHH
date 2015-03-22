@@ -25,3 +25,5 @@ define("PCNCP","PCNCP");             /*tab opción CONCEPTOPLANILLA*/
 define("HACT","HACT");             /*tab opción ACTIVIDAD*/
 define("DVCL","DVCL");             /*tab opción CLASIFICADORDERIVADO*/
 define("VNFA","VNFA");             /*tab opción TIPOVINCULOFAMILIAR*/
+define("EMPL","EMPL");             /*tab opción EMPLEADOS*/
+define("ESOG","ESOG");             /*tab opción ESTRUCTURAORGANICA*/

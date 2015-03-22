@@ -1,0 +1,80 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 22-03-2015 01:03:50 
+* Descripcion : formEditEstructuraOrganica.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: ESOG debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("ESOGACT");
+    
+$found = Obj::run()->EstructuraOrganicaController->findEstructuraOrganica();
+
+?>
+<form id="<?php echo ESOG; ?>formEditEstructuraOrganica" name="<?php echo ESOG; ?>formEditEstructuraOrganica" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo ESOG_4?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo ESOG_1; ?></label>
+                        <div class="col col-8">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo ESOG; ?>txt_estructuraorg" name="<?php echo ESOG; ?>txt_estructuraorg" value="<?php echo $found['area']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo ESOG_2; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo ESOG; ?>btnEdEstructuraOrganica" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo ESOG; ?>formEditEstructuraOrganica");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo ESOG; ?>formEditEstructuraOrganica").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo ESOG; ?>txt_estructuraorg : {
+            required : true,
+            minlength: 3
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        EstructuraOrganica.postEditEstructuraOrganica();
+    }   
+});
+</script>
+</form>

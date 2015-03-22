@@ -142,3 +142,7 @@ lang.Actividad.EXIST = 'Actividad ya existe';
 lang.TipoVinculoFamiliar = {};
 lang.TipoVinculoFamiliar.VICNULO = 'Vínculo Familiar';
 lang.TipoVinculoFamiliar.EXIST = 'Vínculo Familiar ya existe';
+
+/*---------------------MAESTROS/ESTRUCTURA ORGANICA--------------------*/
+lang.EstructuraOrganica = {};
+lang.EstructuraOrganica.EXIST = 'Estructura ya existe';
