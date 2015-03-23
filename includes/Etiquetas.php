@@ -239,6 +239,9 @@ define('EMPL_26','Datos de Domicilio');
 define('EMPL_27','Departamento');
 define('EMPL_28','Provincia');
 define('EMPL_29','Distrito');
+define('EMPL_30','Fecha de Nacimiento');
+define('EMPL_31','Tipo de Documento');
+define('EMPL_32','Editar Empleado');
 
 /*==============================ESTRUCTURA ORGANICA==============================*/
 define('ESOG_1','Estructura Orgánica');

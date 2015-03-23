@@ -146,3 +146,10 @@ lang.TipoVinculoFamiliar.EXIST = 'Vínculo Familiar ya existe';
 /*---------------------MAESTROS/ESTRUCTURA ORGANICA--------------------*/
 lang.EstructuraOrganica = {};
 lang.EstructuraOrganica.EXIST = 'Estructura ya existe';
+
+/*---------------------PERSONAL/EMPLEADOS--------------------*/
+lang.Empleados = {};
+lang.Empleados.NRODOC = 'N° Doc.';
+lang.Empleados.APENOM = 'Apellidos y Nombres';
+lang.Empleados.EMAIL  = 'Email';
+lang.Empleados.EXIST = 'Empleado, email o número de documento ya existe';

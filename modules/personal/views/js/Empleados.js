@@ -58,9 +58,10 @@ var Empleados_ = function(){
             tScrollY: "200px",
             tReload: reload,
             tColumns: [
-                {title: lang.Empleados.CAMPO1,campo: "CAMPO",width: "70",sortable: true,search: {operator:"LIKE"}},
-                {title: lang.Empleados.CAMPO2, campo: "CAMPO", width: "400", sortable: true,search:{operator:"LIKE"}},
-                {title: lang.generic.EST, campo: "CAMPO", width: "50", sortable: true, class: "center"}
+                {title: lang.Empleados.NRODOC,campo: "numerodocumento",width: "70",sortable: true,search: {operator:"LIKE"}},
+                {title: lang.Empleados.APENOM, campo: "nombrecompleto", width: "400", sortable: true,search:{operator:"LIKE"}},
+                {title: lang.Empleados.EMAIL, campo: "email", width: "400", sortable: true,search:{operator:"LIKE"}},
+                {title: lang.generic.EST, campo: "estadot", width: "50", sortable: true, class: "center"}
             ],
             pPaginate: true,
             sAxions: [{
@@ -70,7 +71,7 @@ var Empleados_ = function(){
                 class: pEdit.theme,
                 ajax: {
                     fn: "Empleados.getFormEditEmpleados",
-                    serverParams: "id_Empleados"
+                    serverParams: "id_persona"
                 }
             }, {
                 access: pDelete.permiso,
@@ -79,7 +80,7 @@ var Empleados_ = function(){
                 class: pDelete.theme,
                 ajax: {
                     fn: "Empleados.postDeleteEmpleados",
-                    serverParams: "id_Empleados"
+                    serverParams: "id_persona"
                 }
             }],
             ajaxSource: _private.config.modulo+"getGridEmpleados",
@@ -122,6 +123,59 @@ var Empleados_ = function(){
         });
     };
     
+    _public.getProvincia = function(depa,pre){
+        simpleAjax.send({
+            gifProcess: true,
+            root: _private.config.modulo + "getProvincia",
+            fnServerParams: function(sData){
+                sData.push({name: "_idDepartamento", value: depa});
+            },
+            fnCallback: function(data){
+                simpleScript.listBox({
+                    data: data,
+                    optionSelec: true,
+                    content: '#'+tabs.EMPL+'d_provincia'+pre,
+                    required: true,
+                    attr:{
+                        id: tabs.EMPL+'lst_provincia'+pre,
+                        name: tabs.EMPL+'lst_provincia'+pre,
+                        onchange: 'Empleados.getDistrito(this.value,\''+pre+'\');'
+                    },
+                    dataView:{
+                        etiqueta: 'provincia',
+                        value: 'id_provincia'
+                    }
+                });
+            }
+        });
+    };
+    
+    _public.getDistrito = function(pro,pre){
+        simpleAjax.send({
+            gifProcess: true,
+            root: _private.config.modulo + "getDistrito",
+            fnServerParams: function(sData){
+                sData.push({name: "_idProvincia", value: pro});
+            },
+            fnCallback: function(data){
+                simpleScript.listBox({
+                    data: data,
+                    optionSelec: true,
+                    content: '#'+tabs.EMPL+'d_ubigeo'+pre,
+                    required: true,
+                    attr:{
+                        id: tabs.EMPL+'lst_ubigeo'+pre,
+                        name: tabs.EMPL+'lst_ubigeo'+pre
+                    },
+                    dataView:{
+                        etiqueta: 'distrito',
+                        value: 'id_ubigeo'
+                    }
+                });
+            }
+        });
+    };
+    
     _public.postNewEmpleados = function(){
         simpleAjax.send({
             flag: 1,
@@ -139,7 +193,7 @@ var Empleados_ = function(){
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){
                     simpleScript.notify.error({
-                        content: "Empleados ya existe."
+                        content: lang.Empleados.EXIST
                     });
                 }
             }
@@ -168,7 +222,7 @@ var Empleados_ = function(){
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){
                     simpleScript.notify.error({
-                        content: "Empleados ya existe."
+                        content: lang.Empleados.EXIST
                     });
                 }
             }

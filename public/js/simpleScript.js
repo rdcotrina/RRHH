@@ -211,13 +211,10 @@ var simpleScript_ = function() {
         },
         date: function(obj) {
             $(obj.element).datepicker({
-                showOn: "button",
-                buttonImage: "img/date.png",
-                buttonImageOnly: true,
                 changeMonth: true,
                 changeYear: true
             });
-            $(obj.element).mask('99/99/9999');
+            $(obj.element).mask('99-99-9999');
         },
         dateRange: function(obj) {
             $(obj.ini).datepicker({
@@ -312,7 +309,8 @@ var simpleScript_ = function() {
         if(required){
             cb += '<div class="obligar"></div>';
         }
-        $('#' + content).html(cb);
+      
+        $(''+content+'').html(cb);
 
         if (fnCallback !== '') {
             fnCallback();

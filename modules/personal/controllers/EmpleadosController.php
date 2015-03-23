@@ -24,9 +24,11 @@ class EmpleadosController extends Controller{
         $data =  self::$EmpleadosModel->getGridEmpleados();
         foreach ($data as $value) {
             $rows[] = array(
-                "LLAVE1"=>AesCtr::en($value["CAMPO1"]),
-                "LLAVE2"=> $value["CAMPO2"],
-                "LLAVE3"=> $value["CAMPO3"],
+                "id_persona"=>AesCtr::en($value["id_persona"]),
+                "nombrecompleto"=> $value["nombrecompleto"],
+                "numerodocumento"=> $value["numerodocumento"],
+                "email"=> $value["email"],
+                "estadot"=> Functions::labelState($value["estadot"]),
                 "total"=> $value["total"]
             );
         }
@@ -88,4 +90,34 @@ class EmpleadosController extends Controller{
         
         return $data;
     }
+    
+    public function getProvincia($dep=''){
+        $depar = $dep;
+        if($dep == ''){
+            $depar = SimpleForm::getParam('_idDepartamento');
+        }
+        
+        $data = self::$EmpleadosModel->getData(4,$depar);
+        
+        if($dep == ''){
+            echo json_encode($data);
+        }else{
+            return $data;
+        }
+    }
+    
+    public function getDistrito($pro=''){
+        $provi = $pro;
+        if(empty($pro)){
+            $provi = SimpleForm::getParam('_idProvincia');
+        }
+        $data = self::$EmpleadosModel->getData(5,$provi);
+        
+        if(!empty($pro)){
+            return $data;
+        }else{
+            echo json_encode($data);
+        }
+    }
+    
 }

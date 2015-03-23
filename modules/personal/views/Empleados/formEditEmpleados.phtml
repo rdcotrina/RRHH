@@ -13,16 +13,346 @@ $found = Obj::run()->EmpleadosController->findEmpleados();
 
 ?>
 <form id="<?php echo EMPL; ?>formEditEmpleados" name="<?php echo EMPL; ?>formEditEmpleados" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 80%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close"  aria-hidden="true">
                     &times;
                 </button>
-                <h4 class="modal-title">TITULO DE FORMULARIO</h4>
+                <h4 class="modal-title"><?php echo EMPL_32?></h4>
             </div>
             <div class="modal-body smart-form"> 
-                CONTENIDO DEL FORM (utilizar constantes en Labels.php)
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_4; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_primernombre" name="<?php echo EMPL; ?>txt_primernombre" value="<?php echo $found['primernombre']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_5; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_6; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_segundonombre" name="<?php echo EMPL; ?>txt_segundonombre" value="<?php echo $found['segundonombre']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_7; ?></b>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_8; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_apellidopaterno" name="<?php echo EMPL; ?>txt_apellidopaterno" value="<?php echo $found['apellidopaterno']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_9; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_10; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_apellidomaterno" name="<?php echo EMPL; ?>txt_apellidomaterno" value="<?php echo $found['apellidomaterno']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_11; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_12; ?></label>
+                        <div class="inline-group col col-9">
+                            <label class="radio"> 
+                                <input name="<?php echo EMPL; ?>chk_sexo" id="<?php echo EMPL; ?>chk_sexoH" type="radio" value="M" <?php echo ($found['sexo'] == 'M')?'checked':'' ?> >
+                                <i></i><?php echo EMPL_13; ?>
+                            </label>
+                            <label class="radio"> 
+                                <input name="<?php echo EMPL; ?>chk_sexo" id="<?php echo EMPL; ?>chk_sexoM" type="radio" value="F" <?php echo ($found['sexo'] == 'F')?'checked':'' ?>>
+                                <i></i><?php echo EMPL_14; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_17; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_email" name="<?php echo EMPL; ?>txt_email" value="<?php echo $found['email']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_18; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_19; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_telefono" name="<?php echo EMPL; ?>txt_telefono" value="<?php echo $found['telefono']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_20; ?></b>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_31; ?></label>
+                        <div class="col col-3">
+                            <label class="select"> 
+                                <?php
+                                    $data = Obj::run()->EmpleadosController->getTipoDocumento();
+
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_tipodoc',
+                                            'name'=>EMPL.'lst_tipodoc'
+                                        ),
+                                        'etiqueta'=>'tipodocumentoidentidad',
+                                        'value'=>'id_tipodocumentoidentidad',
+                                        'defaultEtiqueta'=>$found['id_tipodocumentoidentidad'],
+                                        'txtSelect'=>true
+                                    ));
+                                ?><i></i>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_21; ?></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_numdocumento" name="<?php echo EMPL; ?>txt_numdocumento" value="<?php echo $found['numerodocumento'] ?>" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_22; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="col col-6">
+                            <fieldset>
+                                <legend><?php echo EMPL_25?></legend>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_27; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select"> 
+                                                <?php
+                                                    $datadepa = Obj::run()->EmpleadosController->getDepartamento();
+
+                                                    echo Functions::selectHtml(array(
+                                                        'data'=>$datadepa,
+                                                        'atributes'=>array(
+                                                            'id'=>EMPL.'lst_departamentonac',
+                                                            'name'=>EMPL.'lst_departamentonac',
+                                                            'onchange'=>'Empleados.getProvincia(this.value,\'nac\');'
+                                                        ),
+                                                        'etiqueta'=>'departamento',
+                                                        'value'=>'id_departamento',
+                                                        'defaultEtiqueta'=>  substr($found['id_ubigeonacimeinto'],0,2),
+                                                        'txtSelect'=>true
+                                                    ));
+                                                ?><i></i>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_28; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select" id="<?php echo EMPL ?>d_provincianac"> 
+                                                <?php
+                                                    $datadepro = Obj::run()->EmpleadosController->getProvincia(substr($found['id_ubigeonacimeinto'],0,2));
+
+                                                    echo Functions::selectHtml(array(
+                                                        'data'=>$datadepro,
+                                                        'atributes'=>array(
+                                                            'id'=>EMPL.'lst_provincianac',
+                                                            'name'=>EMPL.'lst_provincianac',
+                                                            'onchange'=>'Empleados.getDistrito(this.value,\'nac\');'
+                                                        ),
+                                                        'etiqueta'=>'provincia',
+                                                        'value'=>'id_provincia',
+                                                        'defaultEtiqueta'=>  substr($found['id_ubigeonacimeinto'],0,4),
+                                                        'txtSelect'=>true
+                                                    ));
+                                                ?><i></i>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_29; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select" id="<?php echo EMPL ?>d_ubigeonac">
+                                                <?php
+                                                    $datadeub = Obj::run()->EmpleadosController->getDistrito(substr($found['id_ubigeonacimeinto'],0,4));
+
+                                                    echo Functions::selectHtml(array(
+                                                        'data'=>$datadeub,
+                                                        'atributes'=>array(
+                                                            'id'=>EMPL.'lst_ubigeonac',
+                                                            'name'=>EMPL.'lst_ubigeonac'
+                                                        ),
+                                                        'etiqueta'=>'distrito',
+                                                        'value'=>'id_ubigeo',
+                                                        'defaultEtiqueta'=>  $found['id_ubigeonacimeinto'],
+                                                        'txtSelect'=>true
+                                                    ));
+                                                ?><i></i>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_30; ?></label>
+                                        <div class="col col-4">
+                                            <label class="input">                                 
+                                                <i class="icon-append fa fa-calendar"></i>
+                                                <input type="text" id="<?php echo EMPL; ?>txt_fechanacimiento" name="<?php echo EMPL; ?>txt_fechanacimiento" value="<?php echo Functions::dateFormat($found['fecha_nacimiento'],'d-m-Y') ?>" >
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                            </fieldset>
+                        </div>
+                        <div class="col col-6">
+                            <fieldset>
+                                <legend><?php echo EMPL_26?></legend>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_27; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select"> 
+                                                <?php
+                                                    echo Functions::selectHtml(array(
+                                                        'data'=>$datadepa,
+                                                        'atributes'=>array(
+                                                            'id'=>EMPL.'lst_departamentodom',
+                                                            'name'=>EMPL.'lst_departamentodom',
+                                                            'onchange'=>'Empleados.getProvincia(this.value,\'dom\');'
+                                                        ),
+                                                        'etiqueta'=>'departamento',
+                                                        'value'=>'id_departamento',
+                                                        'defaultEtiqueta'=>substr($found['id_ubigeodireccion'],0,2),
+                                                        'txtSelect'=>true
+                                                    ));
+                                                ?><i></i>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_28; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select" id="<?php echo EMPL ?>d_provinciadom"> 
+                                                <?php
+                                                    $datadepro = Obj::run()->EmpleadosController->getProvincia(substr($found['id_ubigeodireccion'],0,2));
+
+                                                    echo Functions::selectHtml(array(
+                                                        'data'=>$datadepro,
+                                                        'atributes'=>array(
+                                                            'id'=>EMPL.'lst_provinciadom',
+                                                            'name'=>EMPL.'lst_provinciadom',
+                                                            'onchange'=>'Empleados.getDistrito(this.value,\'dom\');'
+                                                        ),
+                                                        'etiqueta'=>'provincia',
+                                                        'value'=>'id_provincia',
+                                                        'defaultEtiqueta'=>  substr($found['id_ubigeodireccion'],0,4),
+                                                        'txtSelect'=>true
+                                                    ));
+                                                ?><i></i>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_29; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select" id="<?php echo EMPL ?>d_ubigeodom">
+                                                <?php
+                                                    $datadeub = Obj::run()->EmpleadosController->getDistrito(substr($found['id_ubigeodireccion'],0,4));
+
+                                                    echo Functions::selectHtml(array(
+                                                        'data'=>$datadeub,
+                                                        'atributes'=>array(
+                                                            'id'=>EMPL.'lst_ubigeodom',
+                                                            'name'=>EMPL.'lst_ubigeodom'
+                                                        ),
+                                                        'etiqueta'=>'distrito',
+                                                        'value'=>'id_ubigeo',
+                                                        'defaultEtiqueta'=>  $found['id_ubigeodireccion'],
+                                                        'txtSelect'=>true
+                                                    ));
+                                                ?><i></i>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_15; ?></label>
+                                        <div class="col col-6">
+                                            <label class="textarea">                                 
+                                                <i class="icon-append fa fa-question-circle"></i>
+                                                <textarea rows="3" id="<?php echo EMPL; ?>txt_direccion" name="<?php echo EMPL; ?>txt_direccion" ><?php echo $found['direccion']?></textarea>
+                                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_16; ?></b>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                            </fieldset>
+                        </div>
+                    </div>
+                </section>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
             </div>
             <div class="modal-footer">
                 <div class="foot-obligar"></div>
@@ -45,21 +375,60 @@ $found = Obj::run()->EmpleadosController->findEmpleados();
 </script>
 <?php endif; ?>
 <script>
+    simpleScript.setEvent.date({
+        element: '#<?php echo EMPL; ?>txt_fechanacimiento'
+    });
 /*configurar validacion de formulario -- este codigo es de ejemplo*/
 $("#<?php echo EMPL; ?>formEditEmpleados").validate({
     // Rules for form validation
     rules : {
-        <?php echo EMPL; ?>txt_campo : {
+        <?php echo EMPL; ?>txt_primernombre : {
+            required : true,
+            minlength: 2
+        },
+        <?php echo EMPL; ?>txt_apellidopaterno : {
             required : true,
             minlength: 3
-        }
-    },
-
-    // Msn para validacion -- es opcional -- se puede eliminar, validate tiene los msn configurados por defecto
-    messages : {
-        <?php echo EMPL; ?>txt_campo : {
-            required : "Campo requerido",
-            regular: "No se permite caracteres inválidos"
+        },
+        <?php echo EMPL; ?>txt_apellidomaterno : {
+            required : true,
+            minlength: 3
+        },
+        <?php echo EMPL; ?>txt_email : {
+            required : true,
+            email: true
+        },
+        <?php echo EMPL; ?>lst_tipodoc : {
+            required : true
+        },
+        <?php echo EMPL; ?>txt_numdocumento : {
+            required : true,
+            number: true
+        },
+        <?php echo EMPL; ?>lst_departamentonac : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_provincianac : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_ubigeonac : {
+            required : true
+        },
+        <?php echo EMPL; ?>txt_fechanacimiento : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_departamentodom : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_provinciadom : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_ubigeodom : {
+            required : true
+        },
+        <?php echo EMPL; ?>txt_direccion : {
+            required : true,
+            minlength: 3
         }
     },
 

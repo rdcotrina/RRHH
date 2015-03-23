@@ -339,6 +339,14 @@ class Functions{
                 $c = 'label label-danger';
                 $a = 'Inactivo';
                 break;
+            case 'S':
+                $c = 'label label-default';
+                $a = 'Suspendido';
+                break;
+            case 'B':
+                $c = 'label label-warning';
+                $a = 'Baja';
+                break;
             default:
                 $c = '';
                 $a = '';
@@ -367,6 +375,12 @@ class Functions{
         }
         
         return '<label class="'.$c.'">'.$a.'</label>';
+    }
+    
+    public static function dateFormat($param,$f) {
+        $timestamp = strtotime($param); 
+        $new_date = date($f, $timestamp);
+        return $new_date;
     }
     
 }

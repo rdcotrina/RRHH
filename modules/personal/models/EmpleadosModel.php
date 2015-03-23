@@ -11,6 +11,19 @@ class EmpleadosModel extends Model{
 
     private $_flag;
     private $_idEmpleados;
+    private $_primerNombre;
+    private $_segundoNombre;
+    private $_apellidoPaterno;
+    private $_apellidoMaterno;
+    private $_sexo;
+    private $_email;
+    private $_telefonos;
+    private $_tipoDocumento;
+    private $_numeroDocumento;
+    private $_ubigeoNacimiento;
+    private $_fechaNacimiento;
+    private $_ubigeoDireccion;
+    private $_direccion;
     private $_activo;
     private $_usuario;
     
@@ -30,6 +43,19 @@ class EmpleadosModel extends Model{
     private function _set(){
         $this->_flag        = SimpleForm::getParam("_flag");
         $this->_idEmpleados   = Aes::de(SimpleForm::getParam("_idEmpleados"));    /*se decifra*/
+        $this->_primerNombre =   SimpleForm::getParam(EMPL."txt_primernombre");
+        $this->_segundoNombre =   SimpleForm::getParam(EMPL."txt_segundonombre");
+        $this->_apellidoPaterno =   SimpleForm::getParam(EMPL."txt_apellidopaterno");
+        $this->_apellidoMaterno =   SimpleForm::getParam(EMPL."txt_apellidomaterno");
+        $this->_sexo =   SimpleForm::getParam(EMPL."chk_sexo");
+        $this->_email =   SimpleForm::getParam(EMPL."txt_email");
+        $this->_telefonos =   SimpleForm::getParam(EMPL."txt_telefono");
+        $this->_tipoDocumento =   SimpleForm::getParam(EMPL."lst_tipodoc");
+        $this->_numeroDocumento =   SimpleForm::getParam(EMPL."txt_numdocumento");
+        $this->_ubigeoNacimiento =   SimpleForm::getParam(EMPL."lst_ubigeonac");
+        $this->_fechaNacimiento = Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fechanacimiento"),'Y-m-d');
+        $this->_ubigeoDireccion =   SimpleForm::getParam(EMPL."lst_ubigeodom");
+        $this->_direccion =   SimpleForm::getParam(EMPL."txt_direccion");
         $this->_activo =   SimpleForm::getParam(EMPL."chk_activo");
         $this->_usuario     = Session::get("sys_idUsuario");
         
@@ -43,7 +69,7 @@ class EmpleadosModel extends Model{
     
     /*data para el grid: Empleados*/
     public function getGridEmpleados(){
-        $query = "call sp [NOMBRE_PROCEDIMIENTO_GRID] Grid(:iDisplayStart,:iDisplayLength,:sOrder,:sSearch,:sFilterCols);";
+        $query = "call sp_perPersonaGrid(:iDisplayStart,:iDisplayLength,:sOrder,:sSearch,:sFilterCols);";
         
         $parms = array(
             ":iDisplayStart" => $this->_pDisplayStart,
@@ -58,12 +84,59 @@ class EmpleadosModel extends Model{
     
     /*mantenimiento (CRUD) registro: Empleados*/
     public function mantenimientoEmpleados(){
-        /*-------------------------LOGICA PARA EL INSERT------------------------*/
+        $query = "call sp_perPersonalMantenimiento("
+                . ":flag,"
+                . ":idEmpleado,"
+                . ":primerNombre,"
+                . ":segundoNombre,"
+                . ":apellidoPaterno,"
+                . ":apellidoMaterno,"
+                . ":sexo,"
+                . ":email,"
+                . ":telefonos,"
+                . ":tipoDocumento,"
+                . ":numeroDocumento,"
+                . ":ubigeoNacimiento,"
+                . ":fechaNacimiento,"
+                . ":ubigeoDireccion,"
+                . ":direccion,"
+                . ":estado,"
+                . ":usuario"
+            . ");";
+        
+        $parms = array(
+            ":flag" => $this->_flag,
+            ":idEmpleado" => $this->_idEmpleados,
+            ":primerNombre" => $this->_primerNombre,
+            ":segundoNombre" => $this->_segundoNombre,
+            ":apellidoPaterno" => $this->_apellidoPaterno,
+            ":apellidoMaterno" => $this->_apellidoMaterno,
+            ":sexo" => $this->_sexo,
+            ":email" => $this->_email,
+            ":telefonos" => $this->_telefonos,
+            ":tipoDocumento" => $this->_tipoDocumento,
+            ":numeroDocumento" => $this->_numeroDocumento,
+            ":ubigeoNacimiento" => $this->_ubigeoNacimiento,
+            ":fechaNacimiento" => $this->_fechaNacimiento,
+            ":ubigeoDireccion" => $this->_ubigeoDireccion,
+            ":direccion" => $this->_direccion,
+            ":estado" => $this->_activo,
+            ":usuario" => $this->_usuario
+        );
+        $data = $this->queryOne($query,$parms);
+        return $data;
     }
     
     /*seleccionar registro a editar: Empleados*/
     public function findEmpleados(){
-        /*-----------------LOGICA PARA SELECT REGISTRO A EDITAR-----------------*/
+        $query = "call sp_perPersonalConsultas(:flag,:criterio);";
+        
+        $parms = array(
+            ":flag" => 6,
+            ":criterio" => $this->_idEmpleados
+        );
+        $data = $this->queryOne($query,$parms);
+        return $data;
     }
     
     public function getData($flag,$criterio=''){

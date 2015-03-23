@@ -106,19 +106,6 @@ $grabar = Session::getPermiso("EMPLGR");
                         </section>
                         <section>
                             <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_15; ?></label>
-                                <div class="col col-9">
-                                    <label class="input">                                 
-                                        <i class="icon-append fa fa-question-circle"></i>
-                                        <input type="text" id="<?php echo EMPL; ?>txt_direccion" name="<?php echo EMPL; ?>txt_direccion" >
-                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_16; ?></b>
-                                        <div class="obligar"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
                                 <label class="label col col-2"><?php echo EMPL_17; ?></label>
                                 <div class="col col-9">
                                     <label class="input">                                 
@@ -138,14 +125,13 @@ $grabar = Session::getPermiso("EMPLGR");
                                         <i class="icon-append fa fa-question-circle"></i>
                                         <input type="text" id="<?php echo EMPL; ?>txt_telefono" name="<?php echo EMPL; ?>txt_telefono" >
                                         <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_20; ?></b>
-                                        <div class="obligar"></div>
                                     </label>
                                 </div>
                             </div>
                         </section>
                         <section>
                             <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_21; ?></label>
+                                <label class="label col col-2"><?php echo EMPL_31; ?></label>
                                 <div class="col col-3">
                                     <label class="select"> 
                                         <?php
@@ -154,8 +140,8 @@ $grabar = Session::getPermiso("EMPLGR");
                                             echo Functions::selectHtml(array(
                                                 'data'=>$data,
                                                 'atributes'=>array(
-                                                    'id'=>EMPL.'lst_clasificador',
-                                                    'name'=>EMPL.'lst_clasificador'
+                                                    'id'=>EMPL.'lst_tipodoc',
+                                                    'name'=>EMPL.'lst_tipodoc'
                                                 ),
                                                 'etiqueta'=>'tipodocumentoidentidad',
                                                 'value'=>'id_tipodocumentoidentidad',
@@ -192,13 +178,14 @@ $grabar = Session::getPermiso("EMPLGR");
                                                 <div class="col col-6">
                                                     <label class="select"> 
                                                         <?php
-                                                            $data = Obj::run()->EmpleadosController->getDepartamento();
+                                                            $datadepa = Obj::run()->EmpleadosController->getDepartamento();
 
                                                             echo Functions::selectHtml(array(
-                                                                'data'=>$data,
+                                                                'data'=>$datadepa,
                                                                 'atributes'=>array(
-                                                                    'id'=>EMPL.'lst_clasificador',
-                                                                    'name'=>EMPL.'lst_clasificador'
+                                                                    'id'=>EMPL.'lst_departamentonac',
+                                                                    'name'=>EMPL.'lst_departamentonac',
+                                                                    'onchange'=>'Empleados.getProvincia(this.value,\'nac\');'
                                                                 ),
                                                                 'etiqueta'=>'departamento',
                                                                 'value'=>'id_departamento',
@@ -215,10 +202,35 @@ $grabar = Session::getPermiso("EMPLGR");
                                             <div class="row">
                                                 <label class="label col col-4"><?php echo EMPL_28; ?></label>
                                                 <div class="col col-6">
-                                                    <label class="select"> 
-                                                        <select id="<?php echo EMPL ?>lst_provincia" name="<?php echo EMPL ?>lst_provincia">
+                                                    <label class="select" id="<?php echo EMPL ?>d_provincianac"> 
+                                                        <select id="<?php echo EMPL ?>lst_provincianac" name="<?php echo EMPL ?>lst_provincianac">
                                                             <option value="">Seleccionar</option>
                                                         </select><i></i>
+                                                        <div class="obligar"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section>
+                                            <div class="row">
+                                                <label class="label col col-4"><?php echo EMPL_29; ?></label>
+                                                <div class="col col-6">
+                                                    <label class="select" id="<?php echo EMPL ?>d_ubigeonac"> 
+                                                        <select id="<?php echo EMPL ?>lst_ubigeonac" name="<?php echo EMPL ?>lst_ubigeonac">
+                                                            <option value="">Seleccionar</option>
+                                                        </select><i></i>
+                                                        <div class="obligar"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section>
+                                            <div class="row">
+                                                <label class="label col col-4"><?php echo EMPL_30; ?></label>
+                                                <div class="col col-4">
+                                                    <label class="input">                                 
+                                                        <i class="icon-append fa fa-calendar"></i>
+                                                        <input type="text" id="<?php echo EMPL; ?>txt_fechanacimiento" name="<?php echo EMPL; ?>txt_fechanacimiento" >
                                                         <div class="obligar"></div>
                                                     </label>
                                                 </div>
@@ -229,6 +241,69 @@ $grabar = Session::getPermiso("EMPLGR");
                                 <div class="col col-6">
                                     <fieldset>
                                         <legend><?php echo EMPL_26?></legend>
+                                        <section>
+                                            <div class="row">
+                                                <label class="label col col-4"><?php echo EMPL_27; ?></label>
+                                                <div class="col col-6">
+                                                    <label class="select"> 
+                                                        <?php
+                                                            echo Functions::selectHtml(array(
+                                                                'data'=>$datadepa,
+                                                                'atributes'=>array(
+                                                                    'id'=>EMPL.'lst_departamentodom',
+                                                                    'name'=>EMPL.'lst_departamentodom',
+                                                                    'onchange'=>'Empleados.getProvincia(this.value,\'dom\');'
+                                                                ),
+                                                                'etiqueta'=>'departamento',
+                                                                'value'=>'id_departamento',
+                                                                'defaultEtiqueta'=>'',
+                                                                'txtSelect'=>true
+                                                            ));
+                                                        ?><i></i>
+                                                        <div class="obligar"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section>
+                                            <div class="row">
+                                                <label class="label col col-4"><?php echo EMPL_28; ?></label>
+                                                <div class="col col-6">
+                                                    <label class="select" id="<?php echo EMPL ?>d_provinciadom"> 
+                                                        <select id="<?php echo EMPL ?>lst_provinciadom" name="<?php echo EMPL ?>lst_provinciadom">
+                                                            <option value="">Seleccionar</option>
+                                                        </select><i></i>
+                                                        <div class="obligar"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section>
+                                            <div class="row">
+                                                <label class="label col col-4"><?php echo EMPL_29; ?></label>
+                                                <div class="col col-6">
+                                                    <label class="select" id="<?php echo EMPL ?>d_ubigeodom"> 
+                                                        <select id="<?php echo EMPL ?>lst_ubigeodom" name="<?php echo EMPL ?>lst_ubigeodom">
+                                                            <option value="">Seleccionar</option>
+                                                        </select><i></i>
+                                                        <div class="obligar"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section>
+                                            <div class="row">
+                                                <label class="label col col-4"><?php echo EMPL_15; ?></label>
+                                                <div class="col col-6">
+                                                    <label class="textarea">                                 
+                                                        <i class="icon-append fa fa-question-circle"></i>
+                                                        <textarea rows="3" id="<?php echo EMPL; ?>txt_direccion" name="<?php echo EMPL; ?>txt_direccion" ></textarea>
+                                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_16; ?></b>
+                                                        <div class="obligar"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </section>
                                     </fieldset>
                                 </div>
                             </div>
@@ -289,21 +364,60 @@ $grabar = Session::getPermiso("EMPLGR");
 </script>
 <?php endif; ?>
 <script>
+    simpleScript.setEvent.date({
+        element: '#<?php echo EMPL; ?>txt_fechanacimiento'
+    });
 /*configurar validacion de formulario -- este codigo es de ejemplo*/
 $("#<?php echo EMPL; ?>formNewEmpleados").validate({
     // Rules for form validation
     rules : {
-        <?php echo EMPL; ?>txt_campo : {
+        <?php echo EMPL; ?>txt_primernombre : {
+            required : true,
+            minlength: 2
+        },
+        <?php echo EMPL; ?>txt_apellidopaterno : {
             required : true,
             minlength: 3
-        }
-    },
-
-    // Msn para validacion -- es opcional -- se puede eliminar, validate tiene los msn configurados por defecto
-    messages : {
-        <?php echo EMPL; ?>txt_campo : {
-            required : "Campo requerido",
-            regular: "No se permite caracteres inválidos"
+        },
+        <?php echo EMPL; ?>txt_apellidomaterno : {
+            required : true,
+            minlength: 3
+        },
+        <?php echo EMPL; ?>txt_email : {
+            required : true,
+            email: true
+        },
+        <?php echo EMPL; ?>lst_tipodoc : {
+            required : true
+        },
+        <?php echo EMPL; ?>txt_numdocumento : {
+            required : true,
+            number: true
+        },
+        <?php echo EMPL; ?>lst_departamentonac : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_provincianac : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_ubigeonac : {
+            required : true
+        },
+        <?php echo EMPL; ?>txt_fechanacimiento : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_departamentodom : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_provinciadom : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_ubigeodom : {
+            required : true
+        },
+        <?php echo EMPL; ?>txt_direccion : {
+            required : true,
+            minlength: 3
         }
     },
 
