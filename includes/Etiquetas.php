@@ -242,9 +242,32 @@ define('EMPL_29','Distrito');
 define('EMPL_30','Fecha de Nacimiento');
 define('EMPL_31','Tipo de Documento');
 define('EMPL_32','Editar Empleado');
+define('EMPL_33','Derechohabientes de: ');
+define('EMPL_34','Datos de Derechohabiente');
+define('EMPL_35','Listado');
+define('EMPL_36','Tipo de vínculo');
+define('EMPL_37','Nombres');
+define('EMPL_38','Ingrese los nombres de derechohabiente');
+define('EMPL_39','Apellidos');
+define('EMPL_40','Ingrese los apellidos del derechohabiente');
+define('EMPL_41','Ingrese el número de documento del derechohabiente');
+define('EMPL_42','Ingrese el email del derechohabiente');
+define('EMPL_43','Ingrese números telefónicos del derechohabiente');
+define('EMPL_44','Ingrese la irección del derechohabiente');
+define('EMPL_45','Datos Laborales de: ');
+define('EMPL_46','Datos');
 
 /*==============================ESTRUCTURA ORGANICA==============================*/
 define('ESOG_1','Estructura Orgánica');
 define('ESOG_2','Ingrese el nombre de la estructura orgánica');
 define('ESOG_3','Nueva Estructura');
 define('ESOG_4','Editar Estructura');
+
+/*==============================HORARIO==============================*/
+define('HRIO_1','Horarios');
+define('HRIO_2','Nuevo Horario');
+define('HRIO_3','Editar Horario');
+define('HRIO_4','Horario');
+define('HRIO_5','Ingrese la descripción del horario');
+define('HRIO_6','Mañana');
+define('HRIO_7','Tarde');

@@ -153,7 +153,7 @@ var acciones_ = function() {
                 fnCallback: function(data) {
                     if (!isNaN(data.result) && parseInt(data.result) === 1) {
                         simpleScript.notify.ok({
-                            content: mensajes.MSG_3,
+                            content: lang.mensajes.MSG_3,
                             callback: function() {
                                 acciones.getGridAcciones();
                             }
@@ -188,7 +188,7 @@ var acciones_ = function() {
                 fnCallback: function(data) {
                     if (!isNaN(data.result) && parseInt(data.result) === 1) {
                         simpleScript.notify.ok({
-                            content: mensajes.MSG_3,
+                            content: lang.mensajes.MSG_3,
                             callback: function() {
                                 acciones.getGridAcciones();
                                 simpleScript.closeModal('#CRDACformEditAccion');
@@ -215,7 +215,7 @@ var acciones_ = function() {
             _private.idAccion = simpleScript.getParam(arguments[0]);
 
             simpleScript.notify.confirm({
-                content: mensajes.MSG_5,
+                content: lang.mensajes.MSG_5,
                 callbackSI: function() {
                     simpleAjax.send({
                         flag: 3,
@@ -227,7 +227,7 @@ var acciones_ = function() {
                         fnCallback: function(data) {
                             if (!isNaN(data.result) && parseInt(data.result) === 1) {
                                 simpleScript.notify.ok({
-                                    content: mensajes.MSG_6,
+                                    content: lang.mensajes.MSG_6,
                                     callback: function() {
                                         acciones.getGridAcciones();
                                     }

@@ -27,3 +27,4 @@ define("DVCL","DVCL");             /*tab opción CLASIFICADORDERIVADO*/
 define("VNFA","VNFA");             /*tab opción TIPOVINCULOFAMILIAR*/
 define("EMPL","EMPL");             /*tab opción EMPLEADOS*/
 define("ESOG","ESOG");             /*tab opción ESTRUCTURAORGANICA*/
+define("HRIO","HRIO");             /*tab opción HORARIO*/

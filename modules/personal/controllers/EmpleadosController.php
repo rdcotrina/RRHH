@@ -25,6 +25,7 @@ class EmpleadosController extends Controller{
         foreach ($data as $value) {
             $rows[] = array(
                 "id_persona"=>AesCtr::en($value["id_persona"]),
+                "id_trabajador"=>AesCtr::en($value["id_trabajador"]),
                 "nombrecompleto"=> $value["nombrecompleto"],
                 "numerodocumento"=> $value["numerodocumento"],
                 "email"=> $value["email"],
@@ -42,6 +43,14 @@ class EmpleadosController extends Controller{
     
     /*carga formulario (formEditEmpleados.phtml) para editar registro: Empleados*/
     public function formEditEmpleados(){
+        Obj::run()->View->render();
+    }
+    
+    public function formNewDerechoHabientes(){
+        Obj::run()->View->render();
+    }
+    
+    public function formDatosLaborales(){
         Obj::run()->View->render();
     }
     
@@ -118,6 +127,11 @@ class EmpleadosController extends Controller{
         }else{
             echo json_encode($data);
         }
+    }
+    
+    public function getTipoVinculoFamiliar(){
+        $data = self::$EmpleadosModel->getData(7);
+        return $data;
     }
     
 }

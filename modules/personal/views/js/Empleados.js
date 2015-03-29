@@ -8,19 +8,20 @@
 var Empleados_ = function(){
     
     /*cargar requires*/
-    /*descomentar de ser necesario
     simpleObject.require({
-        Empleados: "EmpleadosScript"
+        personal: "EmpleadosScript"
     });
-    */
     
     /*metodos privados*/
     var _private = {};
     
     _private.idEmpleados = 0;
     
+    _private.idDerechoHabiente = 0;
+    
     _private.config = {
-        modulo: "personal/Empleados/"
+        modulo: "personal/Empleados/",
+        moduloDH: "personal/DerechoHabientes/"
     };
 
     /*metodos publicos*/
@@ -50,8 +51,10 @@ var Empleados_ = function(){
     };
     
     _public.getGridEmpleados = function (reload){
+        var pDatLab = simpleScript.getPermiso("EMPLDL");
         var pEdit   = simpleScript.getPermiso("EMPLED");
         var pDelete = simpleScript.getPermiso("EMPLDE");
+        var pDerHab = simpleScript.getPermiso("EMPLDH");
 
         $("#"+tabs.EMPL+"gridEmpleados").simpleGrid({
             tWidthFormat: "px",
@@ -65,6 +68,24 @@ var Empleados_ = function(){
             ],
             pPaginate: true,
             sAxions: [{
+                access: pDatLab.permiso,
+                icono: pDatLab.icono,
+                titulo: pDatLab.accion,
+                class: pDatLab.theme,
+                ajax: {
+                    fn: "Empleados.formDatosLaborales",
+                    serverParams: ["id_trabajador","nombrecompleto"]
+                }
+            },{
+                access: pDerHab.permiso,
+                icono: pDerHab.icono,
+                titulo: pDerHab.accion,
+                class: pDerHab.theme,
+                ajax: {
+                    fn: "Empleados.formNewDerechoHabientes",
+                    serverParams: ["id_trabajador","nombrecompleto"]
+                }
+            },{
                 access: pEdit.permiso,
                 icono: pEdit.icono,
                 titulo: pEdit.accion,
@@ -89,6 +110,68 @@ var Empleados_ = function(){
                     container: "#"+oSettings.tObjectTable,
                     typeElement: "button"
                 }); 
+            }
+        });
+        setup_widgets_desktop();
+    };
+    
+    _public.getGridDerechohabientes = function (reload){
+        if(reload){
+            $('#'+tabs.EMPL+'dh2').html('<table id="'+tabs.EMPL+'gridDerechoHabientes" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>');
+        }
+        var pEdit   = simpleScript.getPermiso("EMPLED");
+        var pDelete = simpleScript.getPermiso("EMPLDE");
+
+        $("#"+tabs.EMPL+"gridDerechoHabientes").simpleGrid({
+            tWidthFormat: "px",
+            tScrollY: "200px",
+            tReload: reload,
+            tColumns: [
+                {title: lang.Empleados.NRODOC,campo: "numerodocumento",width: "80",sortable: true,search: {operator:"LIKE"}},
+                {title: lang.Empleados.APENOM, campo: "nombres", width: "250", sortable: true,search:{operator:"LIKE"}},
+                {title: lang.TipoVinculoFamiliar.VICNULO, campo: "vinculofamiliar", width: "110", sortable: true,search:{operator:"LIKE"}},
+                {title: lang.Empleados.EMAIL, campo: "email", width: "250", sortable: true,search:{operator:"LIKE"}},
+                {title: lang.Empleados.TELS, campo: "telefonos", width: "200", sortable: true,search:{operator:"LIKE"}},
+                {title: lang.generic.EST, campo: "estadod", width: "80", sortable: true, class: "center"}
+            ],
+            pPaginate: true,
+            sAxions: [{
+                access: pEdit.permiso,
+                icono: pEdit.icono,
+                titulo: pEdit.accion,
+                class: pEdit.theme,
+                ajax: {
+                    fn: "Empleados.getDerechoHabiente",
+                    serverParams: "id_derechohabiente"
+                }
+            }, {
+                access: pDelete.permiso,
+                icono: pDelete.icono,
+                titulo: pDelete.accion,
+                class: pDelete.theme,
+                ajax: {
+                    fn: "Empleados.postDeleteDerechoHabiente",
+                    serverParams: "id_derechohabiente"
+                }
+            }],
+            ajaxSource: _private.config.moduloDH+"getGridDerechoHabientes",
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(oSettings) {
+                simpleScript.removeAttr.click({
+                    container: "#"+oSettings.tObjectTable,
+                    typeElement: "button"
+                }); 
+                /*bloquear submit en input de datagrid*/
+                $("#"+tabs.EMPL+"formNewDerechoHabientes").find("#"+tabs.EMPL+"dh2").off("keyup keypress");
+                $("#"+tabs.EMPL+"formNewDerechoHabientes").find("#"+tabs.EMPL+"dh2").on("keyup keypress", function(e) {
+                    var code = e.keyCode || e.which; 
+                    if (code  === 13) {               
+                      e.preventDefault();
+                      return false;
+                    }
+                });
             }
         });
         setup_widgets_desktop();
@@ -123,7 +206,60 @@ var Empleados_ = function(){
         });
     };
     
-    _public.getProvincia = function(depa,pre){
+    _public.formNewDerechoHabientes = function(btn,id,name){
+        _private.idEmpleados = id;
+            
+        simpleAjax.send({
+            element: btn,
+            dataType: "html",
+            root: _private.config.modulo + "formNewDerechoHabientes",
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(data){
+                $("#cont-modal").append(data);  /*los formularios con append*/
+                $("#"+tabs.EMPL+"formNewDerechoHabientes").modal("show");
+                $("#name-empelado").html(name);
+            }
+        });
+    };
+    
+    _public.getDerechoHabiente = function(btn,id){
+        _private.idDerechoHabiente = id;
+            
+        simpleAjax.send({
+            element: btn,
+            root: _private.config.moduloDH + "getDerechoHabiente",
+            fnServerParams: function(sData){
+                sData.push({name: "_idDerechoHabiente", value: _private.idDerechoHabiente});
+            },
+            fnCallback: function(data){
+                EmpleadosScript.setDerechohabiente(data);
+                Empleados.getProvincia(data.id_ubigeodireccion.substring(0,2),'dh',data.id_ubigeodireccion.substring(0,4));
+                Empleados.getDistrito(data.id_ubigeodireccion.substring(0,4),'dh',data.id_ubigeodireccion);
+            }
+        });
+    };
+    
+    _public.formDatosLaborales = function(btn,id,name){
+        _private.idEmpleados = id;
+            
+        simpleAjax.send({
+            element: btn,
+            dataType: "html",
+            root: _private.config.modulo + "formDatosLaborales",
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(data){
+                $("#cont-modal").append(data);  /*los formularios con append*/
+                $("#"+tabs.EMPL+"formDatosLaborales").modal("show");
+                $("#name-empelado").html(name);
+            }
+        });
+    };
+    
+    _public.getProvincia = function(depa,pre,defa){
         simpleAjax.send({
             gifProcess: true,
             root: _private.config.modulo + "getProvincia",
@@ -136,6 +272,7 @@ var Empleados_ = function(){
                     optionSelec: true,
                     content: '#'+tabs.EMPL+'d_provincia'+pre,
                     required: true,
+                    deffault: defa,
                     attr:{
                         id: tabs.EMPL+'lst_provincia'+pre,
                         name: tabs.EMPL+'lst_provincia'+pre,
@@ -150,7 +287,7 @@ var Empleados_ = function(){
         });
     };
     
-    _public.getDistrito = function(pro,pre){
+    _public.getDistrito = function(pro,pre,def){
         simpleAjax.send({
             gifProcess: true,
             root: _private.config.modulo + "getDistrito",
@@ -163,6 +300,7 @@ var Empleados_ = function(){
                     optionSelec: true,
                     content: '#'+tabs.EMPL+'d_ubigeo'+pre,
                     required: true,
+                    deffault: def,
                     attr:{
                         id: tabs.EMPL+'lst_ubigeo'+pre,
                         name: tabs.EMPL+'lst_ubigeo'+pre
@@ -247,6 +385,68 @@ var Empleados_ = function(){
                                 content: lang.mensajes.MSG_6,
                                 callback: function(){
                                     Empleados.getGridEmpleados(false);
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    };
+    
+    _public.postNewDerechoHabiente = function(){
+        var flag = 1;
+        if(_private.idDerechoHabiente != 0){
+            flag = 2;
+        }
+        simpleAjax.send({
+            flag: flag,
+            element: "#"+tabs.EMPL+"btnGrDH",
+            root: _private.config.moduloDH + "newDerechoHabientes",
+            form: "#"+tabs.EMPL+"formNewDerechoHabientes",
+            clear: true,
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+                sData.push({name: "_idDerechoHabiente", value: _private.idDerechoHabiente});
+                
+            },
+            fnCallback: function(data) {
+                if(!isNaN(data.result) && parseInt(data.result) === 1){
+                    simpleScript.notify.ok({
+                        content: lang.mensajes.MSG_3,
+                        callback: function(){
+                            Empleados.getGridDerechohabientes(false);
+                            //al editar resetear id
+                            _private.idDerechoHabiente = 0;
+                        }
+                    });
+                }else if(!isNaN(data.result) && parseInt(data.result) === 2){
+                    simpleScript.notify.error({
+                        content: lang.Empleados.EXISTDH
+                    });
+                }
+            }
+        });
+    };
+    
+    _public.postDeleteDerechoHabiente = function(btn,id){
+        simpleScript.notify.confirm({
+            content: lang.mensajes.MSG_5,
+            callbackSI: function(){
+                simpleAjax.send({
+                    flag: 3,
+                    element: btn,
+                    gifProcess: true,
+                    root: _private.config.moduloDH + "deleteDerechohabiente",
+                    fnServerParams: function(sData){
+                        sData.push({name: "_idDerechoHabiente", value: id});
+                    },
+                    fnCallback: function(data) {
+                        if(!isNaN(data.result) && parseInt(data.result) === 1){
+                            simpleScript.notify.ok({
+                                content: lang.mensajes.MSG_6,
+                                callback: function(){
+                                    Empleados.getGridDerechohabientes(false);
                                 }
                             });
                         }

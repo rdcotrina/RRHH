@@ -30,6 +30,8 @@
         
         <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>theme/smartadmin/js/plugin/chosen/chosen.css">
         
+        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>theme/smartadmin/js/plugin/clockpicker/jquery-clockpicker.min.css">
+        
         <link rel='stylesheet' type='text/css' href='<?php echo BASE_URL; ?>public/css/scrollTable.css' />
         
         <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $rutaLayout['_css']; ?>lockscreen.css">

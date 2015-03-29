@@ -216,6 +216,12 @@ var simpleScript_ = function() {
             });
             $(obj.element).mask('99-99-9999');
         },
+        time: function(obj) {
+            $(obj.element).clockpicker({
+                donetext: 'Ok'
+            });
+            $(obj.element).mask('99:99');
+        },
         dateRange: function(obj) {
             $(obj.ini).datepicker({
                 showOn: "button",
@@ -298,8 +304,8 @@ var simpleScript_ = function() {
                 value = 'data[i].' + dataView.etiqueta;
                 value = eval(value);
             }
-            
-            if (deffault === eval(id)) {
+            sel = '';
+            if (deffault === id) {
                 sel = ' selected = "selected" ';
             }
             cb += '<option value="' + id + '" ' + sel + '>' + value + '</option>';

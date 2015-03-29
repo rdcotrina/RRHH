@@ -152,4 +152,15 @@ lang.Empleados = {};
 lang.Empleados.NRODOC = 'N° Doc.';
 lang.Empleados.APENOM = 'Apellidos y Nombres';
 lang.Empleados.EMAIL  = 'Email';
+lang.Empleados.TELS  = 'Teléfonos';
 lang.Empleados.EXIST = 'Empleado, email o número de documento ya existe';
+lang.Empleados.EXISTDH = 'Nombres y apellidos o número de documento de derechohabiente ya existe';
+
+/*---------------------PERSONAL/HORARIOS--------------------*/
+lang.Horario = {};
+lang.Horario.HORA = 'Horario';
+lang.Horario.INMA = 'Iingreso Mañana';
+lang.Horario.SALMA = 'Salida Mañana';
+lang.Horario.INTA = 'Ingreso Tarde';
+lang.Horario.SALTA = 'Salida Tarde';
+lang.Horario.EXIST = 'Horario ya existe';
