@@ -1,0 +1,108 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 30-03-2015 01:03:44 
+* Descripcion : formEditSistemaPension.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: SISPE debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("SISPEACT");
+    
+$found = Obj::run()->SistemaPensionController->findSistemaPension();
+
+?>
+<form id="<?php echo SISPE; ?>formEditSistemaPension" name="<?php echo SISPE; ?>formEditSistemaPension" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo SISPE_3?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo SISPE_6; ?></label>
+                        <div class="col col-4">
+                            <label class="input state-disabled"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo SISPE; ?>txt_ruc" name="<?php echo SISPE; ?>txt_ruc" disabled value="<?php echo $found['ruc']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo SISPE_7; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo SISPE_5; ?></label>
+                        <div class="col col-8">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo SISPE; ?>txt_sistemapension" name="<?php echo SISPE; ?>txt_sistemapension" value="<?php echo $found['sistemapension']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo SISPE_4; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"></label>
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo SISPE; ?>chk_activo" id="<?php echo SISPE; ?>chk_activo" value="A" <?php echo ($found['estado'] == 'A')?'checked':'' ?>></input>
+                                <i></i>
+                                <?php echo CK_ACTIVO; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo SISPE; ?>btnEdSistemaPension" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo SISPE; ?>formEditSistemaPension");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo SISPE; ?>formEditSistemaPension").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo SISPE; ?>txt_ruc : {
+            required : true,
+            number: true
+        },
+        <?php echo SISPE; ?>txt_sistemapension : {
+            required : true
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        SistemaPension.postEditSistemaPension();
+    }   
+});
+</script>
+</form>

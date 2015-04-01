@@ -29,3 +29,4 @@ tabs.VNFA = '<?php echo VNFA; ?>';
 tabs.EMPL = '<?php echo EMPL; ?>';
 tabs.ESOG = '<?php echo ESOG; ?>';
 tabs.HRIO = '<?php echo HRIO; ?>';
+tabs.SISPE = '<?php echo SISPE; ?>';

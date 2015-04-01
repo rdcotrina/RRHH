@@ -164,3 +164,9 @@ lang.Horario.SALMA = 'Salida Mañana';
 lang.Horario.INTA = 'Ingreso Tarde';
 lang.Horario.SALTA = 'Salida Tarde';
 lang.Horario.EXIST = 'Horario ya existe';
+
+/*---------------------PERSONAL/SISTEMA DE PENSIONES--------------------*/
+lang.SistemaPension = {};
+lang.SistemaPension.RUC = 'RUC';
+lang.SistemaPension.SISPE = 'Sistema de Pensión';
+lang.SistemaPension.EXIST = 'Sistema de pensión ya existe';

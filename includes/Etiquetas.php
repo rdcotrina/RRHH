@@ -271,3 +271,12 @@ define('HRIO_4','Horario');
 define('HRIO_5','Ingrese la descripción del horario');
 define('HRIO_6','Mañana');
 define('HRIO_7','Tarde');
+
+/*==============================SISTEMA DE PENSIONES==============================*/
+define('SISPE_1','Sistema de Pensiones');
+define('SISPE_2','Nuevo Sistema de Pensiones');
+define('SISPE_3','Editar Sistema de Pensiones');
+define('SISPE_4','Ingrese el nombre del sistema de pensisones');
+define('SISPE_5','Sistema de pensión');
+define('SISPE_6','RUC');
+define('SISPE_7','Ingrese el número de RUC');
