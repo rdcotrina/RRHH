@@ -30,3 +30,4 @@ tabs.EMPL = '<?php echo EMPL; ?>';
 tabs.ESOG = '<?php echo ESOG; ?>';
 tabs.HRIO = '<?php echo HRIO; ?>';
 tabs.SISPE = '<?php echo SISPE; ?>';
+tabs.TPLL = '<?php echo TPLL; ?>';

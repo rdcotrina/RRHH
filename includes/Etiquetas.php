@@ -280,3 +280,10 @@ define('SISPE_4','Ingrese el nombre del sistema de pensisones');
 define('SISPE_5','Sistema de pensión');
 define('SISPE_6','RUC');
 define('SISPE_7','Ingrese el número de RUC');
+
+/*==============================TIPOS DE PLANILLA==============================*/
+define('TPLL_1','Tipos de Planilla');
+define('TPLL_2','Nuevo Tipo de Planilla');
+define('TPLL_3','Editar Tipo de Planilla');
+define('TPLL_4','Tipo de planilla');
+define('TPLL_5','Ingrese nombre de tipo de planilla');

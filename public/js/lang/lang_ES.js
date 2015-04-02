@@ -170,3 +170,8 @@ lang.SistemaPension = {};
 lang.SistemaPension.RUC = 'RUC';
 lang.SistemaPension.SISPE = 'Sistema de Pensión';
 lang.SistemaPension.EXIST = 'Sistema de pensión ya existe';
+
+/*---------------------PERSONAL/SISTEMA DE PENSIONES--------------------*/
+lang.TipoPlanilla = {};
+lang.TipoPlanilla.TIPOP = 'Tipo de Planilla';
+lang.TipoPlanilla.EXIST = 'Tipo de planilla ya existe';

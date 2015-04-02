@@ -29,3 +29,4 @@ define("EMPL","EMPL");             /*tab opción EMPLEADOS*/
 define("ESOG","ESOG");             /*tab opción ESTRUCTURAORGANICA*/
 define("HRIO","HRIO");             /*tab opción HORARIO*/
 define("SISPE","SISPE");             /*tab opción SISTEMAPENSION*/
+define("TPLL","TPLL");             /*tab opción TIPOPLANILLA*/
