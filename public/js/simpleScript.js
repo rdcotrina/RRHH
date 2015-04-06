@@ -212,7 +212,8 @@ var simpleScript_ = function() {
         date: function(obj) {
             $(obj.element).datepicker({
                 changeMonth: true,
-                changeYear: true
+                changeYear: true,
+                dateFormat: 'dd-mm-yy'
             });
             $(obj.element).mask('99-99-9999');
         },
@@ -228,11 +229,12 @@ var simpleScript_ = function() {
                 buttonImageOnly: true,
                 buttonImage: "img/date.png",
                 numberOfMonths: 1,
+                dateFormat: 'dd-mm-yy',
                 onClose: function(selectedDate) {
                     $(obj.fin).datepicker("option", obj.opt, selectedDate);
                 }
             });
-            $(obj.ini).mask('99/99/9999');
+            $(obj.ini).mask('99-99-9999');
         }
     };
 
@@ -261,13 +263,16 @@ var simpleScript_ = function() {
                 optionSelec = (obj.optionSelec === undefined) ? true : obj.optionSelec, /*para mostrar texto seleccionar*/
                 content = obj.content, /*id deelemento donde se cargara <select>*/
                 required = (obj.required === undefined) ? false : true,
+                chosen = (obj.chosen === undefined) ? true : obj.chosen,
                 deffault = (obj.deffault !== undefined) ? obj.deffault : '', /*para seleccionar un registro por defecto*/
                 fnCallback = (obj.fnCallback !== undefined) ? obj.fnCallback : '', /*funcion anonima*/
                 dataView = obj.dataView, /*la data a setear en <select>*/
-                attr = '';                                                                  /*los atributos html del <select>*/
+                attr = '',                  /*los atributos html del <select>*/
+                idEl = '';                
 
         if (obj.attr !== undefined && obj.attr !== '') {
             for (var i in obj.attr) {
+                if(i == 'id'){ idEl = obj.attr[i]; }
                 attr += i + '="' + obj.attr[i] + '" ';
             }
         }
@@ -310,13 +315,21 @@ var simpleScript_ = function() {
             }
             cb += '<option value="' + id + '" ' + sel + '>' + value + '</option>';
         }
-        cb += '</select><i></i>';
+        cb += '</select>';
       
         if(required){
             cb += '<div class="obligar"></div>';
         }
       
         $(''+content+'').html(cb);
+       
+        if(chosen){
+            $("#"+idEl).chosen();
+            $("#"+idEl+"_chosen").css("width","100%");
+            if(deffault !== ''){
+                $("#"+idEl).val(deffault).trigger("chosen:updated");
+            }
+        }
 
         if (fnCallback !== '') {
             fnCallback();

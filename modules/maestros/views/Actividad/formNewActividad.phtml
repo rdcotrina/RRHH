@@ -126,9 +126,6 @@ $grabar = Session::getPermiso("HACTGR");
 <?php endif; ?>
 <script>
 /*configurar validacion de formulario -- este codigo es de ejemplo*/
-/*activa validacion a los chosen()*/
-$.validator.setDefaults({ ignore: ":hidden:not(select)" });
-
 $("#<?php echo HACT; ?>formNewActividad").validate({
     // Rules for form validation
     rules : {

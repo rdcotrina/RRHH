@@ -132,8 +132,8 @@ $found = Obj::run()->EmpleadosController->findEmpleados();
                                         'defaultEtiqueta'=>$found['id_tipodocumentoidentidad'],
                                         'txtSelect'=>true
                                     ));
-                                ?><i></i>
-                                <div class="obligar"></div>
+                                ?>
+                                <div class="obligar"></div>                                
                             </label>
                         </div>
                     </div>
@@ -176,7 +176,7 @@ $found = Obj::run()->EmpleadosController->findEmpleados();
                                                         'defaultEtiqueta'=>  substr($found['id_ubigeonacimeinto'],0,2),
                                                         'txtSelect'=>true
                                                     ));
-                                                ?><i></i>
+                                                ?>
                                                 <div class="obligar"></div>
                                             </label>
                                         </div>
@@ -202,7 +202,7 @@ $found = Obj::run()->EmpleadosController->findEmpleados();
                                                         'defaultEtiqueta'=>  substr($found['id_ubigeonacimeinto'],0,4),
                                                         'txtSelect'=>true
                                                     ));
-                                                ?><i></i>
+                                                ?>
                                                 <div class="obligar"></div>
                                             </label>
                                         </div>
@@ -227,7 +227,7 @@ $found = Obj::run()->EmpleadosController->findEmpleados();
                                                         'defaultEtiqueta'=>  $found['id_ubigeonacimeinto'],
                                                         'txtSelect'=>true
                                                     ));
-                                                ?><i></i>
+                                                ?>
                                                 <div class="obligar"></div>
                                             </label>
                                         </div>
@@ -268,7 +268,7 @@ $found = Obj::run()->EmpleadosController->findEmpleados();
                                                         'defaultEtiqueta'=>substr($found['id_ubigeodireccion'],0,2),
                                                         'txtSelect'=>true
                                                     ));
-                                                ?><i></i>
+                                                ?>
                                                 <div class="obligar"></div>
                                             </label>
                                         </div>
@@ -294,7 +294,7 @@ $found = Obj::run()->EmpleadosController->findEmpleados();
                                                         'defaultEtiqueta'=>  substr($found['id_ubigeodireccion'],0,4),
                                                         'txtSelect'=>true
                                                     ));
-                                                ?><i></i>
+                                                ?>
                                                 <div class="obligar"></div>
                                             </label>
                                         </div>
@@ -319,7 +319,7 @@ $found = Obj::run()->EmpleadosController->findEmpleados();
                                                         'defaultEtiqueta'=>  $found['id_ubigeodireccion'],
                                                         'txtSelect'=>true
                                                     ));
-                                                ?><i></i>
+                                                ?>
                                                 <div class="obligar"></div>
                                             </label>
                                         </div>
@@ -415,7 +415,8 @@ $("#<?php echo EMPL; ?>formEditEmpleados").validate({
             required : true
         },
         <?php echo EMPL; ?>txt_fechanacimiento : {
-            required : true
+            required : true,
+            date: true
         },
         <?php echo EMPL; ?>lst_departamentodom : {
             required : true

@@ -54,6 +54,14 @@ class EmpleadosController extends Controller{
         Obj::run()->View->render();
     }
     
+    public function formNewCargo(){
+        Obj::run()->View->render();
+    }
+    
+    public function formEditCargo(){
+        Obj::run()->View->render();
+    }
+    
     /*busca data para editar registro: Empleados*/
     public function findEmpleados(){
         $data = self::$EmpleadosModel->findEmpleados();
@@ -64,6 +72,12 @@ class EmpleadosController extends Controller{
     /*envia datos para grabar registro: Empleados*/
     public function newEmpleados(){
         $data = self::$EmpleadosModel->mantenimientoEmpleados();
+        
+        echo json_encode($data);
+    }
+    
+    public function postDatos(){
+        $data = self::$EmpleadosModel->mantenimientoDatos();
         
         echo json_encode($data);
     }
@@ -131,6 +145,68 @@ class EmpleadosController extends Controller{
     
     public function getTipoVinculoFamiliar(){
         $data = self::$EmpleadosModel->getData(7);
+        return $data;
+    }
+    
+    public function getTipoPago(){
+        $data = self::$EmpleadosModel->getData(12);
+        return $data;
+    }
+    
+    public function getTipoContrato(){
+        $data = self::$EmpleadosModel->getData(13);
+        return $data;
+    }
+    
+    public function getHorario(){
+        $data = self::$EmpleadosModel->getData(14);
+        return $data;
+    }
+    
+    public function getCategoria(){
+        $data = self::$EmpleadosModel->getData(15);
+        return $data;
+    }
+    
+    public function getArea(){
+        $data = self::$EmpleadosModel->getData(16);
+        return $data;
+    }
+    
+    public function getCargo(){
+        $data = self::$EmpleadosModel->getData(17);
+        return $data;
+    }
+    
+    public function getBancos(){
+        $data = self::$EmpleadosModel->getData(20);
+        return $data;
+    }
+    
+    public function getSistemaPensiones(){
+        $data = self::$EmpleadosModel->getData(22);
+        return $data;
+    }
+    
+    public function getCuentaCorriente($banco=''){
+        $data = self::$EmpleadosModel->getCuentaCorriente($banco);
+        
+        if(!empty($banco)){
+            return $data;
+        }else{
+            echo json_encode($data);
+        }
+    }
+    
+    public function findCargo(){
+        $data = self::$EmpleadosModel->findCargo();
+        
+        return $data;
+    }
+    
+    public function findDatos(){
+        $data = self::$EmpleadosModel->findDatos();
+        
         return $data;
     }
     

@@ -1,0 +1,135 @@
+<form id="<?php echo EMPL; ?>formPensiones" name="<?php echo EMPL; ?>formPensiones">
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo EMPL_63; ?></label>
+            <div class="col col-8">
+                <label class="select">  
+                    <?php
+                        $data = Obj::run()->EmpleadosController->getSistemaPensiones();
+
+                        echo Functions::selectHtml(array(
+                            'data'=>$data,
+                            'atributes'=>array(
+                                'id'=>EMPL.'lst_sistemapension',
+                                'name'=>EMPL.'lst_sistemapension'
+                            ),
+                            'etiqueta'=>'sistemapension',
+                            'value'=>'id_sistemapension',
+                            'defaultEtiqueta'=>$found['id_sistemapension'],
+                            'txtSelect'=>true
+                        ));
+                    ?>
+                    <div class="obligar"></div>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo SISPE_8; ?></label>
+            <div class="col col-4">
+                <label class="input "> 
+                    <i class="icon-append fa fa-question-circle"></i>
+                    <input type="text" id="<?php echo EMPL; ?>txt_codigo" name="<?php echo EMPL; ?>txt_codigo" value="<?php echo $found['codigo_sistemapension']?>">
+                    <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo SISPE_9; ?></b>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo EMPL_58; ?></label>
+            <div class="col col-4">
+                <label class="input"> 
+                    <i class="icon-append fa fa-calendar"></i>
+                    <input type="text" id="<?php echo EMPL; ?>txt_fechainscripcion" name="<?php echo EMPL; ?>txt_fechainscripcion" value="<?php echo $found['fecha_inscripcion_sistemapension']?>">
+                    <div class="obligar"></div>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo EMPL_59; ?></label>
+            <div class="col col-8">
+                <label class="select">  
+                    <?php
+                        $data = array(
+                            array('value'=>'F','etiquet'=>'Fijo'),
+                            array('value'=>'P','etiquet'=>'Porcentaje')
+                        );
+
+                        echo Functions::selectHtml(array(
+                            'data'=>$data,
+                            'atributes'=>array(
+                                'id'=>EMPL.'lst_aplicacion',
+                                'name'=>EMPL.'lst_aplicacion'
+                            ),
+                            'etiqueta'=>'etiquet',
+                            'value'=>'value',
+                            'defaultEtiqueta'=>$found['tipo_aplicacion_sistemapension'],
+                            'txtSelect'=>true
+                        ));
+                    ?>
+                    <div class="obligar"></div>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo EMPL_61; ?></label>
+            <div class="col col-4">
+                <label class="input"> 
+                    <i class="icon-append fa fa-question-circle"></i>
+                    <input type="text" id="<?php echo EMPL; ?>txt_montopension" name="<?php echo EMPL; ?>txt_montopension" value="<?php echo $found['monto_sistemapension']?>">
+                    <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_62; ?></b>
+                </label>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <?php if($editar["permiso"]):?>
+        <button id="<?php echo EMPL; ?>btnGrSP" type="submit" class="<?php echo $editar["theme"]; ?>">
+            <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+        </button>
+        <?php endif; ?>
+    </footer>
+    <?php if(!$editar["permiso"]): ?>
+    <script>
+        simpleScript.noSubmit("#<?php echo EMPL; ?>formPensiones");
+    </script>
+    <?php endif; ?>
+    <script>
+        simpleScript.setEvent.date({element: '#'+tabs.EMPL+'txt_fechainscripcion'})
+        /*configurar validacion de formulario -- este codigo es de ejemplo*/
+        $("#<?php echo EMPL; ?>formPensiones").validate({
+            // Rules for form validation
+            rules : {
+                <?php echo EMPL; ?>lst_sistemapension : {
+                    required : true
+                },
+                <?php echo EMPL; ?>txt_fechainscripcion : {
+                    required : true,
+                    date: true
+                },
+                <?php echo EMPL; ?>lst_aplicacion : {
+                    required : true
+                },
+                <?php echo EMPL; ?>txt_montopension : {
+                    required : true,
+                    number: true
+                }
+            },
+
+            // No cambie el código de abajo
+            errorPlacement : function(error, element) {
+                error.insertAfter(element.parent());
+            },
+
+            submitHandler: function(){
+                Empleados.formPensiones();
+            }   
+        });                                 
+    </script>
+</form>

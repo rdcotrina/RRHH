@@ -20,328 +20,304 @@ $grabar = Session::getPermiso("EMPLGR");
                 <h4 class="modal-title"><?php echo EMPL_2?></h4>
             </div>
             <div class="modal-body smart-form"> 
-                
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#<?php echo EMPL; ?>iss1" data-toggle="tab"><?php echo EMPL_3; ?></a>
-                    </li>
-                    <li class="">
-                        <a href="#<?php echo EMPL; ?>iss2" data-toggle="tab"><?php echo EMPL_23; ?></a>
-                    </li>
-                    <li class="hide">
-                        <a href="#<?php echo EMPL; ?>iss3" data-toggle="tab"><?php echo EMPL_3; ?></a>
-                    </li>
-                    <li class="hide">
-                        <a href="#<?php echo EMPL; ?>iss4" data-toggle="tab"><?php echo EMPL_3; ?></a>
-                    </li>
-                </ul>
-                <div class="tab-content padding-10">
-                    <!-- ==================================INICO TAB DATOS GENERALES=========================== -->
-                    <div class="tab-pane active" id="<?php echo EMPL; ?>iss1">
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_4; ?></label>
-                                <div class="col col-9">
-                                    <label class="input">                                 
-                                        <i class="icon-append fa fa-question-circle"></i>
-                                        <input type="text" id="<?php echo EMPL; ?>txt_primernombre" name="<?php echo EMPL; ?>txt_primernombre" >
-                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_5; ?></b>
-                                        <div class="obligar"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_6; ?></label>
-                                <div class="col col-9">
-                                    <label class="input">                                 
-                                        <i class="icon-append fa fa-question-circle"></i>
-                                        <input type="text" id="<?php echo EMPL; ?>txt_segundonombre" name="<?php echo EMPL; ?>txt_segundonombre" >
-                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_7; ?></b>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_8; ?></label>
-                                <div class="col col-9">
-                                    <label class="input">                                 
-                                        <i class="icon-append fa fa-question-circle"></i>
-                                        <input type="text" id="<?php echo EMPL; ?>txt_apellidopaterno" name="<?php echo EMPL; ?>txt_apellidopaterno" >
-                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_9; ?></b>
-                                        <div class="obligar"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_10; ?></label>
-                                <div class="col col-9">
-                                    <label class="input">                                 
-                                        <i class="icon-append fa fa-question-circle"></i>
-                                        <input type="text" id="<?php echo EMPL; ?>txt_apellidomaterno" name="<?php echo EMPL; ?>txt_apellidomaterno" >
-                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_11; ?></b>
-                                        <div class="obligar"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_12; ?></label>
-                                <div class="inline-group col col-9">
-                                    <label class="radio"> 
-                                        <input name="<?php echo EMPL; ?>chk_sexo" id="<?php echo EMPL; ?>chk_sexoH" checked type="radio" value="M">
-                                        <i></i><?php echo EMPL_13; ?>
-                                    </label>
-                                    <label class="radio"> 
-                                        <input name="<?php echo EMPL; ?>chk_sexo" id="<?php echo EMPL; ?>chk_sexoM" type="radio" value="F">
-                                        <i></i><?php echo EMPL_14; ?>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_17; ?></label>
-                                <div class="col col-9">
-                                    <label class="input">                                 
-                                        <i class="icon-append fa fa-question-circle"></i>
-                                        <input type="text" id="<?php echo EMPL; ?>txt_email" name="<?php echo EMPL; ?>txt_email" >
-                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_18; ?></b>
-                                        <div class="obligar"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_19; ?></label>
-                                <div class="col col-9">
-                                    <label class="input">                                 
-                                        <i class="icon-append fa fa-question-circle"></i>
-                                        <input type="text" id="<?php echo EMPL; ?>txt_telefono" name="<?php echo EMPL; ?>txt_telefono" >
-                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_20; ?></b>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_31; ?></label>
-                                <div class="col col-3">
-                                    <label class="select"> 
-                                        <?php
-                                            $data = Obj::run()->EmpleadosController->getTipoDocumento();
-
-                                            echo Functions::selectHtml(array(
-                                                'data'=>$data,
-                                                'atributes'=>array(
-                                                    'id'=>EMPL.'lst_tipodoc',
-                                                    'name'=>EMPL.'lst_tipodoc'
-                                                ),
-                                                'etiqueta'=>'tipodocumentoidentidad',
-                                                'value'=>'id_tipodocumentoidentidad',
-                                                'defaultEtiqueta'=>'',
-                                                'txtSelect'=>true
-                                            ));
-                                        ?><i></i>
-                                        <div class="obligar"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_21; ?></label>
-                                <div class="col col-3">
-                                    <label class="input">                                 
-                                        <i class="icon-append fa fa-question-circle"></i>
-                                        <input type="text" id="<?php echo EMPL; ?>txt_numdocumento" name="<?php echo EMPL; ?>txt_numdocumento" >
-                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_22; ?></b>
-                                        <div class="obligar"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="row">
-                                <div class="col col-6">
-                                    <fieldset>
-                                        <legend><?php echo EMPL_25?></legend>
-                                        <section>
-                                            <div class="row">
-                                                <label class="label col col-4"><?php echo EMPL_27; ?></label>
-                                                <div class="col col-6">
-                                                    <label class="select"> 
-                                                        <?php
-                                                            $datadepa = Obj::run()->EmpleadosController->getDepartamento();
-
-                                                            echo Functions::selectHtml(array(
-                                                                'data'=>$datadepa,
-                                                                'atributes'=>array(
-                                                                    'id'=>EMPL.'lst_departamentonac',
-                                                                    'name'=>EMPL.'lst_departamentonac',
-                                                                    'onchange'=>'Empleados.getProvincia(this.value,\'nac\');'
-                                                                ),
-                                                                'etiqueta'=>'departamento',
-                                                                'value'=>'id_departamento',
-                                                                'defaultEtiqueta'=>'',
-                                                                'txtSelect'=>true
-                                                            ));
-                                                        ?><i></i>
-                                                        <div class="obligar"></div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section>
-                                            <div class="row">
-                                                <label class="label col col-4"><?php echo EMPL_28; ?></label>
-                                                <div class="col col-6">
-                                                    <label class="select" id="<?php echo EMPL ?>d_provincianac"> 
-                                                        <select id="<?php echo EMPL ?>lst_provincianac" name="<?php echo EMPL ?>lst_provincianac">
-                                                            <option value="">Seleccionar</option>
-                                                        </select><i></i>
-                                                        <div class="obligar"></div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section>
-                                            <div class="row">
-                                                <label class="label col col-4"><?php echo EMPL_29; ?></label>
-                                                <div class="col col-6">
-                                                    <label class="select" id="<?php echo EMPL ?>d_ubigeonac"> 
-                                                        <select id="<?php echo EMPL ?>lst_ubigeonac" name="<?php echo EMPL ?>lst_ubigeonac">
-                                                            <option value="">Seleccionar</option>
-                                                        </select><i></i>
-                                                        <div class="obligar"></div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section>
-                                            <div class="row">
-                                                <label class="label col col-4"><?php echo EMPL_30; ?></label>
-                                                <div class="col col-4">
-                                                    <label class="input">                                 
-                                                        <i class="icon-append fa fa-calendar"></i>
-                                                        <input type="text" id="<?php echo EMPL; ?>txt_fechanacimiento" name="<?php echo EMPL; ?>txt_fechanacimiento" >
-                                                        <div class="obligar"></div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </fieldset>
-                                </div>
-                                <div class="col col-6">
-                                    <fieldset>
-                                        <legend><?php echo EMPL_26?></legend>
-                                        <section>
-                                            <div class="row">
-                                                <label class="label col col-4"><?php echo EMPL_27; ?></label>
-                                                <div class="col col-6">
-                                                    <label class="select"> 
-                                                        <?php
-                                                            echo Functions::selectHtml(array(
-                                                                'data'=>$datadepa,
-                                                                'atributes'=>array(
-                                                                    'id'=>EMPL.'lst_departamentodom',
-                                                                    'name'=>EMPL.'lst_departamentodom',
-                                                                    'onchange'=>'Empleados.getProvincia(this.value,\'dom\');'
-                                                                ),
-                                                                'etiqueta'=>'departamento',
-                                                                'value'=>'id_departamento',
-                                                                'defaultEtiqueta'=>'',
-                                                                'txtSelect'=>true
-                                                            ));
-                                                        ?><i></i>
-                                                        <div class="obligar"></div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section>
-                                            <div class="row">
-                                                <label class="label col col-4"><?php echo EMPL_28; ?></label>
-                                                <div class="col col-6">
-                                                    <label class="select" id="<?php echo EMPL ?>d_provinciadom"> 
-                                                        <select id="<?php echo EMPL ?>lst_provinciadom" name="<?php echo EMPL ?>lst_provinciadom">
-                                                            <option value="">Seleccionar</option>
-                                                        </select><i></i>
-                                                        <div class="obligar"></div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section>
-                                            <div class="row">
-                                                <label class="label col col-4"><?php echo EMPL_29; ?></label>
-                                                <div class="col col-6">
-                                                    <label class="select" id="<?php echo EMPL ?>d_ubigeodom"> 
-                                                        <select id="<?php echo EMPL ?>lst_ubigeodom" name="<?php echo EMPL ?>lst_ubigeodom">
-                                                            <option value="">Seleccionar</option>
-                                                        </select><i></i>
-                                                        <div class="obligar"></div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section>
-                                            <div class="row">
-                                                <label class="label col col-4"><?php echo EMPL_15; ?></label>
-                                                <div class="col col-6">
-                                                    <label class="textarea">                                 
-                                                        <i class="icon-append fa fa-question-circle"></i>
-                                                        <textarea rows="3" id="<?php echo EMPL; ?>txt_direccion" name="<?php echo EMPL; ?>txt_direccion" ></textarea>
-                                                        <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_16; ?></b>
-                                                        <div class="obligar"></div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_4; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_primernombre" name="<?php echo EMPL; ?>txt_primernombre" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_5; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
                     </div>
-                    <!-- ==================================FIN TAB DATOS GENERALES=========================== -->
-                    
-                    <!-- ==================================INICO TAB DATOS LABORALES=========================== -->
-                    <div class="tab-pane fade" id="<?php echo EMPL; ?>iss2">
-                        <section>
-                            <div class="row">
-                                <label class="label col col-2"><?php echo EMPL_24; ?></label>
-                                <div class="col col-9">
-                                    <label class="select">  
-                                        <?php
-                                            $data = Obj::run()->EmpleadosController->getActividad();
-
-                                            echo Functions::selectHtml(array(
-                                                'data'=>$data,
-                                                'atributes'=>array(
-                                                    'id'=>EMPL.'lst_actividad',
-                                                    'name'=>EMPL.'lst_actividad'
-                                                ),
-                                                'etiqueta'=>'actividad',
-                                                'value'=>'id_actividad',
-                                                'defaultEtiqueta'=>'',
-                                                'txtSelect'=>true
-                                            ));
-                                        ?><i></i>
-                                        <div class="obligar"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </section>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_6; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_segundonombre" name="<?php echo EMPL; ?>txt_segundonombre" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_7; ?></b>
+                            </label>
+                        </div>
                     </div>
-                    <!-- ==================================INICO TAB DATOS LABORALES=========================== -->
-                </div>
-                
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_8; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_apellidopaterno" name="<?php echo EMPL; ?>txt_apellidopaterno" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_9; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_10; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_apellidomaterno" name="<?php echo EMPL; ?>txt_apellidomaterno" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_11; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_12; ?></label>
+                        <div class="inline-group col col-9">
+                            <label class="radio"> 
+                                <input name="<?php echo EMPL; ?>chk_sexo" id="<?php echo EMPL; ?>chk_sexoH" checked type="radio" value="M">
+                                <i></i><?php echo EMPL_13; ?>
+                            </label>
+                            <label class="radio"> 
+                                <input name="<?php echo EMPL; ?>chk_sexo" id="<?php echo EMPL; ?>chk_sexoM" type="radio" value="F">
+                                <i></i><?php echo EMPL_14; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_17; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_email" name="<?php echo EMPL; ?>txt_email" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_18; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_19; ?></label>
+                        <div class="col col-9">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_telefono" name="<?php echo EMPL; ?>txt_telefono" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_20; ?></b>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_31; ?></label>
+                        <div class="col col-3">
+                            <label class="select"> 
+                                <?php
+                                    $data = Obj::run()->EmpleadosController->getTipoDocumento();
+
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_tipodoc',
+                                            'name'=>EMPL.'lst_tipodoc'
+                                        ),
+                                        'etiqueta'=>'tipodocumentoidentidad',
+                                        'value'=>'id_tipodocumentoidentidad',
+                                        'defaultEtiqueta'=>'',
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_21; ?></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_numdocumento" name="<?php echo EMPL; ?>txt_numdocumento" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_22; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="col col-6">
+                            <fieldset>
+                                <legend><?php echo EMPL_25?></legend>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_27; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select"> 
+                                                <?php
+                                                    $datadepa = Obj::run()->EmpleadosController->getDepartamento();
+
+                                                    echo Functions::selectHtml(array(
+                                                        'data'=>$datadepa,
+                                                        'atributes'=>array(
+                                                            'id'=>EMPL.'lst_departamentonac',
+                                                            'name'=>EMPL.'lst_departamentonac',
+                                                            'onchange'=>'Empleados.getProvincia(this.value,\'nac\');'
+                                                        ),
+                                                        'etiqueta'=>'departamento',
+                                                        'value'=>'id_departamento',
+                                                        'defaultEtiqueta'=>'',
+                                                        'txtSelect'=>true
+                                                    ));
+                                                ?>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_28; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select" id="<?php echo EMPL ?>d_provincianac"> 
+                                                <script>
+                                                    simpleScript.listBox({
+                                                        optionSelec: true,
+                                                        content: '#'+tabs.EMPL+'d_provincianac',
+                                                        required: true,
+                                                        attr:{
+                                                            id: tabs.EMPL+'lst_provincianac',
+                                                            name: tabs.EMPL+'lst_provincianac'
+                                                        }
+                                                    });
+                                                </script>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_29; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select" id="<?php echo EMPL ?>d_ubigeonac"> 
+                                                <script>
+                                                    simpleScript.listBox({
+                                                        optionSelec: true,
+                                                        content: '#'+tabs.EMPL+'d_ubigeonac',
+                                                        required: true,
+                                                        attr:{
+                                                            id: tabs.EMPL+'lst_ubigeonac',
+                                                            name: tabs.EMPL+'lst_ubigeonac'
+                                                        }
+                                                    });
+                                                </script>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_30; ?></label>
+                                        <div class="col col-4">
+                                            <label class="input">                                 
+                                                <i class="icon-append fa fa-calendar"></i>
+                                                <input type="text" id="<?php echo EMPL; ?>txt_fechanacimiento" name="<?php echo EMPL; ?>txt_fechanacimiento" >
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                            </fieldset>
+                        </div>
+                        <div class="col col-6">
+                            <fieldset>
+                                <legend><?php echo EMPL_26?></legend>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_27; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select"> 
+                                                <?php
+                                                    echo Functions::selectHtml(array(
+                                                        'data'=>$datadepa,
+                                                        'atributes'=>array(
+                                                            'id'=>EMPL.'lst_departamentodom',
+                                                            'name'=>EMPL.'lst_departamentodom',
+                                                            'onchange'=>'Empleados.getProvincia(this.value,\'dom\');'
+                                                        ),
+                                                        'etiqueta'=>'departamento',
+                                                        'value'=>'id_departamento',
+                                                        'defaultEtiqueta'=>'',
+                                                        'txtSelect'=>true
+                                                    ));
+                                                ?>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_28; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select" id="<?php echo EMPL ?>d_provinciadom"> 
+                                                <script>
+                                                    simpleScript.listBox({
+                                                        optionSelec: true,
+                                                        content: '#'+tabs.EMPL+'d_provinciadom',
+                                                        required: true,
+                                                        attr:{
+                                                            id: tabs.EMPL+'lst_provinciadom',
+                                                            name: tabs.EMPL+'lst_provinciadom'
+                                                        }
+                                                    });
+                                                </script>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_29; ?></label>
+                                        <div class="col col-6">
+                                            <label class="select" id="<?php echo EMPL ?>d_ubigeodom"> 
+                                                <script>
+                                                    simpleScript.listBox({
+                                                        optionSelec: true,
+                                                        content: '#'+tabs.EMPL+'d_ubigeodom',
+                                                        required: true,
+                                                        attr:{
+                                                            id: tabs.EMPL+'lst_ubigeodom',
+                                                            name: tabs.EMPL+'lst_ubigeodom'
+                                                        }
+                                                    });
+                                                </script>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4"><?php echo EMPL_15; ?></label>
+                                        <div class="col col-6">
+                                            <label class="textarea">                                 
+                                                <i class="icon-append fa fa-question-circle"></i>
+                                                <textarea rows="3" id="<?php echo EMPL; ?>txt_direccion" name="<?php echo EMPL; ?>txt_direccion" ></textarea>
+                                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_16; ?></b>
+                                                <div class="obligar"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                            </fieldset>
+                        </div>
+                    </div>
+                </section>
             </div>
             <div class="modal-footer">
                 <div class="foot-obligar"></div>
@@ -404,7 +380,8 @@ $("#<?php echo EMPL; ?>formNewEmpleados").validate({
             required : true
         },
         <?php echo EMPL; ?>txt_fechanacimiento : {
-            required : true
+            required : true,
+            date: true
         },
         <?php echo EMPL; ?>lst_departamentodom : {
             required : true

@@ -256,6 +256,22 @@ define('EMPL_43','Ingrese números telefónicos del derechohabiente');
 define('EMPL_44','Ingrese la irección del derechohabiente');
 define('EMPL_45','Datos Laborales de: ');
 define('EMPL_46','Datos');
+define('EMPL_47','Tipo de Contrato');
+define('EMPL_48','Nombrado');
+define('EMPL_49','Contratado');
+define('EMPL_50','Cargo');
+define('EMPL_51','Principal');
+define('EMPL_52','Planilla');
+define('EMPL_53','Datos Bancarios');
+define('EMPL_54','Banco Haberes');
+define('EMPL_55','Cuenta Corriente Haberes');
+define('EMPL_56','Banco CTS');
+define('EMPL_57','Sistema de Pensiones');
+define('EMPL_58','Fecha de inscripción');
+define('EMPL_59','Tipo descuento');
+define('EMPL_61','Monto');
+define('EMPL_62','Ingrese el monto del sistema de pensiones');
+define('EMPL_63','Sist. de pensiones');
 
 /*==============================ESTRUCTURA ORGANICA==============================*/
 define('ESOG_1','Estructura Orgánica');
@@ -280,6 +296,8 @@ define('SISPE_4','Ingrese el nombre del sistema de pensisones');
 define('SISPE_5','Sistema de pensión');
 define('SISPE_6','RUC');
 define('SISPE_7','Ingrese el número de RUC');
+define('SISPE_8','Código');
+define('SISPE_9','Ingrese el código');
 
 /*==============================TIPOS DE PLANILLA==============================*/
 define('TPLL_1','Tipos de Planilla');

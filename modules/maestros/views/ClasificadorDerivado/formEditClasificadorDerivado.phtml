@@ -136,8 +136,6 @@ $found = Obj::run()->ClasificadorDerivadoController->findClasificadorDerivado();
 <?php endif; ?>
 <script>
 /*configurar validacion de formulario -- este codigo es de ejemplo*/
-/*activa validacion a los chosen()*/
-$.validator.setDefaults({ ignore: ":hidden:not(select)" });
 $("#<?php echo DVCL; ?>formEditClasificadorDerivado").validate({
     // Rules for form validation
     rules : {

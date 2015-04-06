@@ -11,6 +11,7 @@ class EmpleadosModel extends Model{
 
     private $_flag;
     private $_idEmpleados;
+    private $_idCargoTrabajador;
     private $_primerNombre;
     private $_segundoNombre;
     private $_apellidoPaterno;
@@ -25,6 +26,20 @@ class EmpleadosModel extends Model{
     private $_ubigeoDireccion;
     private $_direccion;
     private $_activo;
+    private $_idActividad;
+    private $_idTipoPpago;
+    private $_idTipoContrato;
+    private $_idHorario;
+    private $_estabilidad;
+    private $_idCategoria;
+    private $_idCtaCte;
+    private $_idCuentacorrienteH;
+    private $_idCuentacorrienteCTS;
+    private $_sistemapension;
+    private $_codigopension;
+    private $_fechainscripcion;
+    private $_tipodecuentopension;
+    private $_montopension;
     private $_usuario;
     
     /*para el grid*/
@@ -43,6 +58,7 @@ class EmpleadosModel extends Model{
     private function _set(){
         $this->_flag        = SimpleForm::getParam("_flag");
         $this->_idEmpleados   = Aes::de(SimpleForm::getParam("_idEmpleados"));    /*se decifra*/
+        $this->_idCargoTrabajador   = Aes::de(SimpleForm::getParam("_idCargoTrabajador"));    /*se decifra*/
         $this->_primerNombre =   SimpleForm::getParam(EMPL."txt_primernombre");
         $this->_segundoNombre =   SimpleForm::getParam(EMPL."txt_segundonombre");
         $this->_apellidoPaterno =   SimpleForm::getParam(EMPL."txt_apellidopaterno");
@@ -56,6 +72,20 @@ class EmpleadosModel extends Model{
         $this->_fechaNacimiento = Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fechanacimiento"),'Y-m-d');
         $this->_ubigeoDireccion =   SimpleForm::getParam(EMPL."lst_ubigeodom");
         $this->_direccion =   SimpleForm::getParam(EMPL."txt_direccion");
+        $this->_idActividad =   SimpleForm::getParam(EMPL."lst_actividad");
+        $this->_idTipoPpago =   SimpleForm::getParam(EMPL."lst_tipopago");
+        $this->_idTipoContrato =   SimpleForm::getParam(EMPL."lst_tipocontrato");
+        $this->_idHorario =   SimpleForm::getParam(EMPL."lst_horario");
+        $this->_idCategoria =   SimpleForm::getParam(EMPL."lst_categoriatrabajador");
+        $this->_estabilidad =   SimpleForm::getParam(EMPL."chk_estabilidad");
+        $this->_idCtaCte =   SimpleForm::getParam("_idCtaCte");
+        $this->_idCuentacorrienteH =   SimpleForm::getParam(EMPL."lst_ctacteH");
+        $this->_idCuentacorrienteCTS =   SimpleForm::getParam(EMPL."lst_ctacteCTS");
+        $this->_sistemapension =   SimpleForm::getParam(EMPL."lst_sistemapension");
+        $this->_codigopension =   SimpleForm::getParam(EMPL."txt_codigo");
+        $this->_fechainscripcion = Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fechainscripcion"),'Y-m-d');
+        $this->_tipodecuentopension =   SimpleForm::getParam(EMPL."lst_aplicacion");
+        $this->_montopension =   SimpleForm::getParam(EMPL."txt_montopension");
         $this->_activo =   SimpleForm::getParam(EMPL."chk_activo");
         $this->_usuario     = Session::get("sys_idUsuario");
         
@@ -127,6 +157,46 @@ class EmpleadosModel extends Model{
         return $data;
     }
     
+    public function mantenimientoDatos(){
+        $query = "call sp_perPersonalDatosMantenimiento("
+                . ":flag,"
+                . ":idEmpleado,"
+                . ":idActividad,"
+                . ":idTipoPago,"
+                . ":idTipoContrato,"
+                . ":idHorario,"
+                . ":idCategoria,"
+                . ":estabilidad,"
+                . ":idCuentacorrienteH,"
+                . ":idCuentacorrienteCTS,"
+                . ":idSispension,"
+                . ":codigoSispension,"
+                . ":fechaInscripcion,"
+                . ":tipoDescuento,"
+                . ":montosuspension"
+            . ");";
+        
+        $parms = array(
+            ":flag" => $this->_flag,
+            ":idEmpleado" => $this->_idEmpleados,
+            ":idActividad" => $this->_idActividad,
+            ":idTipoPago" => $this->_idTipoPpago,
+            ":idTipoContrato" => $this->_idTipoContrato,
+            ":idHorario" => $this->_idHorario,
+            ":idCategoria" => $this->_idCategoria,
+            ":estabilidad" => $this->_estabilidad,
+            ":idCuentacorrienteH" => $this->_idCuentacorrienteH,
+            ":idCuentacorrienteCTS" => $this->_idCuentacorrienteCTS,
+            ":idSispension" => $this->_sistemapension,
+            ":codigoSispension" => $this->_codigopension,
+            ":fechaInscripcion" => $this->_fechainscripcion,
+            ":tipoDescuento" => $this->_tipodecuentopension,
+            ":montosuspension" => $this->_montopension
+        );
+        $data = $this->queryOne($query,$parms);
+        return $data;
+    }
+
     /*seleccionar registro a editar: Empleados*/
     public function findEmpleados(){
         $query = "call sp_perPersonalConsultas(:flag,:criterio);";
@@ -147,6 +217,43 @@ class EmpleadosModel extends Model{
             ":criterio" => $criterio
         );
         $data = $this->queryAll($query,$parms);
+        return $data;
+    }
+    
+    public function getCuentaCorriente($b=''){
+        $banco = $this->_idCtaCte;
+        if(!empty($b)){
+            $banco = $b;
+        }
+        $query = "call sp_perPersonalConsultas(:flag,:criterio);";
+        
+        $parms = array(
+            ":flag" => 21,
+            ":criterio" => $banco
+        );
+        $data = $this->queryAll($query,$parms);
+        return $data;
+    }
+    
+    public function findCargo(){
+        $query = "call sp_perPersonalConsultas(:flag,:key);";
+        
+        $parms = array(
+            ":flag" => 18,
+            ":key" => $this->_idCargoTrabajador
+        );
+        $data = $this->queryOne($query,$parms);
+        return $data;
+    }
+    
+    public function findDatos(){
+        $query = "call sp_perPersonalConsultas(:flag,:key);";
+        
+        $parms = array(
+            ":flag" => 19,
+            ":key" => $this->_idEmpleados
+        );
+        $data = $this->queryOne($query,$parms);
         return $data;
     }
     

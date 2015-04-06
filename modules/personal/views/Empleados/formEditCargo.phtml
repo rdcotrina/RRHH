@@ -1,0 +1,152 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 02-04-2015 21:04:20 
+* Descripcion : formEditCargo.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: EMPL debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("EMPLACT");
+
+$found = Obj::run()->EmpleadosController->findCargo();
+?>
+<form id="<?php echo EMPL; ?>formEditCargo" name="<?php echo EMPL; ?>formEditCargo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo KRGO_5?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo AARA_3; ?></label>
+                        <div class="col col-8">
+                            <label class="select state-disabled">  
+                                <?php
+                                    $data = Obj::run()->EmpleadosController->getArea();
+
+                                    echo Functions::groupSelectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_area',
+                                            'name'=>EMPL.'lst_area',
+                                            'data-placeholder'=>'Seleccionar',
+                                            'disabled'=>true
+                                        ),
+                                        'levels'=>array(
+                                                'value'=>'dependencia',
+                                                'label'=>'subarea',
+                                                'levels'=>array(
+                                                        'parent'=>'dependencia2',
+                                                        'value'=>'id_area',
+                                                        'label'=>'area'
+                                                )
+                                        ),
+                                        'defaultEtiqueta'=>$found['id_area'],
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_50; ?></label>
+                        <div class="col col-8">
+                            <label class="select state-disabled">  
+                                <?php
+                                    $data = Obj::run()->EmpleadosController->getCargo();
+
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_cargo',
+                                            'name'=>EMPL.'lst_cargo',
+                                            'disabled'=>true
+                                        ),
+                                        'etiqueta'=>'cargo',
+                                        'value'=>'id_cargo',
+                                        'defaultEtiqueta'=>$found['id_cargo'],
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"></label>
+                        <div class="col col-8">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo EMPL; ?>chk_activo" id="<?php echo EMPL; ?>chk_activo" value="A" <?php echo ($found['estado'] == 'A')?'checked':'' ?>></input>
+                                <i></i>
+                                <?php echo CK_ACTIVO; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"></label>
+                        <div class="col col-8">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo EMPL; ?>chk_principal" id="<?php echo EMPL; ?>chk_principal" value="1" <?php echo ($found['principal'] == '1')?'checked':'' ?>></input>
+                                <i></i>
+                                <?php echo EMPL_51; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo EMPL; ?>btnGrCT" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo EMPL; ?>formEditCargo");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo EMPL; ?>formEditCargo").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo EMPL; ?>lst_area : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_cargo : {
+            required : true
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        Empleados.postEditCargo();
+    }   
+});
+</script>
+</form>

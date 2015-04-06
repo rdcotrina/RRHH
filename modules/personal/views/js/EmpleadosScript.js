@@ -16,6 +16,12 @@ var EmpleadosScript_ = function(){
         $('#'+tabs.EMPL+'dp a').tab('show');
     };
     
+    _public.resetCargo = function(){
+        $("#"+tabs.EMPL+"lst_area").val("").trigger("chosen:updated");
+        $("#"+tabs.EMPL+"lst_cargo").val("").trigger("chosen:updated");
+        $("#"+tabs.EMPL+"chk_principal").attr('checked',false);
+    };
+    
     return _public;
     
 };

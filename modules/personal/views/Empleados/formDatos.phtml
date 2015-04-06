@@ -1,0 +1,185 @@
+<form id="<?php echo EMPL; ?>formDatos" name="<?php echo EMPL; ?>formDatos">
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo EMPL_24; ?></label>
+            <div class="col col-8">
+                <label class="select">  
+                    <?php
+                        $data = Obj::run()->EmpleadosController->getActividad();
+
+                        echo Functions::selectHtml(array(
+                            'data'=>$data,
+                            'atributes'=>array(
+                                'id'=>EMPL.'lst_actividad',
+                                'name'=>EMPL.'lst_actividad'
+                            ),
+                            'etiqueta'=>'actividad',
+                            'value'=>'id_actividad',
+                            'defaultEtiqueta'=>$found['id_actividad'],
+                            'txtSelect'=>true
+                        ));
+                    ?>
+                    <div class="obligar"></div>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo PTPG_1; ?></label>
+            <div class="col col-8">
+                <label class="select"> 
+                    <?php
+                        $data = Obj::run()->EmpleadosController->getTipoPago();
+
+                        echo Functions::selectHtml(array(
+                            'data'=>$data,
+                            'atributes'=>array(
+                                'id'=>EMPL.'lst_tipopago',
+                                'name'=>EMPL.'lst_tipopago'
+                            ),
+                            'etiqueta'=>'tipopago',
+                            'value'=>'id_tipopago',
+                            'defaultEtiqueta'=>$found['id_tipopago'],
+                            'txtSelect'=>true
+                        ));
+                    ?>
+                    <div class="obligar"></div>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo EMPL_47; ?></label>
+            <div class="col col-8">
+                <label class="select"> 
+                    <?php
+                        $data = Obj::run()->EmpleadosController->getTipoContrato();
+
+                        echo Functions::selectHtml(array(
+                            'data'=>$data,
+                            'atributes'=>array(
+                                'id'=>EMPL.'lst_tipocontrato',
+                                'name'=>EMPL.'lst_tipocontrato'
+                            ),
+                            'etiqueta'=>'contrato',
+                            'value'=>'id_tipocontrato',
+                            'defaultEtiqueta'=>$found['id_tipocontrato'],
+                            'txtSelect'=>true
+                        ));
+                    ?>
+                    <div class="obligar"></div>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo HRIO_4; ?></label>
+            <div class="col col-8">
+                <label class="select"> 
+                    <?php
+                        $data = Obj::run()->EmpleadosController->getHorario();
+
+                        echo Functions::selectHtml(array(
+                            'data'=>$data,
+                            'atributes'=>array(
+                                'id'=>EMPL.'lst_horario',
+                                'name'=>EMPL.'lst_horario'
+                            ),
+                            'etiqueta'=>'horario',
+                            'value'=>'id_horario',
+                            'defaultEtiqueta'=>$found['id_horario'],
+                            'txtSelect'=>true
+                        ));
+                    ?>
+                    <div class="obligar"></div>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"><?php echo KTRBA_3; ?></label>
+            <div class="col col-8">
+                <label class="select"> 
+                    <?php
+                        $data = Obj::run()->EmpleadosController->getCategoria();
+
+                        echo Functions::selectHtml(array(
+                            'data'=>$data,
+                            'atributes'=>array(
+                                'id'=>EMPL.'lst_categoriatrabajador',
+                                'name'=>EMPL.'lst_categoriatrabajador'
+                            ),
+                            'etiqueta'=>'categoriatrabajador',
+                            'value'=>'id_categoriatrabajador',
+                            'defaultEtiqueta'=>$found['id_categoriatrabajador'],
+                            'txtSelect'=>true
+                        ));
+                    ?>
+                    <div class="obligar"></div>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"></label>
+            <div class="inline-group col col-9">
+                <label class="radio"> 
+                    <input name="<?php echo EMPL; ?>chk_estabilidad" id="<?php echo EMPL; ?>chk_estabilidadC" type="radio" value="C" <?php echo ($found['estabiblidad'] == 'C')?'checked':''?> >
+                    <i></i><?php echo EMPL_49; ?>
+                </label>
+                <label class="radio"> 
+                    <input name="<?php echo EMPL; ?>chk_estabilidad" id="<?php echo EMPL; ?>chk_estabilidadN" type="radio" value="N" <?php echo ($found['estabiblidad'] == 'N')?'checked':''?>>
+                    <i></i><?php echo EMPL_48; ?>
+                </label>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <?php if($editar["permiso"]):?>
+        <button id="<?php echo EMPL; ?>btnGrDatos" type="submit" class="<?php echo $editar["theme"]; ?>">
+            <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+        </button>
+        <?php endif; ?>
+    </footer>
+    <?php if(!$editar["permiso"]): ?>
+        <script>
+            simpleScript.noSubmit("#<?php echo EMPL; ?>formDatos");
+        </script>
+    <?php endif; ?>
+    <script>
+        $("#<?php echo EMPL; ?>formDatos").validate({
+            // Rules for form validation
+            rules : {
+                <?php echo EMPL; ?>lst_actividad : {
+                    required : true
+                },
+                <?php echo EMPL; ?>lst_tipopago : {
+                    required : true
+                },
+                <?php echo EMPL; ?>lst_tipocontrato : {
+                    required : true
+                },
+                <?php echo EMPL; ?>lst_horario : {
+                    required : true
+                },
+                <?php echo EMPL; ?>lst_categoriatrabajador : {
+                    required : true
+                }
+            },
+
+            // No cambie el código de abajo
+            errorPlacement : function(error, element) {
+                error.insertAfter(element.parent());
+            },
+
+            submitHandler: function(){
+                Empleados.postDatos();
+            }   
+        });
+    </script>
+</form>

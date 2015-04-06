@@ -124,9 +124,13 @@ class Functions{
         $etiq = isset($obj['etiqueta'])?$obj['etiqueta']:'';
         $valo = isset($obj['value'])?$obj['value']:'';
         $etid = isset($obj['defaultEtiqueta'])?$obj['defaultEtiqueta']:'';
+        $chosen  = isset($obj['chosen'])?$obj['chosen']:true;
+        
+        $id = '';
         
         $html = '<select ';
         foreach ($attr as $key => $value) {
+            if($key == 'id'){ $id = $value;} /*para el chosen*/
             $html .= $key . '="' . $value . '" ';
         }
         $html .= '>';
@@ -177,7 +181,13 @@ class Functions{
         else{
             $html .= '<option value=""> - Sin datos - </option></select>';
         }
-        //echo $html; exit();
+        if($chosen){
+            $html .= '<script>$("#'.$id.'").chosen();$("#'.$id.'_chosen").css("width","100%");</script>';
+            if(!empty($etid)){
+                $html .= '<script>$("#'.$id.'").val("'.$etid.'").trigger("chosen:updated");</script>';
+            }
+        }
+        
         return $html;
     }
     
@@ -276,7 +286,7 @@ class Functions{
         
         $html = '<select ';
         foreach ($attr as $key => $value) {
-            if($key == 'id'){ $id = $value;} /*para el select2*/
+            if($key == 'id'){ $id = $value;} /*para el chosen*/
             $html .= $key . '="' . $value . '" ';
         }
         $html .= '>';

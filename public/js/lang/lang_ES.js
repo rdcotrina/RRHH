@@ -113,6 +113,7 @@ lang.TipoContrato.EXIST = 'Tipo de contrato ya existe';
 lang.Cargo = {};
 lang.Cargo.KARGO = 'Cargo';
 lang.Cargo.EXIST = 'Cargo ya existe';
+lang.Cargo.EXIST2 = 'Cargo ya existe en el área';
 
 /*---------------------MAESTROS/AREA--------------------*/
 lang.Area = {};
@@ -153,6 +154,7 @@ lang.Empleados.NRODOC = 'N° Doc.';
 lang.Empleados.APENOM = 'Apellidos y Nombres';
 lang.Empleados.EMAIL  = 'Email';
 lang.Empleados.TELS  = 'Teléfonos';
+lang.Empleados.PRIN  = 'Principal';
 lang.Empleados.EXIST = 'Empleado, email o número de documento ya existe';
 lang.Empleados.EXISTDH = 'Nombres y apellidos o número de documento de derechohabiente ya existe';
 
@@ -169,7 +171,7 @@ lang.Horario.EXIST = 'Horario ya existe';
 lang.SistemaPension = {};
 lang.SistemaPension.RUC = 'RUC';
 lang.SistemaPension.SISPE = 'Sistema de Pensión';
-lang.SistemaPension.EXIST = 'Sistema de pensión ya existe';
+lang.SistemaPension.EXIST = 'Sistema de pensión o RUC ya existe';
 
 /*---------------------PERSONAL/SISTEMA DE PENSIONES--------------------*/
 lang.TipoPlanilla = {};

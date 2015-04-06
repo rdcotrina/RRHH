@@ -19,9 +19,12 @@ var Empleados_ = function(){
     
     _private.idDerechoHabiente = 0;
     
+    _private.idCargoTrabajador = 0;
+    
     _private.config = {
         modulo: "personal/Empleados/",
-        moduloDH: "personal/DerechoHabientes/"
+        moduloDH: "personal/DerechoHabientes/",
+        moduloC: "personal/Cargos/"
     };
 
     /*metodos publicos*/
@@ -174,7 +177,65 @@ var Empleados_ = function(){
                 });
             }
         });
-        setup_widgets_desktop();
+    };
+    
+    _public.getGridCargos = function (reload){
+        if(reload){
+//            $('#'+tabs.EMPL+'contGridCargo').html('<table id="'+tabs.EMPL+'gridCargos" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>');
+        }
+        var pEdit   = simpleScript.getPermiso("EMPLED");
+        var pDelete = simpleScript.getPermiso("EMPLDE");
+
+        $("#"+tabs.EMPL+"gridCargos").simpleGrid({
+            tWidthFormat: "px",
+            tScrollY: "200px",
+            tReload: reload,
+            tColumns: [
+                {title: lang.Area.Area,campo: "area",width: "250",sortable: true,search: {operator:"LIKE"}},
+                {title: lang.Cargo.KARGO, campo: "cargo", width: "250", sortable: true,search:{operator:"LIKE"}},
+                {title: lang.Empleados.PRIN, campo: "principal", width: "80", sortable: true, class: "center"},
+                {title: lang.generic.EST, campo: "estadoct", width: "80", sortable: true, class: "center"}
+            ],
+            pPaginate: true,
+            sAxions: [{
+                access: pEdit.permiso,
+                icono: pEdit.icono,
+                titulo: pEdit.accion,
+                class: pEdit.theme,
+                ajax: {
+                    fn: "Empleados.getFormEditCargo",
+                    serverParams: "id_cargotrabajador"
+                }
+            }, {
+                access: pDelete.permiso,
+                icono: pDelete.icono,
+                titulo: pDelete.accion,
+                class: pDelete.theme,
+                ajax: {
+                    fn: "Empleados.postDeleteCargo",
+                    serverParams: "id_cargotrabajador"
+                }
+            }],
+            ajaxSource: _private.config.moduloC+"getGridCargos",
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(oSettings) {
+                simpleScript.removeAttr.click({
+                    container: "#"+oSettings.tObjectTable,
+                    typeElement: "button"
+                }); 
+                /*bloquear submit en input de datagrid*/
+                $("#"+tabs.EMPL+"formNewDerechoHabientes").find("#"+tabs.EMPL+"dh2").off("keyup keypress");
+                $("#"+tabs.EMPL+"formNewDerechoHabientes").find("#"+tabs.EMPL+"dh2").on("keyup keypress", function(e) {
+                    var code = e.keyCode || e.which; 
+                    if (code  === 13) {               
+                      e.preventDefault();
+                      return false;
+                    }
+                });
+            }
+        });
     };
     
     _public.getFormNewEmpleados = function(btn){
@@ -255,6 +316,36 @@ var Empleados_ = function(){
                 $("#cont-modal").append(data);  /*los formularios con append*/
                 $("#"+tabs.EMPL+"formDatosLaborales").modal("show");
                 $("#name-empelado").html(name);
+                Empleados.getGridCargos(true);
+            }
+        });
+    };
+    
+    _public.getFormNewCargo = function(btn){
+        simpleAjax.send({
+            element: btn,
+            dataType: "html",
+            root: _private.config.modulo + "formNewCargo",
+            fnCallback: function(data){
+                $("#cont-modal").append(data);  /*los formularios con append*/
+                $("#"+tabs.EMPL+"formNewCargo").modal("show");
+            }
+        });
+    };
+    
+    _public.getFormEditCargo = function(btn,id){
+        _private.idCargoTrabajador = id;
+        
+        simpleAjax.send({
+            element: btn,
+            dataType: "html",
+            root: _private.config.modulo + "formEditCargo",
+            fnServerParams: function(sData){
+                sData.push({name: "_idCargoTrabajador", value: _private.idCargoTrabajador});
+            },
+            fnCallback: function(data){
+                $("#cont-modal").append(data);  /*los formularios con append*/
+                $("#"+tabs.EMPL+"formEditCargo").modal("show");
             }
         });
     };
@@ -308,6 +399,33 @@ var Empleados_ = function(){
                     dataView:{
                         etiqueta: 'distrito',
                         value: 'id_ubigeo'
+                    }
+                });
+            }
+        });
+    };
+    
+    _public.getCuentaCorriente = function(ban,pre,def){
+        simpleAjax.send({
+            gifProcess: true,
+            root: _private.config.modulo + "getCuentaCorriente",
+            fnServerParams: function(sData){
+                sData.push({name: "_idCtaCte", value: ban});
+            },
+            fnCallback: function(data){
+                simpleScript.listBox({
+                    data: data,
+                    optionSelec: true,
+                    content: '#'+tabs.EMPL+'d_ctacte'+pre,
+                    required: true,
+                    deffault: def,
+                    attr:{
+                        id: tabs.EMPL+'lst_ctacte'+pre,
+                        name: tabs.EMPL+'lst_ctacte'+pre
+                    },
+                    dataView:{
+                        etiqueta: 'cuentacorriente',
+                        value: 'id_cuentacorriente'
                     }
                 });
             }
@@ -429,6 +547,64 @@ var Empleados_ = function(){
         });
     };
     
+    _public.postNewCargo = function(){
+        simpleAjax.send({
+            flag: 1,
+            element: "#"+tabs.EMPL+"btnGrCT",
+            root: _private.config.moduloC + "newCargo",
+            form: "#"+tabs.EMPL+"formNewCargo",
+            clear: true,
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(data) {
+                if(!isNaN(data.result) && parseInt(data.result) === 1){
+                    simpleScript.notify.ok({
+                        content: lang.mensajes.MSG_3,
+                        callback: function(){
+                            Empleados.getGridCargos(false);
+                            EmpleadosScript.resetCargo();
+                        }
+                    });
+                }else if(!isNaN(data.result) && parseInt(data.result) === 2){
+                    simpleScript.notify.error({
+                        content: lang.Cargo.EXIST2
+                    });
+                }
+            }
+        });
+    };
+    
+    _public.postEditCargo = function(){
+        simpleAjax.send({
+            flag: 2,
+            element: "#"+tabs.EMPL+"btnGrCT",
+            root: _private.config.moduloC + "editCargo",
+            form: "#"+tabs.EMPL+"formEditCargo",
+            clear: true,
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+                sData.push({name: "_idCargoTrabajador", value: _private.idCargoTrabajador});
+            },
+            fnCallback: function(data) {
+                if(!isNaN(data.result) && parseInt(data.result) === 1){
+                    simpleScript.notify.ok({
+                        content: lang.mensajes.MSG_3,
+                        callback: function(){
+                            Empleados.getGridCargos(false);
+                            _private.idCargoTrabajador = 0;
+                            simpleScript.closeModal("#"+tabs.EMPL+"formEditCargo");
+                        }
+                    });
+                }else if(!isNaN(data.result) && parseInt(data.result) === 2){
+                    simpleScript.notify.error({
+                        content: lang.Cargo.EXIST2
+                    });
+                }
+            }
+        });
+    };
+    
     _public.postDeleteDerechoHabiente = function(btn,id){
         simpleScript.notify.confirm({
             content: lang.mensajes.MSG_5,
@@ -452,6 +628,93 @@ var Empleados_ = function(){
                         }
                     }
                 });
+            }
+        });
+    };
+    
+    _public.postDeleteCargo = function(btn,id){
+        simpleScript.notify.confirm({
+            content: lang.mensajes.MSG_5,
+            callbackSI: function(){
+                simpleAjax.send({
+                    flag: 3,
+                    element: btn,
+                    gifProcess: true,
+                    root: _private.config.moduloC + "deleteCargo",
+                    fnServerParams: function(sData){
+                        sData.push({name: "_idCargoTrabajador", value: id});
+                    },
+                    fnCallback: function(data) {
+                        if(!isNaN(data.result) && parseInt(data.result) === 1){
+                            simpleScript.notify.ok({
+                                content: lang.mensajes.MSG_6,
+                                callback: function(){
+                                    Empleados.getGridCargos(false);
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    };
+    
+    _public.postDatos = function(){
+        simpleAjax.send({
+            flag: 1,
+            element: "#"+tabs.EMPL+"btnGrDatos",
+            root: _private.config.modulo + "postDatos",
+            form: "#"+tabs.EMPL+"formDatos",
+            clear: true,
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(data) {
+                if(!isNaN(data.result) && parseInt(data.result) === 1){
+                    simpleScript.notify.ok({
+                        content: lang.mensajes.MSG_3
+                    });
+                }
+            }
+        });
+    };
+    
+    _public.postDatosBancarios = function(){
+        simpleAjax.send({
+            flag: 2,
+            element: "#"+tabs.EMPL+"btnGrBanco",
+            root: _private.config.modulo + "postDatos",
+            form: "#"+tabs.EMPL+"formDatosBancarios",
+            clear: true,
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(data) {
+                if(!isNaN(data.result) && parseInt(data.result) === 1){
+                    simpleScript.notify.ok({
+                        content: lang.mensajes.MSG_3
+                    });
+                }
+            }
+        });
+    };
+    
+    _public.formPensiones = function(){
+        simpleAjax.send({
+            flag: 3,
+            element: "#"+tabs.EMPL+"btnGrSP",
+            root: _private.config.modulo + "postDatos",
+            form: "#"+tabs.EMPL+"formPensiones",
+            clear: true,
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(data) {
+                if(!isNaN(data.result) && parseInt(data.result) === 1){
+                    simpleScript.notify.ok({
+                        content: lang.mensajes.MSG_3
+                    });
+                }
             }
         });
     };

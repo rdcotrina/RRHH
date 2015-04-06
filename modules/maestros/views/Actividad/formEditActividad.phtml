@@ -129,8 +129,6 @@ $found = Obj::run()->ActividadController->findActividad();
 <?php endif; ?>
 <script>
 /*configurar validacion de formulario -- este codigo es de ejemplo*/
-/*activa validacion a los chosen()*/
-$.validator.setDefaults({ ignore: ":hidden:not(select)" });
 $("#<?php echo HACT; ?>formEditActividad").validate({
     // Rules for form validation
     rules : {

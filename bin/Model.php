@@ -18,7 +18,7 @@ class Model{
         $last_call = $trace[1]; /*trae datos de clase donde se ejecuta __construct()*/
         $class = $last_call['class'];
                 
-        Registry::singleton($class);       
+        //Registry::singleton($class);       
     }
     
     public function execute($query,$arrayValues){
