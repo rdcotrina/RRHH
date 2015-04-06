@@ -272,6 +272,15 @@ define('EMPL_59','Tipo descuento');
 define('EMPL_61','Monto');
 define('EMPL_62','Ingrese el monto del sistema de pensiones');
 define('EMPL_63','Sist. de pensiones');
+define('EMPL_64','Código essalud');
+define('EMPL_65','Ingrese el código de essalud');
+define('EMPL_66','Fecha de ingreso');
+define('EMPL_67','Datos de Alta');
+define('EMPL_68','Datos de Baja');
+define('EMPL_69','Remuneración');
+define('EMPL_70','Ingrese la remuneración');
+define('EMPL_71','Fecha de baja');
+define('EMPL_72','Motivo de baja');
 
 /*==============================ESTRUCTURA ORGANICA==============================*/
 define('ESOG_1','Estructura Orgánica');
@@ -305,3 +314,10 @@ define('TPLL_2','Nuevo Tipo de Planilla');
 define('TPLL_3','Editar Tipo de Planilla');
 define('TPLL_4','Tipo de planilla');
 define('TPLL_5','Ingrese nombre de tipo de planilla');
+
+/*==============================TIPOS DE PLANILLA==============================*/
+define('MTBA_1','Motivos de Baja');
+define('MTBA_2','Nuevo Motivo de Baja');
+define('MTBA_3','Editar Motivo de Baja');
+define('MTBA_4','Motivo de baja');
+define('MTBA_5','Ingrese el motivo de baja');

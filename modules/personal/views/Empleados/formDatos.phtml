@@ -126,6 +126,19 @@
     </section>
     <section>
         <div class="row">
+            <label class="label col col-2"><?php echo EMPL_64; ?></label>
+            <div class="col col-4">
+                <label class="input"> 
+                    <i class="icon-append fa fa-question-circle"></i>
+                    <input type="text" id="<?php echo EMPL; ?>txt_codigoessalud" name="<?php echo EMPL; ?>txt_codigoessalud" value="<?php echo $found['codigo_essalud']?>">
+                    <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_65; ?></b>
+                    <div class="obligar"></div>
+                </label>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
             <label class="label col col-2"></label>
             <div class="inline-group col col-9">
                 <label class="radio"> 
@@ -167,6 +180,9 @@
                 <?php echo EMPL; ?>lst_horario : {
                     required : true
                 },
+                <?php echo EMPL; ?>txt_codigoessalud : {
+                    required : true
+                },        
                 <?php echo EMPL; ?>lst_categoriatrabajador : {
                     required : true
                 }

@@ -719,6 +719,46 @@ var Empleados_ = function(){
         });
     };
     
+    _public.postAlta = function(){
+        simpleAjax.send({
+            flag: 4,
+            element: "#"+tabs.EMPL+"btnGrAlta",
+            root: _private.config.modulo + "postDatos",
+            form: "#"+tabs.EMPL+"formAlta",
+            clear: true,
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(data) {
+                if(!isNaN(data.result) && parseInt(data.result) === 1){
+                    simpleScript.notify.ok({
+                        content: lang.mensajes.MSG_3
+                    });
+                }
+            }
+        });
+    };
+    
+    _public.postBaja = function(){
+        simpleAjax.send({
+            flag: 5,
+            element: "#"+tabs.EMPL+"btnGrBaja",
+            root: _private.config.modulo + "postDatos",
+            form: "#"+tabs.EMPL+"formBaja",
+            clear: true,
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(data) {
+                if(!isNaN(data.result) && parseInt(data.result) === 1){
+                    simpleScript.notify.ok({
+                        content: lang.mensajes.MSG_3
+                    });
+                }
+            }
+        });
+    };
+    
     return _public;
     
 };

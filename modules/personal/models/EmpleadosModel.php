@@ -40,6 +40,12 @@ class EmpleadosModel extends Model{
     private $_fechainscripcion;
     private $_tipodecuentopension;
     private $_montopension;
+    private $_codigoessalud;
+    private $_fechaIngreso;
+    private $_tipoPlanilla;
+    private $_remuneracion;
+    private $_motivoBaja;
+    private $_fechaBaja;
     private $_usuario;
     
     /*para el grid*/
@@ -86,6 +92,12 @@ class EmpleadosModel extends Model{
         $this->_fechainscripcion = Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fechainscripcion"),'Y-m-d');
         $this->_tipodecuentopension =   SimpleForm::getParam(EMPL."lst_aplicacion");
         $this->_montopension =   SimpleForm::getParam(EMPL."txt_montopension");
+        $this->_codigoessalud =   SimpleForm::getParam(EMPL."txt_codigoessalud");
+        $this->_fechaIngreso =   Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fechaingreso"),'Y-m-d');
+        $this->_tipoPlanilla =   SimpleForm::getParam(EMPL."lst_tipoplanilla");
+        $this->_remuneracion =   SimpleForm::getParam(EMPL."txt_remuneracion");
+        $this->_motivoBaja =   SimpleForm::getParam(EMPL."lst_motivobaja");
+        $this->_fechaBaja =   Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fechabaja"),'Y-m-d');
         $this->_activo =   SimpleForm::getParam(EMPL."chk_activo");
         $this->_usuario     = Session::get("sys_idUsuario");
         
@@ -173,7 +185,13 @@ class EmpleadosModel extends Model{
                 . ":codigoSispension,"
                 . ":fechaInscripcion,"
                 . ":tipoDescuento,"
-                . ":montosuspension"
+                . ":montosuspension,"
+                . ":codigoEssalud,"
+                . ":fechaAlta,"
+                . ":tipoPlanilla,"
+                . ":sueldo,"
+                . ":motivoBaja,"
+                . ":fechaBaja"
             . ");";
         
         $parms = array(
@@ -191,7 +209,13 @@ class EmpleadosModel extends Model{
             ":codigoSispension" => $this->_codigopension,
             ":fechaInscripcion" => $this->_fechainscripcion,
             ":tipoDescuento" => $this->_tipodecuentopension,
-            ":montosuspension" => $this->_montopension
+            ":montosuspension" => $this->_montopension,
+            ":codigoEssalud" => $this->_codigoessalud,
+            ":fechaAlta" => $this->_fechaIngreso,
+            ":tipoPlanilla" => $this->_tipoPlanilla,
+            ":sueldo" => $this->_remuneracion,
+            ":motivoBaja" => $this->_motivoBaja,
+            ":fechaBaja" => $this->_fechaBaja
         );
         $data = $this->queryOne($query,$parms);
         return $data;

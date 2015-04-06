@@ -177,3 +177,8 @@ lang.SistemaPension.EXIST = 'Sistema de pensión o RUC ya existe';
 lang.TipoPlanilla = {};
 lang.TipoPlanilla.TIPOP = 'Tipo de Planilla';
 lang.TipoPlanilla.EXIST = 'Tipo de planilla ya existe';
+
+/*---------------------PERSONAL/MOTIVO DE BAJA--------------------*/
+lang.MotivoBaja = {};
+lang.MotivoBaja.MTBJ = 'Motivo de baja';
+lang.MotivoBaja.EXIST = 'Motivo de baja ya existe';

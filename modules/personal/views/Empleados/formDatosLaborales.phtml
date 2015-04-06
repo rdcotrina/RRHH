@@ -60,16 +60,12 @@ $found = Obj::run()->EmpleadosController->findDatos();
                             </button>
                             <?php endif; ?>
                         </div>
-                        <!--<div id="<?php echo EMPL; ?>contGridCargo">-->
-                            <table id="<?php echo EMPL; ?>gridCargos" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
-                        <!--</div>-->
+                        <table id="<?php echo EMPL; ?>gridCargos" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
                     </div>
                     <!-- ==================================INICO CARGOS=========================== -->
                     <!-- ==================================INICO PLANILLA=========================== -->
-                    <div class="tab-pane active smart-form" id="<?php echo EMPL; ?>dh3">
-                        <form id="<?php echo EMPL; ?>formPlanilla" name="<?php echo EMPL; ?>formPlanilla">
-                        
-                        </form>
+                    <div class="tab-pane smart-form" id="<?php echo EMPL; ?>dh3">
+                        <?php require_once (ROOT . 'modules' . DS . 'personal' . DS . 'views' . DS . 'Empleados' . DS . 'formPlanilla.phtml');?>
                     </div>
                     <!-- ==================================fin PLANILLA=========================== -->
                 </div>

@@ -1,0 +1,32 @@
+<?php 
+/*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 06-04-2015 23:04:06 
+* Descripcion : indexMotivoBaja.phtml
+* ---------------------------------------
+*/
+$nuevo    = Session::getPermiso("MTBANEW");
+$eliminar = Session::getPermiso("MTBADE");
+    
+echo Functions::widgetOpen(array(
+        "id"=>MTBA,
+        "title"=>MTBA_1
+    )); 
+?>
+<div id="<?php echo MTBA; ?>gridMotivoBaja_btns">
+    <!-- verificar permisos -->
+    <?php if($nuevo["permiso"]): ?>
+    <button id="<?php echo MTBA; ?>btnNewMotivoBaja" type="button" onclick="MotivoBaja.getFormNewMotivoBaja(this);" class="<?php echo $nuevo["theme"]; ?>">
+        <i class="<?php echo $nuevo["icono"]; ?>"></i> <?php echo $nuevo["accion"]; ?>
+    </button>
+    <?php endif; ?>
+</div>
+<table id="<?php echo MTBA; ?>gridMotivoBaja" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
+<?php echo Functions::widgetClose(); ?>
+<script>
+simpleScript.removeAttr.click({
+    container: "#"+tabs.MTBA+"gridMotivoBaja_tools",
+    typeElement: "button"
+});      
+</script>

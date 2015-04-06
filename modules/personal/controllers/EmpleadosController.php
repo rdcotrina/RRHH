@@ -188,6 +188,16 @@ class EmpleadosController extends Controller{
         return $data;
     }
     
+    public function getTipoPlanilla(){
+        $data = self::$EmpleadosModel->getData(23);
+        return $data;
+    }
+    
+    public function getMotivoBaja(){
+        $data = self::$EmpleadosModel->getData(24);
+        return $data;
+    }
+    
     public function getCuentaCorriente($banco=''){
         $data = self::$EmpleadosModel->getCuentaCorriente($banco);
         
