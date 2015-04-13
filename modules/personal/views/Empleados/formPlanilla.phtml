@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                         </section>
-                        <section>
+                        <section class="hide">
                             <div class="row">
                                 <label class="label col col-4"><?php echo EMPL_69; ?></label>
                                 <div class="col col-6">
@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                         </section>
-                        <section>
+                        <section class="hide">
                             <div class="row">
                                 <label class="label col col-4"></label>
                                 <div class="col col-6">
@@ -118,14 +118,14 @@
                                 </div>
                             </div>
                         </section>
-                        <div class="modal-footer">
-                            <?php if($editar["permiso"]):?>
-                            <button id="<?php echo EMPL; ?>btnGrBaja" type="submit" class="<?php echo $editar["theme"]; ?>" style="padding: 5px">
-                                <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
-                            </button>
-                            <?php endif; ?>
-                        </div>
                     </fieldset>
+                    <div class="modal-footer">
+                        <?php if($editar["permiso"]):?>
+                        <button id="<?php echo EMPL; ?>btnGrBaja" type="submit" class="<?php echo $editar["theme"]; ?>" style="padding: 5px">
+                            <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                        </button>
+                        <?php endif; ?>
+                    </div>
                 </form>
                 
             </div>
@@ -156,7 +156,6 @@
                     required : true
                 },
                 <?php echo EMPL; ?>txt_remuneracion : {
-                    required : true,
                     number: true
                 }
             },

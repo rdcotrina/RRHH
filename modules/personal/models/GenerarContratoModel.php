@@ -11,6 +11,7 @@ class GenerarContratoModel extends Model{
 
     private $_flag;
     private $_idGenerarContrato;
+    private $_idTrabajador;
     private $_activo;
     private $_usuario;
     
@@ -30,6 +31,7 @@ class GenerarContratoModel extends Model{
     private function _set(){
         $this->_flag        = SimpleForm::getParam("_flag");
         $this->_idGenerarContrato   = Aes::de(SimpleForm::getParam("_idGenerarContrato"));    /*se decifra*/
+        $this->_idTrabajador   = Aes::de(SimpleForm::getParam("_idTrabajador"));    /*se decifra*/
         $this->_activo =   SimpleForm::getParam(GNCTR."chk_activo");
         $this->_usuario     = Session::get("sys_idUsuario");
         
@@ -70,9 +72,35 @@ class GenerarContratoModel extends Model{
         return $data;
     }
     
+    public function getGridHistorial(){
+        $query = "call sp_perPersonalHistorialContratoGrid(:idTrabajador,:iDisplayStart,:iDisplayLength,:sOrder,:sSearch,:sFilterCols);";
+        
+        $parms = array(
+            ":idTrabajador" => $this->_idTrabajador,
+            ":iDisplayStart" => $this->_pDisplayStart,
+            ":iDisplayLength" => $this->_pDisplayLength,
+            ":sOrder" => $this->_pOrder,
+            ":sSearch" => $this->_pSearch ,
+            ":sFilterCols" => $this->_sFilterCols
+        );
+        $data = $this->queryAll($query,$parms);
+        return $data;
+    }
+    
+    
     /*mantenimiento (CRUD) registro: GenerarContrato*/
-    public function mantenimientoGenerarContrato(){
-        /*-------------------------LOGICA PARA EL INSERT------------------------*/
+    public function mantenimientoGenerarContrato($cadena='',$length=''){
+        $query = "call sp_perPersonalGenerarContratoMantenimiento(:flag,:key,:cadena,:length,:usuario);";
+        
+        $parms = array(
+            ":flag" => $this->_flag,
+            ":key" => $this->_idGenerarContrato,
+            ":cadena" => $cadena,
+            ":length" => $length ,
+            ":usuario" => $this->_usuario
+        );
+        $data = $this->queryOne($query,$parms);
+        return $data;
     }
     
     /*seleccionar registro a editar: GenerarContrato*/

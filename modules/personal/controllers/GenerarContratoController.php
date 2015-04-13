@@ -55,17 +55,28 @@ class GenerarContratoController extends Controller{
         echo json_encode($rows);
     }
     
+    public function getGridHistorial(){
+        $rows = array();
+        $data =  self::$GenerarContratoModel->getGridHistorial();
+        foreach ($data as $value) {
+            $rows[] = array(
+                "id_contrato"=>AesCtr::en($value["id_contrato"]),
+                "fecha_inicio"=> $value["fecha_inicio"],
+                "fecha_fin"=> $value["fecha_fin"],
+                "total"=> $value["total"]
+            );
+        }
+        echo json_encode($rows);
+    }
+    
     /*carga formulario (formNewGenerarContrato.phtml) para nuevo registro: GenerarContrato*/
     public function formNewGenerarContrato(){
         Obj::run()->View->render();
     }
     
-    /*busca data para editar registro: GenerarContrato*/
-//    public function findGenerarContrato(){
-//        $data = self::$GenerarContratoModel->findGenerarContrato();
-//            
-//        return $data;
-//    }
+    public function formHistorial(){
+        Obj::run()->View->render();
+    }
     
     /*envia datos para grabar registro: GenerarContrato*/
     public function generarContrato(){
@@ -75,16 +86,16 @@ class GenerarContratoController extends Controller{
         
         $cadena = '';
         foreach ($chkb as $key => $chk) {
-            $cadena .= $chk.'*'.$fini[$key].'*'.$ffin[$key];
+            $cadena .= AesCtr::de($chk).'*'.Functions::dateFormat($fini[$key],'Y-m-d').'*'.Functions::dateFormat($ffin[$key],'Y-m-d').'#';
         }
         
-        $data = self::$GenerarContratoModel->mantenimientoGenerarContrato();
+        $data = self::$GenerarContratoModel->mantenimientoGenerarContrato($cadena,  count($chkb));
         
         echo json_encode($data);
     }
     
     /*envia datos para eliminar registro: GenerarContrato*/
-    public function deleteGenerarContrato(){
+    public function postDeleteContrato(){
         $data = self::$GenerarContratoModel->mantenimientoGenerarContrato();
         
         echo json_encode($data);

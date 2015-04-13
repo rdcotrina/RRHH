@@ -17,6 +17,8 @@ var GenerarContrato_ = function(){
     
     _private.idGenerarContrato = 0;
     
+    _private.idTrabajdor = 0;
+    
     _private.config = {
         modulo: "personal/GenerarContrato/"
     };
@@ -71,8 +73,8 @@ var GenerarContrato_ = function(){
                 titulo: pHistoria.accion,
                 class: pHistoria.theme,
                 ajax: {
-                    fn: "GenerarContrato.getFormEditGenerarContrato",
-                    serverParams: "id_trabajador"
+                    fn: "GenerarContrato.getFormHistorial",
+                    serverParams: ["id_trabajador","nombrecompleto"]
                 }
             }],
             ajaxSource: _private.config.modulo+"getGridGenerarContrato",
@@ -121,7 +123,44 @@ var GenerarContrato_ = function(){
         });
     };
     
-    _public.getFormNewGenerarContrato = function(btn){
+    _public.getGridHistorial = function (reload){
+        var pDel   = simpleScript.getPermiso("GNCTRDE");        
+
+        $("#"+tabs.GNCTR+"gridHistorial").simpleGrid({
+            tWidthFormat: "px",
+            tScrollY: "200px",
+            tReload: reload,
+            tColumns: [
+                {title: lang.GenerarContrato.FEINI,campo: "fecha_inicio",width: "80", class: "center",sortable: true,search: {operator:"LIKE"}},
+                {title: lang.GenerarContrato.FEFIN,campo: "fecha_fin",width: "80", class: "center",sortable: true,search: {operator:"LIKE"}}
+            ],
+            pPaginate: true,
+            sAxions: [{
+                access: pDel.permiso,
+                icono: pDel.icono,
+                titulo: pDel.accion,
+                class: pDel.theme,
+                ajax: {
+                    fn: "GenerarContrato.postDeleteContrato",
+                    serverParams: "id_contrato"
+                }
+            }],
+            ajaxSource: _private.config.modulo+"getGridHistorial",
+            fnServerParams: function(sData){
+                sData.push({name: "_idTrabajador", value: _private.idTrabajdor});
+            },
+            fnCallback: function(oSettings) {
+                simpleScript.removeAttr.click({
+                    container: "#"+oSettings.tObjectTable,
+                    typeElement: "button"
+                }); 
+                
+                simpleScript.noSubmit("#"+oSettings.tObjectTable+"_head");
+            }
+        });
+    };
+    
+    _public.getFormNewGenerarContrato = function(btn){        
         simpleAjax.send({
             element: btn,
             dataType: "html",
@@ -134,22 +173,20 @@ var GenerarContrato_ = function(){
         });
     };
     
-//    _public.getFormEditGenerarContrato = function(btn,id){
-//        _private.idGenerarContrato = id;
-//            
-//        simpleAjax.send({
-//            element: btn,
-//            dataType: "html",
-//            root: _private.config.modulo + "formEditGenerarContrato",
-//            fnServerParams: function(sData){
-//                sData.push({name: "_idGenerarContrato", value: _private.idGenerarContrato});
-//            },
-//            fnCallback: function(data){
-//                $("#cont-modal").append(data);  /*los formularios con append*/
-//                $("#"+tabs.GNCTR+"formEditGenerarContrato").modal("show");
-//            }
-//        });
-//    };
+    _public.getFormHistorial = function(btn,id){
+        _private.idTrabajdor = id;
+        
+        simpleAjax.send({
+            element: btn,
+            dataType: "html",
+            root: _private.config.modulo + "formHistorial",
+            fnCallback: function(data){
+                $("#cont-modal").append(data);  /*los formularios con append*/
+                $("#"+tabs.GNCTR+"formHistorial").modal("show");
+                GenerarContrato.getGridHistorial(true);
+            }
+        });
+    };
     
     _public.postGenerarContrato = function(){
         simpleAjax.send({
@@ -163,7 +200,8 @@ var GenerarContrato_ = function(){
                     simpleScript.notify.ok({
                         content: lang.mensajes.MSG_3,
                         callback: function(){
-                            GenerarContrato.getGridSinContrato(false);
+                            GenerarContrato.getGridGenerarContrato(false);
+                            simpleScript.closeModal("#"+tabs.GNCTR+"formNewGenerarContrato");
                         }
                     });
                 }
@@ -171,7 +209,7 @@ var GenerarContrato_ = function(){
         });
     };
     
-    _public.postDeleteGenerarContrato = function(btn,id){
+    _public.postDeleteContrato = function(btn,id){
         simpleScript.notify.confirm({
             content: lang.mensajes.MSG_5,
             callbackSI: function(){
@@ -179,7 +217,7 @@ var GenerarContrato_ = function(){
                     flag: 3,
                     element: btn,
                     gifProcess: true,
-                    root: _private.config.modulo + "deleteGenerarContrato",
+                    root: _private.config.modulo + "postDeleteContrato",
                     fnServerParams: function(sData){
                         sData.push({name: "_idGenerarContrato", value: id});
                     },
@@ -188,7 +226,8 @@ var GenerarContrato_ = function(){
                             simpleScript.notify.ok({
                                 content: lang.mensajes.MSG_6,
                                 callback: function(){
-                                    GenerarContrato.getGridSinContrato(false);
+                                    GenerarContrato.getGridHistorial(false);
+                                    GenerarContrato.getGridGenerarContrato(false)
                                 }
                             });
                         }
