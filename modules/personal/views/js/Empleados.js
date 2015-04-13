@@ -236,9 +236,6 @@ var Empleados_ = function(){
     };
     
     _public.getGridConceptos = function (reload){
-        if(reload){
-//            $('#'+tabs.EMPL+'contGridCargo').html('<table id="'+tabs.EMPL+'gridCargos" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>');
-        }
         var pEdit   = simpleScript.getPermiso("EMPLED");
         var pDelete = simpleScript.getPermiso("EMPLDE");
 
@@ -251,8 +248,7 @@ var Empleados_ = function(){
                 {title: lang.ConceptoPlanilla.CONC,campo: "conceptoplanilla",width: "250",sortable: true},
                 {title: lang.Empleados.TTAP, campo: "tipo_aplicacion", width: "70", sortable: true,class: "center"},
                 {title: lang.Empleados.PRM, campo: "permanente", width: "70", sortable: true, class: "center"},
-//                {title: lang.Empleados.FEINI, campo: "fecha_inicio", width: "90", sortable: true, class: "center"},
-//                {title: lang.Empleados.FEFIN, campo: "fecha_fin", width: "90", sortable: true, class: "center"},
+                {title: lang.Empleados.VARI, campo: "variable", width: "70", sortable: true, class: "center"},
                 {title: lang.Empleados.MTO , campo: "monto", width: "80", sortable: true, class: "right"},
                 {title: lang.generic.EST, campo: "estadocp", width: "80", sortable: true, class: "center"}
             ],

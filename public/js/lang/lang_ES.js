@@ -165,6 +165,7 @@ lang.Empleados.TTAP  = 'Tipo Aplicaión';
 lang.Empleados.PRM  = 'Permanente';
 lang.Empleados.FEINI  = 'Fecha de Inico';
 lang.Empleados.FEFIN  = 'Fecha de Término';
+lang.Empleados.VARI  = 'Cambia cada mes';
 lang.Empleados.MTO  = 'Monto';
 lang.Empleados.EXIST = 'Empleado, email o número de documento ya existe';
 lang.Empleados.EXISTDH = 'Nombres y apellidos o número de documento de derechohabiente ya existe';

@@ -49,6 +49,12 @@ class EmpleadosController extends Controller{
             if($value["tipo_aplicacion"] == 'F'){
                 $aplica = '<label class="label label-warning">Fijo</label>';
             }
+            
+            $var = '<label class="label label-danger">No</label>';
+            if($value["variable"]){
+                $var = '<label class="label label-success">Si</label>';
+            }
+            
             $rows[] = array(
                 "id_conceptosplanillatrabajador"=>AesCtr::en($value["id_conceptosplanillatrabajador"]),
                 "tipo_aplicacion"=> $aplica,
@@ -56,6 +62,7 @@ class EmpleadosController extends Controller{
                 "fecha_inicio"=> $value["fecha_inicio"],
                 "fecha_fin"=> $value["fecha_fin"],
                 "monto"=> $value["monto"],
+                "variable"=> $var,
                 "conceptoplanilla"=> $value["conceptoplanilla"],
                 "estadocp"=> Functions::labelState($value["estadocp"]),
                 "total"=> $value["total"]
