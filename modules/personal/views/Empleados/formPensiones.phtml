@@ -88,6 +88,18 @@
             </div>
         </div>
     </section>
+    <section>
+        <div class="row">
+            <label class="label col col-2"></label>
+            <div class="col col-3">
+                <label class="checkbox">
+                    <input type="checkbox" name="<?php echo EMPL; ?>chk_variante" id="<?php echo EMPL; ?>chk_variante" value="1" <?php echo ($found['variante'] == '1')?'checked':'' ?>></input>
+                    <i></i>
+                    <?php echo EMPL_76; ?>
+                </label>
+            </div>
+        </div>
+    </section>
     <footer>
         <?php if($editar["permiso"]):?>
         <button id="<?php echo EMPL; ?>btnGrSP" type="submit" class="<?php echo $editar["theme"]; ?>">

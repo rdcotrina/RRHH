@@ -53,6 +53,7 @@ class EmpleadosModel extends Model{
     private $_fechaIniConcepto;
     private $_fechaFinConcepto;
     private $_montoConcepto;
+    private $_variante;
     private $_usuario;
     
     /*para el grid*/
@@ -106,6 +107,7 @@ class EmpleadosModel extends Model{
         $this->_motivoBaja =   SimpleForm::getParam(EMPL."lst_motivobaja");
         $this->_fechaBaja =   Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fechabaja"),'Y-m-d');
         $this->_activo =   SimpleForm::getParam(EMPL."chk_activo");
+        $this->_variante =   SimpleForm::getParam(EMPL."chk_variante");
         
         $this->_idConceptoPlanilla   = Aes::de(SimpleForm::getParam("_idConceptoPlanilla"));    /*se decifra*/
         $this->_concepto =   SimpleForm::getParam(EMPL."lst_concepto");
@@ -222,7 +224,8 @@ class EmpleadosModel extends Model{
                 . ":tipoPlanilla,"
                 . ":sueldo,"
                 . ":motivoBaja,"
-                . ":fechaBaja"
+                . ":fechaBaja,"
+                . ":variante"
             . ");";
         
         $parms = array(
@@ -246,7 +249,8 @@ class EmpleadosModel extends Model{
             ":tipoPlanilla" => $this->_tipoPlanilla,
             ":sueldo" => $this->_remuneracion,
             ":motivoBaja" => $this->_motivoBaja,
-            ":fechaBaja" => $this->_fechaBaja
+            ":fechaBaja" => $this->_fechaBaja,
+            ":variante" => (!empty($this->_variante))?$this->_variante:'0'
         );
         $data = $this->queryOne($query,$parms);
         return $data;

@@ -285,6 +285,7 @@ define('EMPL_72','Motivo de baja');
 define('EMPL_73','Tipo de aplicación');
 define('EMPL_74','Permanente');
 define('EMPL_75','Ingrese el monto');
+define('EMPL_76','Varía cada mes');
 
 /*==============================ESTRUCTURA ORGANICA==============================*/
 define('ESOG_1','Estructura Orgánica');
