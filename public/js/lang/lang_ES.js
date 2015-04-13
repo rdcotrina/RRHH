@@ -167,6 +167,8 @@ lang.Empleados.FEINI  = 'Fecha de Inico';
 lang.Empleados.FEFIN  = 'Fecha de Término';
 lang.Empleados.VARI  = 'Cambia cada mes';
 lang.Empleados.MTO  = 'Monto';
+lang.Empleados.COM  = 'Comisión AFP';
+lang.Empleados.PRI  = 'Prima Seguro';
 lang.Empleados.EXIST = 'Empleado, email o número de documento ya existe';
 lang.Empleados.EXISTDH = 'Nombres y apellidos o número de documento de derechohabiente ya existe';
 

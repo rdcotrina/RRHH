@@ -106,7 +106,7 @@ $grabar = Session::getPermiso("EMPLGR");
                 </section>
                 <section>
                     <div class="row">
-                        <label class="label col col-2"><?php echo EMPL_61?></label>
+                        <label class="label col col-2"><?php echo EMPL_61.EMPL_77 ?></label>
                         <div class="col col-3">
                             <label class="input">                                 
                                 <i class="icon-append fa fa-question-circle"></i>
@@ -115,16 +115,37 @@ $grabar = Session::getPermiso("EMPLGR");
                                 <div class="obligar"></div>
                             </label>
                         </div>
-                    </div>
-                </section>
-                <section>
-                    <div class="row">
-                        <label class="label col col-2"></label>
+                        
+                        <label class="label col col-1"></label>
                         <div class="col col-3">
                             <label class="checkbox">
                                 <input type="checkbox" name="<?php echo EMPL; ?>chk_variantec" id="<?php echo EMPL; ?>chk_variantec" value="1" ></input>
                                 <i></i>
                                 <?php echo EMPL_76; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_78 ?></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_primaseguro" name="<?php echo EMPL; ?>txt_primaseguro">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_79; ?></b>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_80 ?></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_comisionafp" name="<?php echo EMPL; ?>txt_comisionafp">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_81; ?></b>
                             </label>
                         </div>
                     </div>
@@ -179,7 +200,13 @@ $("#<?php echo EMPL; ?>formNewConceptoPlanilla").validate({
         <?php echo EMPL; ?>txt_montoc : {
             required : true,
             number: true
-        }
+        },
+        <?php echo EMPL; ?>txt_primaseguro : {
+            number: true
+        },
+        <?php echo EMPL; ?>txt_comisionafp : {
+            number: true
+        }        
     },
 
     // No cambie el código de abajo

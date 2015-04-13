@@ -65,6 +65,8 @@ class EmpleadosController extends Controller{
                 "variable"=> $var,
                 "conceptoplanilla"=> $value["conceptoplanilla"],
                 "estadocp"=> Functions::labelState($value["estadocp"]),
+                "comisionafp"=> $value["comisionafp"],
+                "primaseguro"=> $value["primaseguro"],
                 "total"=> $value["total"]
             );
         }

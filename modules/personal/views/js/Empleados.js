@@ -245,12 +245,13 @@ var Empleados_ = function(){
             tReload: reload,
             tAxion: 'Acc.',
             tColumns: [
-                {title: lang.ConceptoPlanilla.CONC,campo: "conceptoplanilla",width: "250",sortable: true},
+                {title: lang.ConceptoPlanilla.CONC,campo: "conceptoplanilla",width: "200",sortable: true},
                 {title: lang.Empleados.TTAP, campo: "tipo_aplicacion", width: "70", sortable: true,class: "center"},
                 {title: lang.Empleados.PRM, campo: "permanente", width: "70", sortable: true, class: "center"},
                 {title: lang.Empleados.VARI, campo: "variable", width: "70", sortable: true, class: "center"},
                 {title: lang.Empleados.MTO , campo: "monto", width: "80", sortable: true, class: "right"},
-                {title: lang.generic.EST, campo: "estadocp", width: "80", sortable: true, class: "center"}
+                {title: lang.Empleados.COM, campo: "comisionafp", width: "80", sortable: true, class: "right"},
+                {title: lang.Empleados.PRI, campo: "primaseguro", width: "80", sortable: true, class: "right"}
             ],
             pPaginate: true,
             sAxions: [{

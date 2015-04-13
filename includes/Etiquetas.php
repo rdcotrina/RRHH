@@ -286,6 +286,11 @@ define('EMPL_73','Tipo de aplicación');
 define('EMPL_74','Permanente');
 define('EMPL_75','Ingrese el monto');
 define('EMPL_76','Varía cada mes');
+define('EMPL_77',' (Aporte)');
+define('EMPL_78','Prima seguro');
+define('EMPL_79','Ingrese monto de prima seguro');
+define('EMPL_80','Comisión AFP');
+define('EMPL_81','Ingrese monto de comisión AFP');
 
 /*==============================ESTRUCTURA ORGANICA==============================*/
 define('ESOG_1','Estructura Orgánica');
