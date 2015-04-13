@@ -137,6 +137,7 @@ var clasificadorDetalle_ = function(){
                         content: lang.mensajes.MSG_3,
                         callback: function(){
                             clasificadorDetalle.getGridClasificadorDetalle(false);
+                            simpleScript.updateChosen({element: '#'+tabs.CLSFD+'lst_subclasificador'});
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){

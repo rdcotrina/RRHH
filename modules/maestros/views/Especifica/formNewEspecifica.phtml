@@ -53,7 +53,7 @@ $grabar = Session::getPermiso("ESPEGR");
                                         'defaultEtiqueta'=>'',
                                         'txtSelect'=>true
                                     ));
-                                ?><i></i>
+                                ?>
                                 <div class="obligar"></div>
                             </label>
                         </div>
@@ -64,10 +64,17 @@ $grabar = Session::getPermiso("ESPEGR");
                         <label class="label col col-3"><?php echo SBCLF_2; ?></label>
                         <div class="col col-8">
                             <label class="select" id="cont_subclasificador"> 
-                                <select id="<?php echo ESPE; ?>lst_subclasificador" name="<?php echo ESPE; ?>lst_subclasificador">
-                                    <option value=""><?php echo LBL_SELECCIONAR?></option>
-                                </select><i></i>
-                                <div class="obligar"></div>
+                                <script>
+                                    simpleScript.listBox({
+                                        optionSelec: true,
+                                        content: '#cont_subclasificador',
+                                        required: true,
+                                        attr:{
+                                            id: tabs.ESPE+'lst_subclasificador',
+                                            name: tabs.ESPE+'lst_subclasificador'
+                                        }
+                                    });
+                                </script>
                             </label>
                         </div>
                     </div>
@@ -77,10 +84,17 @@ $grabar = Session::getPermiso("ESPEGR");
                         <label class="label col col-3"><?php echo CLSFD_1; ?></label>
                         <div class="col col-8">
                             <label class="select" id="cont_clasificador_detalle"> 
-                                <select id="<?php echo ESPE; ?>lst_clasificadordetalle" name="<?php echo ESPE; ?>lst_clasificadordetalle">
-                                    <option value=""><?php echo LBL_SELECCIONAR?></option>
-                                </select><i></i>
-                                <div class="obligar"></div>
+                                <script>
+                                    simpleScript.listBox({
+                                        optionSelec: true,
+                                        content: '#cont_clasificador_detalle',
+                                        required: true,
+                                        attr:{
+                                            id: tabs.ESPE+'lst_clasificadordetalle',
+                                            name: tabs.ESPE+'lst_clasificadordetalle'
+                                        }
+                                    });
+                                </script>
                             </label>
                         </div>
                     </div>
@@ -90,10 +104,17 @@ $grabar = Session::getPermiso("ESPEGR");
                         <label class="label col col-3"><?php echo SBCLD_3; ?></label>
                         <div class="col col-8">
                             <label class="select" id="cont_subclasificador_detalle"> 
-                                <select id="<?php echo ESPE; ?>lst_subclasificadordetalle" name="<?php echo ESPE; ?>lst_subclasificadordetalle">
-                                    <option value=""><?php echo LBL_SELECCIONAR?></option>
-                                </select><i></i>
-                                <div class="obligar"></div>
+                                <script>
+                                    simpleScript.listBox({
+                                        optionSelec: true,
+                                        content: '#cont_subclasificador_detalle',
+                                        required: true,
+                                        attr:{
+                                            id: tabs.ESPE+'lst_subclasificadordetalle',
+                                            name: tabs.ESPE+'lst_subclasificadordetalle'
+                                        }
+                                    });
+                                </script>
                             </label>
                         </div>
                     </div>

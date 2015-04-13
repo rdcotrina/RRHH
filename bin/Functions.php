@@ -357,6 +357,14 @@ class Functions{
                 $c = 'label label-warning';
                 $a = 'Baja';
                 break;
+            case 'V':
+                $c = 'label label-danger';
+                $a = 'Vencido';
+                break;
+            case 'P':
+                $c = 'label label-warning';
+                $a = 'Pendiente';
+                break;
             default:
                 $c = '';
                 $a = '';

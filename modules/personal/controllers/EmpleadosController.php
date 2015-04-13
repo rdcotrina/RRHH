@@ -36,6 +36,34 @@ class EmpleadosController extends Controller{
         echo json_encode($rows);
     }
     
+    public function getGridConceptos(){
+        $rows = array();
+        $data =  self::$EmpleadosModel->getGridConceptos();
+        foreach ($data as $value) {
+            $perm = '<label class="label label-danger">No</label>';
+            if($value["permanente"]){
+                $perm = '<label class="label label-success">Si</label>';
+            }
+            
+            $aplica = '<label class="label label-info">Porcentaje</label>';
+            if($value["tipo_aplicacion"] == 'F'){
+                $aplica = '<label class="label label-warning">Fijo</label>';
+            }
+            $rows[] = array(
+                "id_conceptosplanillatrabajador"=>AesCtr::en($value["id_conceptosplanillatrabajador"]),
+                "tipo_aplicacion"=> $aplica,
+                "permanente"=> $perm,
+                "fecha_inicio"=> $value["fecha_inicio"],
+                "fecha_fin"=> $value["fecha_fin"],
+                "monto"=> $value["monto"],
+                "conceptoplanilla"=> $value["conceptoplanilla"],
+                "estadocp"=> Functions::labelState($value["estadocp"]),
+                "total"=> $value["total"]
+            );
+        }
+        echo json_encode($rows);
+    }
+    
     /*carga formulario (formNewEmpleados.phtml) para nuevo registro: Empleados*/
     public function formNewEmpleados(){
         Obj::run()->View->render();
@@ -62,6 +90,10 @@ class EmpleadosController extends Controller{
         Obj::run()->View->render();
     }
     
+    public function formNewConceptoPlanilla(){
+        Obj::run()->View->render();
+    }
+    
     /*busca data para editar registro: Empleados*/
     public function findEmpleados(){
         $data = self::$EmpleadosModel->findEmpleados();
@@ -78,6 +110,18 @@ class EmpleadosController extends Controller{
     
     public function postDatos(){
         $data = self::$EmpleadosModel->mantenimientoDatos();
+        
+        echo json_encode($data);
+    }
+    
+    public function postNewConcepto(){
+        $data = self::$EmpleadosModel->mantenimientoConcepto();
+        
+        echo json_encode($data);
+    }
+    
+    public function deleteConceptoPlanilla(){
+        $data = self::$EmpleadosModel->mantenimientoConcepto();
         
         echo json_encode($data);
     }
@@ -195,6 +239,11 @@ class EmpleadosController extends Controller{
     
     public function getMotivoBaja(){
         $data = self::$EmpleadosModel->getData(24);
+        return $data;
+    }
+    
+    public function getConcepto(){
+        $data = self::$EmpleadosModel->getData(26);
         return $data;
     }
     

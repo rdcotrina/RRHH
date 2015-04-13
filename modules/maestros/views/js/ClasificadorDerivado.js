@@ -136,7 +136,7 @@ var ClasificadorDerivado_ = function(){
                     simpleScript.notify.ok({
                         content: lang.mensajes.MSG_3,
                         callback: function(){
-                            $("#"+tabs.DVCL+"lst_especifica").val('').trigger("chosen:updated");
+                            simpleScript.updateChosen({element:'#'+tabs.DVCL+'lst_especifica'});
                             ClasificadorDerivado.getGridClasificadorDerivado(false);
                         }
                     });

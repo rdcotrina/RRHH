@@ -10,14 +10,20 @@ lang.mensajes = {
     MSG_8: 'Registros se eliminaron correctamente.',
     MSG_9: 'Seleccione al menos un registro.',
     MSG_10: 'Datos se actualizaron correctamente.',
-    MSG_11: 'Cesión terminada'
+    MSG_11: 'Cesión terminada',
+    MSG_12: 'Ingrese una fecha'
 };
 
 /*--------------------------GENERICOS---------------------------*/
 lang.generic = {};
 lang.generic.AX = 'Acciones';
+lang.generic.AXC = 'Acc.';
 lang.generic.ACT = 'Actualizar';
+lang.generic.ACTI = 'Activo';
+lang.generic.VEN = 'Vencido';
+lang.generic.PEN = 'Pendiente';
 lang.generic.EST = 'Estado';
+
 
 /*-----------------------FABRICA/MODULOS-------------------------*/
 lang.modulo = {};
@@ -155,6 +161,11 @@ lang.Empleados.APENOM = 'Apellidos y Nombres';
 lang.Empleados.EMAIL  = 'Email';
 lang.Empleados.TELS  = 'Teléfonos';
 lang.Empleados.PRIN  = 'Principal';
+lang.Empleados.TTAP  = 'Tipo Aplicaión';
+lang.Empleados.PRM  = 'Permanente';
+lang.Empleados.FEINI  = 'Fecha de Inico';
+lang.Empleados.FEFIN  = 'Fecha de Término';
+lang.Empleados.MTO  = 'Monto';
 lang.Empleados.EXIST = 'Empleado, email o número de documento ya existe';
 lang.Empleados.EXISTDH = 'Nombres y apellidos o número de documento de derechohabiente ya existe';
 
@@ -182,3 +193,9 @@ lang.TipoPlanilla.EXIST = 'Tipo de planilla ya existe';
 lang.MotivoBaja = {};
 lang.MotivoBaja.MTBJ = 'Motivo de baja';
 lang.MotivoBaja.EXIST = 'Motivo de baja ya existe';
+
+/*---------------------PERSONAL/CONTRATOS--------------------*/
+lang.GenerarContrato = {};
+lang.GenerarContrato.FEINI = 'Fecha de Inicio';
+lang.GenerarContrato.FEFIN = 'Fecha de Término';
+lang.GenerarContrato.VALCONT = 'Seleccione trabajadores e ingrese fechas de contrato';

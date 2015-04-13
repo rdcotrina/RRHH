@@ -225,9 +225,6 @@ var simpleScript_ = function() {
         },
         dateRange: function(obj) {
             $(obj.ini).datepicker({
-                showOn: "button",
-                buttonImageOnly: true,
-                buttonImage: "img/date.png",
                 numberOfMonths: 1,
                 dateFormat: 'dd-mm-yy',
                 onClose: function(selectedDate) {
@@ -544,21 +541,6 @@ var simpleScript_ = function() {
         }
     };
 
-    /*cambia la busqueda sencible por el enter, en el search de datatable*/
-    _public.enterSearch = function(g, oTable) {
-        $(g + '_filter').find('input').unbind();
-        $(g + '_filter').find('input').bind('keyup', function(e) {
-            if (e.keyCode === 13) {
-                var v = this.value;
-                oTable.fnFilter(v);
-                
-                setTimeout(function(){
-                    $(g + '_filter').find('input').val(v);
-                },500);
-            }
-        });
-    };
-    
     /*obtener permisos de botones*/
     _public.getPermiso = function(clave){
         for(var i in sys_permisos){
@@ -571,6 +553,12 @@ var simpleScript_ = function() {
                 };
             }
         }
+    };
+    
+    /*limpiar select chosen*/
+    _public.updateChosen = function(obj){
+        var va = (obj.value === undefined)?'':obj.value;
+        $(obj.element).val(va).trigger("chosen:updated");
     };
 
     return _public;

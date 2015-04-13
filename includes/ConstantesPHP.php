@@ -31,3 +31,4 @@ define("HRIO","HRIO");             /*tab opción HORARIO*/
 define("SISPE","SISPE");             /*tab opción SISTEMAPENSION*/
 define("TPLL","TPLL");             /*tab opción TIPOPLANILLA*/
 define("MTBA","MTBA");             /*tab opción MOTIVOBAJA*/
+define("GNCTR","GNCTR");             /*tab opción GENERARCONTRATO*/

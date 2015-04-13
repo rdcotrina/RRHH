@@ -1,0 +1,32 @@
+<?php 
+/*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 10-04-2015 17:04:01 
+* Descripcion : indexGenerarContrato.phtml
+* ---------------------------------------
+*/
+$nuevo    = Session::getPermiso("GNCTRNEW");
+$eliminar = Session::getPermiso("GNCTRDE");
+    
+echo Functions::widgetOpen(array(
+        "id"=>GNCTR,
+        "title"=>GNCTR_1
+    )); 
+?>
+<div id="<?php echo GNCTR; ?>gridGenerarContrato_btns">
+    <!-- verificar permisos -->
+    <?php if($nuevo["permiso"]): ?>
+    <button id="<?php echo GNCTR; ?>btnNewGenerarContrato" type="button" onclick="GenerarContrato.getFormNewGenerarContrato(this);" class="<?php echo $nuevo["theme"]; ?>">
+        <i class="<?php echo $nuevo["icono"]; ?>"></i> <?php echo $nuevo["accion"]; ?>
+    </button>
+    <?php endif; ?>
+</div>
+<table id="<?php echo GNCTR; ?>gridGenerarContrato" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
+<?php echo Functions::widgetClose(); ?>
+<script>
+simpleScript.removeAttr.click({
+    container: "#"+tabs.GNCTR+"gridGenerarContrato_tools",
+    typeElement: "button"
+});      
+</script>

@@ -34,6 +34,9 @@ $found = Obj::run()->EmpleadosController->findDatos();
                     <li>
                         <a href="#<?php echo EMPL; ?>dh3" data-toggle="tab" ><?php echo EMPL_52; ?></a>
                     </li>
+                    <li>
+                        <a href="#<?php echo EMPL; ?>dh4" data-toggle="tab" ><?php echo PCNCP_1; ?></a>
+                    </li>
                 </ul>
                 
                 <div class="tab-content padding-10">
@@ -68,6 +71,18 @@ $found = Obj::run()->EmpleadosController->findDatos();
                         <?php require_once (ROOT . 'modules' . DS . 'personal' . DS . 'views' . DS . 'Empleados' . DS . 'formPlanilla.phtml');?>
                     </div>
                     <!-- ==================================fin PLANILLA=========================== -->
+                    <!-- ==================================INICO CONCEPTOS DE PLANILLA=========================== -->
+                    <div class="tab-pane" id="<?php echo EMPL; ?>dh4">
+                        <div id="<?php echo EMPL; ?>gridConceptos_btns">
+                            <?php if($nuevo["permiso"]):?>
+                            <button type="button" class="<?php echo $nuevo["theme"]; ?>" onclick="Empleados.getFormNewConcepto(this);">
+                                <i class="<?php echo $nuevo["icono"]; ?>"></i> <?php echo $nuevo["accion"]; ?>
+                            </button>
+                            <?php endif; ?>
+                        </div>
+                        <table id="<?php echo EMPL; ?>gridConceptos" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
+                    </div>
+                    <!-- ==================================fin CONCEPTOS DE PLANILLA=========================== -->
                 </div>
             </div>
             <div class="modal-footer">

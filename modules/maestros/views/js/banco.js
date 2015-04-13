@@ -133,7 +133,7 @@ var banco_ = function(){
                     simpleScript.notify.ok({
                         content: lang.mensajes.MSG_3,
                         callback: function(){
-                            banco.getGridBanco(false);
+                            banco.getGridBanco(false);                            
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){

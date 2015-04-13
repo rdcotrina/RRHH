@@ -32,3 +32,4 @@ tabs.HRIO = '<?php echo HRIO; ?>';
 tabs.SISPE = '<?php echo SISPE; ?>';
 tabs.TPLL = '<?php echo TPLL; ?>';
 tabs.MTBA = '<?php echo MTBA; ?>';
+tabs.GNCTR = '<?php echo GNCTR; ?>';

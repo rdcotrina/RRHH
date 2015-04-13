@@ -130,7 +130,7 @@ var Especifica_ = function(){
                 simpleScript.listBox({
                     data: data,
                     optionSelec: true,
-                    content: 'cont_subclasificador',
+                    content: '#cont_subclasificador',
                     required: true,
                     attr:{
                         id: tabs.ESPE+'lst_subclasificador',
@@ -157,7 +157,7 @@ var Especifica_ = function(){
                 simpleScript.listBox({
                     data: data,
                     optionSelec: true,
-                    content: 'cont_clasificador_detalle',
+                    content: '#cont_clasificador_detalle',
                     required: true,
                     attr:{
                         id: tabs.ESPE+'lst_clasificadordetalle',
@@ -184,7 +184,7 @@ var Especifica_ = function(){
                 simpleScript.listBox({
                     data: data,
                     optionSelec: true,
-                    content: 'cont_subclasificador_detalle',
+                    content: '#cont_subclasificador_detalle',
                     required: true,
                     attr:{
                         id: tabs.ESPE+'lst_subclasificadordetalle',
@@ -212,6 +212,10 @@ var Especifica_ = function(){
                         content: lang.mensajes.MSG_3,
                         callback: function(){
                             Especifica.getGridEspecifica(false);
+                            simpleScript.updateChosen({element: '#'+tabs.ESPE+'lst_clasificador'});
+                            simpleScript.updateChosen({element: '#'+tabs.ESPE+'lst_subclasificador'});
+                            simpleScript.updateChosen({element: '#'+tabs.ESPE+'lst_clasificadordetalle'});
+                            simpleScript.updateChosen({element: '#'+tabs.ESPE+'lst_subclasificadordetalle'});
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){

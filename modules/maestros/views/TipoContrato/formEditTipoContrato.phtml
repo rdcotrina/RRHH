@@ -93,7 +93,7 @@ $found = Obj::run()->TipoContratoController->findTipoContrato();
 
  <?php echo Functions::widgetClose(); ?>
 <!-- si no tiene permiso se anula submit desde cualquier input -->
-<?php if(!$grabar["permiso"]): ?>
+<?php if(!$editar["permiso"]): ?>
 <script>
     simpleScript.noSubmit("#<?php echo CTPCT; ?>formEditTipoContrato");
 </script>

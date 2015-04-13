@@ -136,6 +136,7 @@ var ConceptoPlanilla_ = function(){
                         content: lang.mensajes.MSG_3,
                         callback: function(){
                             ConceptoPlanilla.getGridConceptoPlanilla(false);
+                            simpleScript.updateChosen({element: '#'+tabs.PCNCP+'lst_clasificacion'});
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){

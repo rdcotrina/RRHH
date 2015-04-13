@@ -17,9 +17,18 @@ var EmpleadosScript_ = function(){
     };
     
     _public.resetCargo = function(){
-        $("#"+tabs.EMPL+"lst_area").val("").trigger("chosen:updated");
-        $("#"+tabs.EMPL+"lst_cargo").val("").trigger("chosen:updated");
+        simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_area'});
+        simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_cargo'});
         $("#"+tabs.EMPL+"chk_principal").attr('checked',false);
+    };
+    
+    _public.toogleFechas = function(ch){
+        if($(ch).is(':checked')){
+            $('#'+tabs.EMPL+'d_fechas').addClass('hide');
+            $('#'+tabs.EMPL+'txt_fecini, #'+tabs.EMPL+'txt_fefin').val('');
+        }else{
+            $('#'+tabs.EMPL+'d_fechas').removeClass('hide');
+        }
     };
     
     return _public;

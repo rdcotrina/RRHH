@@ -180,9 +180,6 @@ var Empleados_ = function(){
     };
     
     _public.getGridCargos = function (reload){
-        if(reload){
-//            $('#'+tabs.EMPL+'contGridCargo').html('<table id="'+tabs.EMPL+'gridCargos" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>');
-        }
         var pEdit   = simpleScript.getPermiso("EMPLED");
         var pDelete = simpleScript.getPermiso("EMPLDE");
 
@@ -228,6 +225,60 @@ var Empleados_ = function(){
                 /*bloquear submit en input de datagrid*/
                 $("#"+tabs.EMPL+"formNewDerechoHabientes").find("#"+tabs.EMPL+"dh2").off("keyup keypress");
                 $("#"+tabs.EMPL+"formNewDerechoHabientes").find("#"+tabs.EMPL+"dh2").on("keyup keypress", function(e) {
+                    var code = e.keyCode || e.which; 
+                    if (code  === 13) {               
+                      e.preventDefault();
+                      return false;
+                    }
+                });
+            }
+        });
+    };
+    
+    _public.getGridConceptos = function (reload){
+        if(reload){
+//            $('#'+tabs.EMPL+'contGridCargo').html('<table id="'+tabs.EMPL+'gridCargos" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>');
+        }
+        var pEdit   = simpleScript.getPermiso("EMPLED");
+        var pDelete = simpleScript.getPermiso("EMPLDE");
+
+        $("#"+tabs.EMPL+"gridConceptos").simpleGrid({
+            tWidthFormat: "px",
+            tScrollY: "200px",
+            tReload: reload,
+            tAxion: 'Acc.',
+            tColumns: [
+                {title: lang.ConceptoPlanilla.CONC,campo: "conceptoplanilla",width: "250",sortable: true},
+                {title: lang.Empleados.TTAP, campo: "tipo_aplicacion", width: "70", sortable: true,class: "center"},
+                {title: lang.Empleados.PRM, campo: "permanente", width: "70", sortable: true, class: "center"},
+//                {title: lang.Empleados.FEINI, campo: "fecha_inicio", width: "90", sortable: true, class: "center"},
+//                {title: lang.Empleados.FEFIN, campo: "fecha_fin", width: "90", sortable: true, class: "center"},
+                {title: lang.Empleados.MTO , campo: "monto", width: "80", sortable: true, class: "right"},
+                {title: lang.generic.EST, campo: "estadocp", width: "80", sortable: true, class: "center"}
+            ],
+            pPaginate: true,
+            sAxions: [{
+                access: pDelete.permiso,
+                icono: pDelete.icono,
+                titulo: pDelete.accion,
+                class: pDelete.theme,
+                ajax: {
+                    fn: "Empleados.postDeleteConceptoPlanilla",
+                    serverParams: "id_conceptosplanillatrabajador"
+                }
+            }],
+            ajaxSource: _private.config.modulo+"getGridConceptos",
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(oSettings) {
+                simpleScript.removeAttr.click({
+                    container: "#"+oSettings.tObjectTable,
+                    typeElement: "button"
+                }); 
+                /*bloquear submit en input de datagrid*/
+                $("#"+tabs.EMPL+"dh4").off("keyup keypress");
+                $("#"+tabs.EMPL+"dh4").on("keyup keypress", function(e) {
                     var code = e.keyCode || e.which; 
                     if (code  === 13) {               
                       e.preventDefault();
@@ -285,6 +336,18 @@ var Empleados_ = function(){
         });
     };
     
+    _public.getFormNewConcepto = function(btn){
+        simpleAjax.send({
+            element: btn,
+            dataType: "html",
+            root: _private.config.modulo + "formNewConceptoPlanilla",
+            fnCallback: function(data){
+                $("#cont-modal").append(data);  /*los formularios con append*/
+                $("#"+tabs.EMPL+"formNewConceptoPlanilla").modal("show");
+            }
+        });
+    };
+    
     _public.getDerechoHabiente = function(btn,id){
         _private.idDerechoHabiente = id;
             
@@ -317,6 +380,7 @@ var Empleados_ = function(){
                 $("#"+tabs.EMPL+"formDatosLaborales").modal("show");
                 $("#name-empelado").html(name);
                 Empleados.getGridCargos(true);
+                Empleados.getGridConceptos(true);
             }
         });
     };
@@ -755,6 +819,56 @@ var Empleados_ = function(){
                         content: lang.mensajes.MSG_3
                     });
                 }
+            }
+        });
+    };
+    
+    _public.postNewConcepto = function(){
+        simpleAjax.send({
+            flag: 1,
+            element: "#"+tabs.EMPL+"btnGrCPLL",
+            root: _private.config.modulo + "postNewConcepto",
+            form: "#"+tabs.EMPL+"formNewConceptoPlanilla",
+            clear: true,
+            fnServerParams: function(sData){
+                sData.push({name: "_idEmpleados", value: _private.idEmpleados});
+            },
+            fnCallback: function(data) {
+                if(!isNaN(data.result) && parseInt(data.result) === 1){
+                    simpleScript.notify.ok({
+                        content: lang.mensajes.MSG_3
+                    });
+                    Empleados.getGridConceptos(false);
+                    simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_concepto'});
+                    simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_tipoaplicacion'});
+                }
+            }
+        });
+    };
+    
+    _public.postDeleteConceptoPlanilla = function(btn,id){
+        simpleScript.notify.confirm({
+            content: lang.mensajes.MSG_5,
+            callbackSI: function(){
+                simpleAjax.send({
+                    flag: 3,
+                    element: btn,
+                    gifProcess: true,
+                    root: _private.config.modulo + "deleteConceptoPlanilla",
+                    fnServerParams: function(sData){
+                        sData.push({name: "_idConceptoPlanilla", value: id});
+                    },
+                    fnCallback: function(data) {
+                        if(!isNaN(data.result) && parseInt(data.result) === 1){
+                            simpleScript.notify.ok({
+                                content: lang.mensajes.MSG_6,
+                                callback: function(){
+                                    Empleados.getGridConceptos(false);
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
     };

@@ -107,7 +107,7 @@ var SubClasificadorDetalle_ = function(){
                 simpleScript.listBox({
                     data: data,
                     optionSelec: true,
-                    content: 'cont_lst_clasificador_detalle',
+                    content: '#cont_lst_clasificador_detalle',
                     required: true,
                     attr:{
                         id: tabs.SBCLD+'lst_clasificadordetalle',
@@ -164,6 +164,8 @@ var SubClasificadorDetalle_ = function(){
                         content: lang.mensajes.MSG_3,
                         callback: function(){
                             SubClasificadorDetalle.getGridSubClasificadorDetalle(false);
+                            simpleScript.updateChosen({element: '#'+tabs.SBCLD+'lst_subclasificador'});
+                            simpleScript.updateChosen({element: '#'+tabs.SBCLD+'lst_clasificadordetalle'});
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){

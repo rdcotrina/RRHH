@@ -135,6 +135,7 @@ var cuentaCorriente_ = function(){
                         content: lang.mensajes.MSG_3,
                         callback: function(){
                             cuentaCorriente.getGridCuentaCorriente(false);
+                            simpleScript.updateChosen({element:'#'+tabs.CTACT+'lst_banco'});
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){

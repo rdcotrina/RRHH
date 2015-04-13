@@ -135,7 +135,7 @@ var Actividad_ = function(){
                     simpleScript.notify.ok({
                         content: lang.mensajes.MSG_3,
                         callback: function(){
-                            $("#"+tabs.HACT+"lst_clasificador").val('').trigger("chosen:updated");
+                            simpleScript.updateChosen({element:'#'+tabs.HACT+'lst_clasificador'});
                             Actividad.getGridActividad(false);
                         }
                     });

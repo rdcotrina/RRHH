@@ -39,7 +39,7 @@ $found = Obj::run()->SubClasificadorDetalleController->findSubClasificadorDetall
                     <div class="row">
                         <label class="label col col-3"><?php echo SBCLF_2; ?></label>
                         <div class="col col-8">
-                            <label class="select"> 
+                            <label class="select state-disabled"> 
                                 <?php
                                     $data = Obj::run()->clasificadorDetalleController->getAllSubClasificador();
                                     
@@ -48,14 +48,14 @@ $found = Obj::run()->SubClasificadorDetalleController->findSubClasificadorDetall
                                         'atributes'=>array(
                                             'id'=>SBCLD.'lst_subclasificador',
                                             'name'=>SBCLD.'lst_subclasificador',
-                                            'onchange'=>'SubClasificadorDetalle.getClasificadorDetalle(this.value);'
+                                            'disabled'=>true
                                         ),
                                         'etiqueta'=>array('codigo','subclasificador'),
                                         'value'=>'id_subclasificador',
                                         'defaultEtiqueta'=>$found['id_subclasificador'],
                                         'txtSelect'=>true
                                     ));
-                                ?><i></i>
+                                ?>
                                 <div class="obligar"></div>
                             </label>
                         </div>
@@ -65,7 +65,7 @@ $found = Obj::run()->SubClasificadorDetalleController->findSubClasificadorDetall
                     <div class="row">
                         <label class="label col col-3"><?php echo CLSFD_1; ?></label>
                         <div class="col col-8">
-                            <label class="select" id="cont_lst_clasificador_detalle"> 
+                            <label class="select state-disabled" id="cont_lst_clasificador_detalle"> 
                                 <?php
                                     $datax = Obj::run()->SubClasificadorDetalleController->getAllClasificadorDetalle($found['id_subclasificador']);
                                   
@@ -73,14 +73,15 @@ $found = Obj::run()->SubClasificadorDetalleController->findSubClasificadorDetall
                                         'data'=>$datax,
                                         'atributes'=>array(
                                             'id'=>SBCLD.'lst_clasificadordetalle',
-                                            'name'=>SBCLD.'lst_clasificadordetalle'
+                                            'name'=>SBCLD.'lst_clasificadordetalle',
+                                            'disabled'=>true
                                         ),
                                         'etiqueta'=>array('codigo','clasificadordetalle'),
                                         'value'=>'id_clasificadordetalle',
                                         'defaultEtiqueta'=>$found['id_clasificadordetalle'],
                                         'txtSelect'=>true
                                     ));
-                                ?><i></i>
+                                ?>
                                 <div class="obligar"></div>
                             </label>
                         </div>

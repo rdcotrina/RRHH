@@ -1,0 +1,195 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 02-04-2015 21:04:20 
+* Descripcion : formNewConceptoPlanilla.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: EMPL debe ser alias en tabla men_menuprincipal*/
+$grabar = Session::getPermiso("EMPLGR");
+    
+?>
+<form id="<?php echo EMPL; ?>formNewConceptoPlanilla" name="<?php echo EMPL; ?>formNewConceptoPlanilla" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 60%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo PCNCP_2?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo PCNCP_4; ?></label>
+                        <div class="col col-8">
+                            <label class="select">  
+                                <?php
+                                    $data = Obj::run()->EmpleadosController->getConcepto();
+
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_concepto',
+                                            'name'=>EMPL.'lst_concepto'
+                                        ),
+                                        'etiqueta'=>'conceptoplanilla',
+                                        'value'=>'id_conceptoplanilla',
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_73; ?></label>
+                        <div class="col col-8">
+                            <label class="select">  
+                                <?php
+                                    $data = array(
+                                        array('value'=>'F','etiquet'=>'Fijo'),
+                                        array('value'=>'P','etiquet'=>'Porcentaje')
+                                    );
+
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_tipoaplicacion',
+                                            'name'=>EMPL.'lst_tipoaplicacion'
+                                        ),
+                                        'etiqueta'=>'etiquet',
+                                        'value'=>'value',
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"></label>
+                        <div class="col col-8">
+                            <label class="checkbox">
+                                <input type="checkbox" checked name="<?php echo EMPL; ?>chk_permanente" id="<?php echo EMPL; ?>chk_permanente" value="1" onclick="EmpleadosScript.toogleFechas(this)"></input>
+                                <i></i>
+                                <?php echo EMPL_74; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section id="<?php echo EMPL; ?>d_fechas" class="hide">
+                    <div class="row">
+                        <label class="label col col-2"></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-calendar"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_fecini" name="<?php echo EMPL; ?>txt_fecini" placeholder="Fecha de inicio">
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                        
+                        <label class="label col col-2"></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-calendar"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_fefin" name="<?php echo EMPL; ?>txt_fefin" placeholder="Fecha de término">
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo EMPL_61?></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_montoc" name="<?php echo EMPL; ?>txt_montoc">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_75; ?></b>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($grabar["permiso"]):?>
+                <button id="<?php echo EMPL; ?>btnGrCPLL" type="submit" class="<?php echo $grabar["theme"]; ?>">
+                    <i class="<?php echo $grabar["icono"]; ?>"></i> <?php echo $grabar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$grabar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo EMPL; ?>formNewConceptoPlanilla");
+</script>
+<?php endif; ?>
+<script>
+    simpleScript.removeAttr.click({
+        container: "#<?php echo EMPL; ?>formNewConceptoPlanilla",
+        typeElement: "input:checkbox"
+    }); 
+                
+    simpleScript.setEvent.dateRange({
+        ini: '#<?php echo EMPL; ?>txt_fecini',
+        fin: '#<?php echo EMPL; ?>txt_fefin',
+        opt: 'minDate'
+    });
+    simpleScript.setEvent.dateRange({
+        ini: '#<?php echo EMPL; ?>txt_fefin',
+        fin: '#<?php echo EMPL; ?>txt_fecini',
+        opt: 'maxDate'
+    });
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo EMPL; ?>formNewConceptoPlanilla").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo EMPL; ?>lst_concepto : {
+            required : true
+        },
+        <?php echo EMPL; ?>lst_tipoaplicacion : {
+            required : true
+        },
+        <?php echo EMPL; ?>txt_montoc : {
+            required : true,
+            number: true
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        if(!$('#<?php echo EMPL; ?>chk_permanente').is(':checked')){
+            if($('#<?php echo EMPL; ?>txt_fecini').val() === '' || $('#<?php echo EMPL; ?>txt_fefin').val() === ''){
+                simpleScript.notify.error({
+                    content: lang.mensajes.MSG_12
+                });
+                return false;
+            }
+            Empleados.postNewConcepto();
+            return false;
+        }else{
+            Empleados.postNewConcepto();
+        }
+        
+    }   
+});
+</script>
+</form>

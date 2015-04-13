@@ -56,7 +56,7 @@ $found = Obj::run()->EspecificaController->findEspecifica();
                                         'defaultEtiqueta'=>$found['id_clasificador'],
                                         'txtSelect'=>true
                                     ));
-                                ?><i></i>
+                                ?>
                                 <div class="obligar"></div>
                             </label>
                         </div>
@@ -67,10 +67,24 @@ $found = Obj::run()->EspecificaController->findEspecifica();
                         <label class="label col col-3"><?php echo SBCLF_2; ?></label>
                         <div class="col col-8">
                             <label class="select state-disabled" id="cont_subclasificador"> 
-                                <select id="<?php echo ESPE; ?>lst_subclasificador" name="<?php echo ESPE; ?>lst_subclasificador" disabled>
-                                    <option value=""><?php echo $found['subclasificador']?></option>
-                                </select><i></i>
-                                <div class="obligar"></div>
+                                <script>
+                                    var data = [{value:'',etiqueta:'<?php echo $found['subclasificador']?>'}];
+                                    simpleScript.listBox({
+                                        data: data,
+                                        optionSelec: true,
+                                        content: '#cont_subclasificador',
+                                        required: true,
+                                        attr:{
+                                            id: tabs.ESPE+'lst_subclasificador',
+                                            name: tabs.ESPE+'lst_subclasificador',
+                                            disabled: true
+                                        },
+                                        dataView:{
+                                            etiqueta: 'etiqueta',
+                                            value: 'value'
+                                        }
+                                    });
+                                </script>       
                             </label>
                         </div>
                     </div>
@@ -80,10 +94,24 @@ $found = Obj::run()->EspecificaController->findEspecifica();
                         <label class="label col col-3"><?php echo CLSFD_1; ?></label>
                         <div class="col col-8">
                             <label class="select state-disabled" id="cont_clasificador_detalle"> 
-                                <select id="<?php echo ESPE; ?>lst_clasificadordetalle" name="<?php echo ESPE; ?>lst_clasificadordetalle" disabled>
-                                    <option value=""><?php echo $found['clasificadordetalle']?></option>
-                                </select><i></i>
-                                <div class="obligar"></div>
+                                <script>
+                                    data = [{value:'',etiqueta:'<?php echo $found['clasificadordetalle']?>'}];
+                                    simpleScript.listBox({
+                                        data: data,
+                                        optionSelec: true,
+                                        content: '#cont_clasificador_detalle',
+                                        required: true,
+                                        attr:{
+                                            id: tabs.ESPE+'lst_clasificadordetalle',
+                                            name: tabs.ESPE+'lst_clasificadordetalle',
+                                            disabled: true
+                                        },
+                                        dataView:{
+                                            etiqueta: 'etiqueta',
+                                            value: 'value'
+                                        }
+                                    });
+                                </script>
                             </label>
                         </div>
                     </div>
@@ -93,10 +121,24 @@ $found = Obj::run()->EspecificaController->findEspecifica();
                         <label class="label col col-3"><?php echo SBCLD_3; ?></label>
                         <div class="col col-8">
                             <label class="select state-disabled" id="cont_subclasificador_detalle"> 
-                                <select id="<?php echo ESPE; ?>lst_subclasificadordetalle" name="<?php echo ESPE; ?>lst_subclasificadordetalle" disabled>
-                                    <option value=""><?php echo $found['subclasificadordetalle']?></option>
-                                </select><i></i>
-                                <div class="obligar"></div>
+                                <script>
+                                    data = [{value:'',etiqueta:'<?php echo $found['subclasificadordetalle']?>'}];
+                                    simpleScript.listBox({
+                                        data: data,
+                                        optionSelec: true,
+                                        content: '#cont_subclasificador_detalle',
+                                        required: true,
+                                        attr:{
+                                            id: tabs.ESPE+'lst_subclasificadordetalle',
+                                            name: tabs.ESPE+'lst_subclasificadordetalle',
+                                            disabled: true
+                                        },
+                                        dataView:{
+                                            etiqueta: 'etiqueta',
+                                            value: 'value'
+                                        }
+                                    });
+                                </script>
                             </label>
                         </div>
                     </div>

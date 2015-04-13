@@ -46,6 +46,13 @@ class EmpleadosModel extends Model{
     private $_remuneracion;
     private $_motivoBaja;
     private $_fechaBaja;
+    private $_idConceptoPlanilla;
+    private $_concepto;
+    private $_tipoAplicaion;
+    private $_permanente;
+    private $_fechaIniConcepto;
+    private $_fechaFinConcepto;
+    private $_montoConcepto;
     private $_usuario;
     
     /*para el grid*/
@@ -99,6 +106,15 @@ class EmpleadosModel extends Model{
         $this->_motivoBaja =   SimpleForm::getParam(EMPL."lst_motivobaja");
         $this->_fechaBaja =   Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fechabaja"),'Y-m-d');
         $this->_activo =   SimpleForm::getParam(EMPL."chk_activo");
+        
+        $this->_idConceptoPlanilla   = Aes::de(SimpleForm::getParam("_idConceptoPlanilla"));    /*se decifra*/
+        $this->_concepto =   SimpleForm::getParam(EMPL."lst_concepto");
+        $this->_tipoAplicaion =   SimpleForm::getParam(EMPL."lst_tipoaplicacion");
+        $this->_permanente =   SimpleForm::getParam(EMPL."chk_permanente");
+        $this->_montoConcepto =   SimpleForm::getParam(EMPL."txt_montoc");
+        $this->_fechaIniConcepto =   Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fecini"),'Y-m-d');
+        $this->_fechaFinConcepto =   Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fefin"),'Y-m-d');
+        
         $this->_usuario     = Session::get("sys_idUsuario");
         
         $this->_pDisplayStart  =   SimpleForm::getParam("pDisplayStart"); 
@@ -114,6 +130,21 @@ class EmpleadosModel extends Model{
         $query = "call sp_perPersonaGrid(:iDisplayStart,:iDisplayLength,:sOrder,:sSearch,:sFilterCols);";
         
         $parms = array(
+            ":iDisplayStart" => $this->_pDisplayStart,
+            ":iDisplayLength" => $this->_pDisplayLength,
+            ":sOrder" => $this->_pOrder,
+            ":sSearch" => $this->_pSearch ,
+            ":sFilterCols" => $this->_sFilterCols,
+        );
+        $data = $this->queryAll($query,$parms);
+        return $data;
+    }
+    
+    public function getGridConceptos(){
+        $query = "call sp_perPersonalConceptosPlanillaGrid(:idEmpleados,:iDisplayStart,:iDisplayLength,:sOrder,:sSearch,:sFilterCols);";
+        
+        $parms = array(
+            ":idEmpleados" => $this->_idEmpleados,
             ":iDisplayStart" => $this->_pDisplayStart,
             ":iDisplayLength" => $this->_pDisplayLength,
             ":sOrder" => $this->_pOrder,
@@ -216,6 +247,36 @@ class EmpleadosModel extends Model{
             ":sueldo" => $this->_remuneracion,
             ":motivoBaja" => $this->_motivoBaja,
             ":fechaBaja" => $this->_fechaBaja
+        );
+        $data = $this->queryOne($query,$parms);
+        return $data;
+    }
+    
+    public function mantenimientoConcepto() {
+        $query = "call sp_perPersonalConceptoPlanillaEmpleadoMantenimiento("
+                . ":flag,"
+                . ":key,"
+                . ":idEmpleado,"
+                . ":idConcepto,"
+                . ":tipoAplicacion,"
+                . ":permanente,"
+                . ":fechaInicio,"
+                . ":fechaFin,"
+                . ":monto,"
+                . ":usuario"
+            . ");";
+        
+        $parms = array(
+            ":flag" => $this->_flag,
+            ":key" => $this->_idConceptoPlanilla,
+            ":idEmpleado" => $this->_idEmpleados,
+            ":idConcepto" => $this->_concepto,
+            ":tipoAplicacion" => $this->_tipoAplicaion,
+            ":permanente" => $this->_permanente,
+            ":fechaInicio" => $this->_fechaIniConcepto,
+            ":fechaFin" => $this->_fechaFinConcepto,
+            ":monto" => $this->_montoConcepto,
+            ":usuario" => $this->_usuario
         );
         $data = $this->queryOne($query,$parms);
         return $data;

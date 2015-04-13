@@ -37,6 +37,7 @@
                 tPlaceHolderFilter: 'Busqueda',     /*palceholder del filter*/
                 tSearch: '',                        /*texto a buscar*/
                 tScrollY: '',                       /*scrool Y de tabla*/
+                tAxion: 'Acciones',
                 tNumeracion: false,                 /*para mostrar la numeracion*/
                 pInfo: true,                        /*para mostrar informacion de paginacion*/
                 pPaginate: true,                    /*paginacion*/
@@ -46,6 +47,7 @@
                 ajaxSource: null,                   /*url para la data via ajax*/
                 sTotal: 0,                          /*total de registros*/
                 sPositionAxion: 'last',            /*posicion de las acciones*/
+                dPrimaryKey: '',
                 sAxions: [],                        /*acciones del grid*/
                 sCheckbox: {                        /*para activar checkbox*/
                     start: false,
@@ -225,13 +227,16 @@
             };
             /*agregando sort a <table>*/
             var addSorting = function(oSettings) {
-                var sortable;
+                var sortable,dataorder='';
                 if (oSettings.tScrollY === '') {
                     /*si no hay scrool el head no tiene id*/
                     $('#' + oSettings.tObjectTable).find('thead').find('tr th').each(function() {
                         var tthis = this;
-                        sortable = $(this).is('.sorting');
-                        if (sortable !== '') {
+                        sortable = $(this).is('.sorting'),
+                        dataorder = $(this).data('order');
+                        
+                        /*debe tener order y su data-order*/
+                        if (sortable !== '' && dataorder !== undefined) {
                             $(this).click(function() {
                                 $.method.sorting(tthis, oSettings);
                             });
@@ -240,8 +245,11 @@
                 } else {
                     $('#' + oSettings.tObjectTable + '_head').find('thead').find('tr th').each(function() {
                         var tthis = this;
-                        sortable = $(this).is('.sorting');
-                        if (sortable !== '') {
+                        sortable = $(this).is('.sorting'),
+                        dataorder = $(this).data('order');
+                        
+                        /*debe tener order y su data-order*/
+                        if (sortable !== '' && dataorder !== undefined) {
                             $(this).click(function() {
                                 $.method.sorting(tthis, oSettings);
                             });
@@ -316,7 +324,7 @@
                 if (oSettings.sAxions.length) {
                     var txtax = $('<th class="center"></th>');
                     txtax.attr('id',oSettings.tObjectTable+'_axions');
-                    txtax.html('Acciones');
+                    txtax.html(oSettings.tAxion);
                     txtax.css({'vertical-align': 'middle'});
                     return txtax;
                 }
@@ -482,9 +490,9 @@
                     attrValues = attrValuesServer(attrServerValues, data[r]);
                 }
                 var td = $('<td></td>');
-                td.html('<input id="' + oSettings.tObjectTable + '_chk_' + r + '" type="checkbox" value="' + xvalues + '" '+attrValues+'>');
+                td.html('<input id="' + oSettings.tObjectTable + '_chk_' + r + '" name="' + oSettings.tObjectTable + '_chk[]" type="checkbox" value="' + xvalues + '" '+attrValues+'>');
                 td.attr('class', 'center');
-                td.css('width', '25px');
+                td.css({width: '25px'});
                 td.attr('data-render', '0');
                 return td;
             };
@@ -1009,8 +1017,8 @@
                 }
 
                 /*verificar si se agrega acciones*/
-                /*verificar si es last*/
-                if (oSettings.sPositionAxion.toLowerCase() === 'last') {
+                /*verificar si es last y si existe acciones*/
+                if (oSettings.sPositionAxion.toLowerCase() === 'last' && oSettings.sAxions.length) {
                     var td = $('<td></td>');
                     tr.append(td);
                 }
@@ -1260,13 +1268,15 @@
                 oSettings.fnClickRow = function(fn) {
                     var objTd = [];
                     $('#' + oSettings.tObjectTable).find('tbody').find('tr').each(function(index) {
+                        var key = $(this).data('key');
                         $(this).click(function() {
+                            objTd[index] = [];
                             /*recorrer <td>*/
                             $(this).find('td').each(function() {
                                 var c = $.trim($(this).html());
-                                objTd.push(c);
+                                objTd[index].push(c);
                             });
-                            fn(objTd);
+                            fn(objTd,index,key);
                         });
                     });
                 };
@@ -1285,9 +1295,21 @@
                     fn(objTr);
                 };
                 /*para actualizar filas*/
+                /*
+                 * 
+                 * @param {type} obj
+                 * @param {type} i
+                 * @returns {undefined}
+                 * oSettings.fnUpdate({
+                    [col]0: 111,
+                    [col]3: 'otro'
+                },1);
+                 [index]
+                 */
                 oSettings.fnUpdate = (function(obj, i) {
                     $('#' + oSettings.tObjectTable).find('tbody').find('tr').each(function(index) {
-                        if (index === i) {
+                        /*verificar si se envia un indice*/
+                        if(i === undefined){    /*se reemplaza todas las columnas*/
                             /*recorrer <td>*/
                             $(this).find('td').each(function(ii) {
                                 /*se recorre data obj*/
@@ -1297,7 +1319,20 @@
                                     }
                                 }
                             });
+                        }else{                  /*se reemplaza solo la fila*/
+                            if (index === i) {
+                                /*recorrer <td>*/
+                                $(this).find('td').each(function(ii) {
+                                    /*se recorre data obj*/
+                                    for (var k in obj) {
+                                        if (parseInt(k) === parseInt(ii)) {
+                                            $(this).html(obj[k]);
+                                        }
+                                    }
+                                });
+                            }
                         }
+                        
                     });
                 });
                 /*para hacer cambios en info*/
@@ -1373,7 +1408,7 @@
 
                             $('#' + _grid + '_head').find('thead').find('tr').find('th').removeClass('sorting_asc');
                             $('#' + _grid + '_head').find('thead').find('tr').find('th').removeClass('sorting_desc');
-                            $('#' + _grid + '_head').find('thead').find('tr').find('th').addClass('sorting');
+                            $('#' + _grid + '_head').find('thead').find('tr').find('th').not('.noOrder').addClass('sorting');
                         }
 
                         if ($('#' + thId).is('.sorting')) {                /*ordenacion ascendente*/
@@ -1459,7 +1494,7 @@
                          */
                         if (oSettings.tNumeracion) {
                             var th = $('<th>Nro.</th>');         /*se crea la columna*/
-                            th.attr('class', 'center');
+                            th.attr('class', 'noOrder center');
                             th.css('width', '35px');
                             tr.append(th);                       /*se agrega al <tr>*/
                         }
@@ -1479,8 +1514,8 @@
 
                             if (pos.toLowerCase() === 'first') {
                                 var th = $('<th></th>');
-                                th.html('<input type="checkbox" onclick="$.method.checkAll(this,\'#' + oSettings.tObjectTable + '\')">');
-                                th.attr('class', 'center');
+                                th.html('<input style="margin:7px;" type="checkbox" onclick="$.method.checkAll(this,\'#' + oSettings.tObjectTable + '\')">');
+                                th.attr('class', 'noOrder center');
                                 th.attr('id', oSettings.tObjectTable + '_chkall_0');
                                 th.css({'width': '25px', 'margin': '0px'});
                                 tr.append(th);                       /*se agrega al <tr>*/
@@ -1497,11 +1532,13 @@
                             var sortable = (oSettings.tColumns[c].sortable !== undefined) ? ' sorting' : '';
                             var width = (oSettings.tColumns[c].width !== undefined) ? oSettings.tColumns[c].width + oSettings.tWidthFormat : '';
                             var search = (oSettings.tColumns[c].search !== undefined) ? oSettings.tColumns[c].search : false;   /*para activar busqueda de columnas*/
-                            var pointer = '';
+                            var pointer = '', noOrder='';
 
                             if (sortable !== '') {
                                 pointer = ' pointer';
                                 th.attr('data-order', campo);
+                            }else{
+                                noOrder = 'noOrder';
                             }
                             /*verificar si se inicio ordenamiento y agegar class a th*/
                             cad = oSettings.tOrderField.split(' ');
@@ -1514,7 +1551,7 @@
                                 _searchOk = true;
                             }
                             th.attr('id', oSettings.tObjectTable + '_head_th_' + c);
-                            th.attr('class', 'center' + sortable + pointer + defaultOrder);        /*agregado class css*/
+                            th.attr('class', noOrder+' center' + sortable + pointer + defaultOrder);        /*agregado class css*/
                             th.css({width: width, 'vertical-align': 'middle'});                                          /*agregando width de columna*/
                             th.append(title);                                                 /*se agrega el titulo*/
 
@@ -1527,9 +1564,9 @@
 
                             if (pos.toLowerCase() === 'last' && axf === 0) {
                                 var th = $('<th></th>');
-                                th.attr('class', 'center');
+                                th.attr('class', 'noOrder center');
                                 th.css('width', '25px');
-                                th.html('<input type="checkbox" onclick="$.method.checkAll(this,\'#' + oSettings.tObjectTable + '\')">');
+                                th.html('<input style="margin:7px;" type="checkbox" onclick="$.method.checkAll(this,\'#' + oSettings.tObjectTable + '\')">');
                                 tr.append(th);                       /*se agrega al <tr>*/
                             }
                         }
@@ -1627,7 +1664,11 @@
                             for (var r in data) {
                                 if(r < lll){
                                     n++;
-                                    var tr = $('<tr></tr>');        /*se crea el tr*/
+                                    var dataID = '';
+                                    if(oSettings.dPrimaryKey !== ''){
+                                        dataID = 'data-key="'+data[r][oSettings.dPrimaryKey]+'"';
+                                    }
+                                    var tr = $('<tr '+dataID+'></tr>');        /*se crea el tr*/
 
                                     /*verificar si se agrega la numeracion*/
                                     if (oSettings.tNumeracion) {
@@ -1976,6 +2017,19 @@
 //                                if (oSettings.tScrollY !== '') {
 //                                    resizeHeader(oSettings);
 //                                }
+                                
+                                /*signar click al head, q ejecute resize head*/
+                                var idS = (oSettings.tScrollY === '')?oSettings.tObjectTable:oSettings.tObjectTable + '_head';
+                               
+                                $('#'+idS).off('click');
+                                $('#'+idS).click(function(){
+                                    resizeHeader(oSettings);
+                                });
+                                
+                                /*se descuadra checkall, ejecutar click en cavecera para ordenar*/
+                                if (oSettings.sCheckbox.start){
+                                    $('#'+idS).click();
+                                }
                             }
                         });
                         

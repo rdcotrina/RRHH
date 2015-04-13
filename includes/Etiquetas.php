@@ -19,6 +19,7 @@ define('BTN_ACEP','Aceptar');
 define('LABEL_DESC','Iingresar descripción');
 define('BTN_GUARDAR','Guardar');
 define('LBL_SELECCIONAR','Seleccionar');
+define('LBL_PENDIENTE','Pendiente');
 
 /*FORMULARIO LOGIN*/
 define('L_TITLE','Ingresar');
@@ -281,6 +282,9 @@ define('EMPL_69','Remuneración');
 define('EMPL_70','Ingrese la remuneración');
 define('EMPL_71','Fecha de baja');
 define('EMPL_72','Motivo de baja');
+define('EMPL_73','Tipo de aplicación');
+define('EMPL_74','Permanente');
+define('EMPL_75','Ingrese el monto');
 
 /*==============================ESTRUCTURA ORGANICA==============================*/
 define('ESOG_1','Estructura Orgánica');
@@ -321,3 +325,7 @@ define('MTBA_2','Nuevo Motivo de Baja');
 define('MTBA_3','Editar Motivo de Baja');
 define('MTBA_4','Motivo de baja');
 define('MTBA_5','Ingrese el motivo de baja');
+
+/*==============================CONTRATOS==============================*/
+define('GNCTR_1','Contratos');
+define('GNCTR_2','Generar Contratos');

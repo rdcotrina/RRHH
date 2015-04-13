@@ -137,6 +137,7 @@ var clasificador_ = function(){
                         content: lang.mensajes.MSG_3,
                         callback: function(){
                             clasificador.getGridClasificador(false);
+                            simpleScript.updateChosen({element: '#'+tabs.CLSF+'lst_tipo'});
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){
