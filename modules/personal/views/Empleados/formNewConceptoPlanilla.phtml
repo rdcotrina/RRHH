@@ -11,7 +11,7 @@ $grabar = Session::getPermiso("EMPLGR");
     
 ?>
 <form id="<?php echo EMPL; ?>formNewConceptoPlanilla" name="<?php echo EMPL; ?>formNewConceptoPlanilla" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 50%">
+    <div class="modal-dialog" style="width: 80%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close"  aria-hidden="true">
@@ -70,10 +70,62 @@ $grabar = Session::getPermiso("EMPLGR");
                         </div>
                     </div>
                 </section>
+                
+                <section>
+                    <div class="row">
+                        <div class="col col-6">
+                            <fieldset>
+                                <legend>Otros</legend>
+                                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo EMPL_73; ?></label>
+                        <div class="col col-8">
+                            <label class="select">  
+                                <?php
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_tipoaplicacionmonto',
+                                            'name'=>EMPL.'lst_tipoaplicacionmonto'
+                                        ),
+                                        'etiqueta'=>'etiquet',
+                                        'value'=>'value',
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo EMPL_61 ?></label>
+                        <div class="col col-4">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_montoc" name="<?php echo EMPL; ?>txt_montoc">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_75; ?></b>
+                            </label>
+                        </div>
+                        
+                        <div class="col col-4">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo EMPL; ?>chk_variantemonto" id="<?php echo EMPL; ?>chk_variantemonto" value="1" ></input>
+                                <i></i>
+                                <?php echo EMPL_76; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                            </fieldset>
+                        </div>
+                        <div class="col col-6">
+                <fieldset>
+                    <legend>AFP</legend>
                 <section>
                     <div class="row">
                         <label class="label col col-3"><?php echo EMPL_78 ?></label>
-                        <div class="col col-3">
+                        <div class="col col-4">
                             <label class="input">                                 
                                 <i class="icon-append fa fa-question-circle"></i>
                                 <input type="text" id="<?php echo EMPL; ?>txt_primaseguro" name="<?php echo EMPL; ?>txt_primaseguro">
@@ -81,7 +133,7 @@ $grabar = Session::getPermiso("EMPLGR");
                             </label>
                         </div>
                         
-                        <div class="col col-3">
+                        <div class="col col-4">
                             <label class="checkbox">
                                 <input type="checkbox" name="<?php echo EMPL; ?>chk_varianteprima" id="<?php echo EMPL; ?>chk_varianteprima" value="1" ></input>
                                 <i></i>
@@ -93,7 +145,7 @@ $grabar = Session::getPermiso("EMPLGR");
                 <section>
                     <div class="row">
                         <label class="label col col-3"><?php echo EMPL_73; ?></label>
-                        <div class="col col-3">
+                        <div class="col col-4">
                             <label class="select">  
                                 <?php
                                     echo Functions::selectHtml(array(
@@ -114,7 +166,7 @@ $grabar = Session::getPermiso("EMPLGR");
                 <section>
                     <div class="row">
                         <label class="label col col-3"><?php echo EMPL_80 ?></label>
-                        <div class="col col-3">
+                        <div class="col col-4">
                             <label class="input">                                 
                                 <i class="icon-append fa fa-question-circle"></i>
                                 <input type="text" id="<?php echo EMPL; ?>txt_comisionafp" name="<?php echo EMPL; ?>txt_comisionafp">
@@ -122,7 +174,7 @@ $grabar = Session::getPermiso("EMPLGR");
                             </label>
                         </div>
                         
-                        <div class="col col-3">
+                        <div class="col col-4">
                             <label class="checkbox">
                                 <input type="checkbox" name="<?php echo EMPL; ?>chk_variantecomisionafp" id="<?php echo EMPL; ?>chk_variantecomisionafp" value="1" ></input>
                                 <i></i>
@@ -131,47 +183,11 @@ $grabar = Session::getPermiso("EMPLGR");
                         </div>
                     </div>
                 </section>
-                <section>
-                    <div class="row">
-                        <label class="label col col-3"><?php echo EMPL_73; ?></label>
-                        <div class="col col-3">
-                            <label class="select">  
-                                <?php
-                                    echo Functions::selectHtml(array(
-                                        'data'=>$data,
-                                        'atributes'=>array(
-                                            'id'=>EMPL.'lst_tipoaplicacionmonto',
-                                            'name'=>EMPL.'lst_tipoaplicacionmonto'
-                                        ),
-                                        'etiqueta'=>'etiquet',
-                                        'value'=>'value',
-                                        'txtSelect'=>true
-                                    ));
-                                ?>
-                            </label>
-                        </div>
+                </fieldset>
+                    </div>
                     </div>
                 </section>
-                <section>
-                    <div class="row">
-                        <label class="label col col-3"><?php echo EMPL_61.EMPL_77 ?></label>
-                        <div class="col col-3">
-                            <label class="input">                                 
-                                <i class="icon-append fa fa-question-circle"></i>
-                                <input type="text" id="<?php echo EMPL; ?>txt_montoc" name="<?php echo EMPL; ?>txt_montoc">
-                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_75; ?></b>
-                            </label>
-                        </div>
-                        
-                        <div class="col col-3">
-                            <label class="checkbox">
-                                <input type="checkbox" name="<?php echo EMPL; ?>chk_variantemonto" id="<?php echo EMPL; ?>chk_variantemonto" value="1" ></input>
-                                <i></i>
-                                <?php echo EMPL_76; ?>
-                            </label>
-                        </div>
-                    </div>
-                </section>
+                
                 <section>
                     <div class="row">
                         <label class="label col col-3"></label>
@@ -210,7 +226,7 @@ $grabar = Session::getPermiso("EMPLGR");
                         <label class="label col col-3"></label>
                         <div class="col col-8">
                             <label class="checkbox">
-                                <input type="checkbox" name="<?php echo EMPL; ?>chk_aplicadescuento" id="<?php echo EMPL; ?>chk_aplicadescuento" value="1" ></input>
+                                <input type="checkbox" checked name="<?php echo EMPL; ?>chk_aplicadescuento" id="<?php echo EMPL; ?>chk_aplicadescuento" value="1" ></input>
                                 <i></i>
                                 <?php echo EMPL_82; ?>
                             </label>
