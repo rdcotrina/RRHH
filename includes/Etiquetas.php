@@ -292,6 +292,7 @@ define('EMPL_78','Prima seguro');
 define('EMPL_79','Ingrese monto de prima seguro');
 define('EMPL_80','Comisión AFP');
 define('EMPL_81','Ingrese monto de comisión AFP');
+define('EMPL_82','Afecto a descuento en cálculo de planilla?');
 
 /*==============================ESTRUCTURA ORGANICA==============================*/
 define('ESOG_1','Estructura Orgánica');

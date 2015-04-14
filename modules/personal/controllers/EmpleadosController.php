@@ -45,28 +45,16 @@ class EmpleadosController extends Controller{
                 $perm = '<label class="label label-success">Si</label>';
             }
             
-            $aplica = '<label class="label label-info">Porcentaje</label>';
-            if($value["tipo_aplicacion"] == 'F'){
-                $aplica = '<label class="label label-warning">Fijo</label>';
-            }
-            
-            $var = '<label class="label label-danger">No</label>';
-            if($value["variable"]){
-                $var = '<label class="label label-success">Si</label>';
-            }
-            
             $rows[] = array(
                 "id_conceptosplanillatrabajador"=>AesCtr::en($value["id_conceptosplanillatrabajador"]),
-                "tipo_aplicacion"=> $aplica,
                 "permanente"=> $perm,
                 "fecha_inicio"=> $value["fecha_inicio"],
                 "fecha_fin"=> $value["fecha_fin"],
-                "monto"=> $value["monto"],
-                "variable"=> $var,
+                "monto"=> number_format($value["monto"],2),
                 "conceptoplanilla"=> $value["conceptoplanilla"],
                 "estadocp"=> Functions::labelState($value["estadocp"]),
-                "comisionafp"=> $value["comisionafp"],
-                "primaseguro"=> $value["primaseguro"],
+                "comisionafp"=> number_format($value["comisionafp"],2),
+                "primaseguro"=> number_format($value["primaseguro"],2),
                 "total"=> $value["total"]
             );
         }

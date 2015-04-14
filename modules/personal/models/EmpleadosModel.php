@@ -48,13 +48,17 @@ class EmpleadosModel extends Model{
     private $_fechaBaja;
     private $_idConceptoPlanilla;
     private $_concepto;
-    private $_tipoAplicaion;
+    private $_tipoaplicacionmonto;
+    private $_tipoaplicacioncomisionafp;
+    private $_tipoaplicacionprima;
     private $_permanente;
     private $_fechaIniConcepto;
     private $_fechaFinConcepto;
     private $_montoConcepto;
     private $_variante;
-    private $_variantecp;
+    private $_variantemonto;
+    private $_varianteprimaseguro;
+    private $_variantecomisionafp;
     private $_primaseguro;
     private $_comisionAFP;
     private $_usuario;
@@ -111,13 +115,17 @@ class EmpleadosModel extends Model{
         $this->_fechaBaja =   Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fechabaja"),'Y-m-d');
         $this->_activo =   SimpleForm::getParam(EMPL."chk_activo");
         $this->_variante =   SimpleForm::getParam(EMPL."chk_variante");
-        $this->_variantecp =   SimpleForm::getParam(EMPL."chk_variantec");
+        $this->_variantemonto =   SimpleForm::getParam(EMPL."chk_variantemonto");
+        $this->_variantecomisionafp =   SimpleForm::getParam(EMPL."chk_variantecomisionafp");
+        $this->_varianteprimaseguro =   SimpleForm::getParam(EMPL."chk_varianteprima");
         $this->_primaseguro =   SimpleForm::getParam(EMPL."txt_primaseguro");
         $this->_comisionAFP =   SimpleForm::getParam(EMPL."txt_comisionafp");
-        
         $this->_idConceptoPlanilla   = Aes::de(SimpleForm::getParam("_idConceptoPlanilla"));    /*se decifra*/
         $this->_concepto =   SimpleForm::getParam(EMPL."lst_concepto");
-        $this->_tipoAplicaion =   SimpleForm::getParam(EMPL."lst_tipoaplicacion");
+        $this->_tipoaplicacioncomisionafp =   SimpleForm::getParam(EMPL."lst_tipoaplicacioncomisionafp");
+        $this->_tipoaplicacionprima =   SimpleForm::getParam(EMPL."lst_tipoaplicacionprima");
+        $this->_tipoaplicacionmonto =   SimpleForm::getParam(EMPL."lst_tipoaplicacionmonto");
+        
         $this->_permanente =   SimpleForm::getParam(EMPL."chk_permanente");
         $this->_montoConcepto =   SimpleForm::getParam(EMPL."txt_montoc");
         $this->_fechaIniConcepto =   Functions::dateFormat(SimpleForm::getParam(EMPL."txt_fecini"),'Y-m-d');
@@ -268,12 +276,16 @@ class EmpleadosModel extends Model{
                 . ":key,"
                 . ":idEmpleado,"
                 . ":idConcepto,"
-                . ":tipoAplicacion,"
+                . ":tipoAplicacionmonto,"
+                . ":tipoAplicacioncomisionafp,"
+                . ":tipoAplicacionprima,"
                 . ":permanente,"
                 . ":fechaInicio,"
                 . ":fechaFin,"
                 . ":monto,"
-                . ":variante,"
+                . ":variantemonto,"
+                . ":varianteprima,"
+                . ":variantecomision,"
                 . ":comisionAFP,"
                 . ":prima,"
                 . ":usuario"
@@ -284,12 +296,16 @@ class EmpleadosModel extends Model{
             ":key" => $this->_idConceptoPlanilla,
             ":idEmpleado" => $this->_idEmpleados,
             ":idConcepto" => $this->_concepto,
-            ":tipoAplicacion" => $this->_tipoAplicaion,
-            ":permanente" => $this->_permanente,
+            ":tipoAplicacionmonto" => $this->_tipoaplicacionmonto,
+            ":tipoAplicacioncomisionafp" => $this->_tipoaplicacioncomisionafp,
+            ":tipoAplicacionprima" => $this->_tipoaplicacionprima,
+            ":permanente" => (!empty($this->_permanente))?$this->_permanente:'0',
             ":fechaInicio" => $this->_fechaIniConcepto,
             ":fechaFin" => $this->_fechaFinConcepto,
             ":monto" => $this->_montoConcepto,
-            ":variante" => (!empty($this->_variantecp))?$this->_variantecp:'0',
+            ":variantemonto" => (!empty($this->_variantemonto))?$this->_variantemonto:'0',
+            ":varianteprima" => (!empty($this->_varianteprimaseguro))?$this->_varianteprimaseguro:'0',
+            ":variantecomision" => (!empty($this->_variantecomisionafp))?$this->_variantecomisionafp:'0',
             ":comisionAFP" => $this->_comisionAFP,
             ":prima" => $this->_primaseguro,
             ":usuario" => $this->_usuario

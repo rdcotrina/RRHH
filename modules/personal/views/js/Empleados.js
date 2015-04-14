@@ -246,9 +246,7 @@ var Empleados_ = function(){
             tAxion: 'Acc.',
             tColumns: [
                 {title: lang.ConceptoPlanilla.CONC,campo: "conceptoplanilla",width: "200",sortable: true},
-                {title: lang.Empleados.TTAP, campo: "tipo_aplicacion", width: "70", sortable: true,class: "center"},
                 {title: lang.Empleados.PRM, campo: "permanente", width: "70", sortable: true, class: "center"},
-                {title: lang.Empleados.VARI, campo: "variable", width: "70", sortable: true, class: "center"},
                 {title: lang.Empleados.MTO , campo: "monto", width: "80", sortable: true, class: "right"},
                 {title: lang.Empleados.COM, campo: "comisionafp", width: "80", sortable: true, class: "right"},
                 {title: lang.Empleados.PRI, campo: "primaseguro", width: "80", sortable: true, class: "right"}
@@ -837,7 +835,13 @@ var Empleados_ = function(){
                     });
                     Empleados.getGridConceptos(false);
                     simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_concepto'});
-                    simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_tipoaplicacion'});
+                    simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_tipoaplicacionprima'});
+                    simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_tipoaplicacioncomisionafp'});
+                    simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_tipoaplicacionmonto'});
+                }else if(!isNaN(data.result) && parseInt(data.result) === 2){
+                    simpleScript.notify.error({
+                        content: lang.mensajes.MSG_4
+                    });
                 }
             }
         });

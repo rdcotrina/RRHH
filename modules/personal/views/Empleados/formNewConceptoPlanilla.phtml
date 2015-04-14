@@ -11,7 +11,7 @@ $grabar = Session::getPermiso("EMPLGR");
     
 ?>
 <form id="<?php echo EMPL; ?>formNewConceptoPlanilla" name="<?php echo EMPL; ?>formNewConceptoPlanilla" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 60%">
+    <div class="modal-dialog" style="width: 50%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close"  aria-hidden="true">
@@ -22,7 +22,7 @@ $grabar = Session::getPermiso("EMPLGR");
             <div class="modal-body smart-form"> 
                 <section>
                     <div class="row">
-                        <label class="label col col-2"><?php echo PCNCP_4; ?></label>
+                        <label class="label col col-3"><?php echo PCNCP_4; ?></label>
                         <div class="col col-8">
                             <label class="select">  
                                 <?php
@@ -46,8 +46,8 @@ $grabar = Session::getPermiso("EMPLGR");
                 </section>
                 <section>
                     <div class="row">
-                        <label class="label col col-2"><?php echo EMPL_73; ?></label>
-                        <div class="col col-8">
+                        <label class="label col col-3"><?php echo EMPL_73; ?></label>
+                        <div class="col col-3">
                             <label class="select">  
                                 <?php
                                     $data = array(
@@ -58,22 +58,123 @@ $grabar = Session::getPermiso("EMPLGR");
                                     echo Functions::selectHtml(array(
                                         'data'=>$data,
                                         'atributes'=>array(
-                                            'id'=>EMPL.'lst_tipoaplicacion',
-                                            'name'=>EMPL.'lst_tipoaplicacion'
+                                            'id'=>EMPL.'lst_tipoaplicacionprima',
+                                            'name'=>EMPL.'lst_tipoaplicacionprima'
                                         ),
                                         'etiqueta'=>'etiquet',
                                         'value'=>'value',
                                         'txtSelect'=>true
                                     ));
                                 ?>
-                                <div class="obligar"></div>
                             </label>
                         </div>
                     </div>
                 </section>
                 <section>
                     <div class="row">
-                        <label class="label col col-2"></label>
+                        <label class="label col col-3"><?php echo EMPL_78 ?></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_primaseguro" name="<?php echo EMPL; ?>txt_primaseguro">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_79; ?></b>
+                            </label>
+                        </div>
+                        
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo EMPL; ?>chk_varianteprima" id="<?php echo EMPL; ?>chk_varianteprima" value="1" ></input>
+                                <i></i>
+                                <?php echo EMPL_76; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo EMPL_73; ?></label>
+                        <div class="col col-3">
+                            <label class="select">  
+                                <?php
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_tipoaplicacioncomisionafp',
+                                            'name'=>EMPL.'lst_tipoaplicacioncomisionafp'
+                                        ),
+                                        'etiqueta'=>'etiquet',
+                                        'value'=>'value',
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo EMPL_80 ?></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_comisionafp" name="<?php echo EMPL; ?>txt_comisionafp">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_81; ?></b>
+                            </label>
+                        </div>
+                        
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo EMPL; ?>chk_variantecomisionafp" id="<?php echo EMPL; ?>chk_variantecomisionafp" value="1" ></input>
+                                <i></i>
+                                <?php echo EMPL_76; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo EMPL_73; ?></label>
+                        <div class="col col-3">
+                            <label class="select">  
+                                <?php
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_tipoaplicacionmonto',
+                                            'name'=>EMPL.'lst_tipoaplicacionmonto'
+                                        ),
+                                        'etiqueta'=>'etiquet',
+                                        'value'=>'value',
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo EMPL_61.EMPL_77 ?></label>
+                        <div class="col col-3">
+                            <label class="input">                                 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo EMPL; ?>txt_montoc" name="<?php echo EMPL; ?>txt_montoc">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_75; ?></b>
+                            </label>
+                        </div>
+                        
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo EMPL; ?>chk_variantemonto" id="<?php echo EMPL; ?>chk_variantemonto" value="1" ></input>
+                                <i></i>
+                                <?php echo EMPL_76; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3"></label>
                         <div class="col col-8">
                             <label class="checkbox">
                                 <input type="checkbox" checked name="<?php echo EMPL; ?>chk_permanente" id="<?php echo EMPL; ?>chk_permanente" value="1" onclick="EmpleadosScript.toogleFechas(this)"></input>
@@ -85,7 +186,7 @@ $grabar = Session::getPermiso("EMPLGR");
                 </section>
                 <section id="<?php echo EMPL; ?>d_fechas" class="hide">
                     <div class="row">
-                        <label class="label col col-2"></label>
+                        <label class="label col col-3"></label>
                         <div class="col col-3">
                             <label class="input">                                 
                                 <i class="icon-append fa fa-calendar"></i>
@@ -106,50 +207,17 @@ $grabar = Session::getPermiso("EMPLGR");
                 </section>
                 <section>
                     <div class="row">
-                        <label class="label col col-2"><?php echo EMPL_61.EMPL_77 ?></label>
-                        <div class="col col-3">
-                            <label class="input">                                 
-                                <i class="icon-append fa fa-question-circle"></i>
-                                <input type="text" id="<?php echo EMPL; ?>txt_montoc" name="<?php echo EMPL; ?>txt_montoc">
-                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_75; ?></b>
-                                <div class="obligar"></div>
-                            </label>
-                        </div>
-                        
-                        <label class="label col col-1"></label>
-                        <div class="col col-3">
+                        <label class="label col col-3"></label>
+                        <div class="col col-8">
                             <label class="checkbox">
-                                <input type="checkbox" name="<?php echo EMPL; ?>chk_variantec" id="<?php echo EMPL; ?>chk_variantec" value="1" ></input>
+                                <input type="checkbox" name="<?php echo EMPL; ?>chk_aplicadescuento" id="<?php echo EMPL; ?>chk_aplicadescuento" value="1" ></input>
                                 <i></i>
-                                <?php echo EMPL_76; ?>
+                                <?php echo EMPL_82; ?>
                             </label>
                         </div>
                     </div>
                 </section>
-                <section>
-                    <div class="row">
-                        <label class="label col col-2"><?php echo EMPL_78 ?></label>
-                        <div class="col col-3">
-                            <label class="input">                                 
-                                <i class="icon-append fa fa-question-circle"></i>
-                                <input type="text" id="<?php echo EMPL; ?>txt_primaseguro" name="<?php echo EMPL; ?>txt_primaseguro">
-                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_79; ?></b>
-                            </label>
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <div class="row">
-                        <label class="label col col-2"><?php echo EMPL_80 ?></label>
-                        <div class="col col-3">
-                            <label class="input">                                 
-                                <i class="icon-append fa fa-question-circle"></i>
-                                <input type="text" id="<?php echo EMPL; ?>txt_comisionafp" name="<?php echo EMPL; ?>txt_comisionafp">
-                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_81; ?></b>
-                            </label>
-                        </div>
-                    </div>
-                </section>
+                
             </div>
             <div class="modal-footer">
                 <div class="foot-obligar"></div>
@@ -194,11 +262,7 @@ $("#<?php echo EMPL; ?>formNewConceptoPlanilla").validate({
         <?php echo EMPL; ?>lst_concepto : {
             required : true
         },
-        <?php echo EMPL; ?>lst_tipoaplicacion : {
-            required : true
-        },
         <?php echo EMPL; ?>txt_montoc : {
-            required : true,
             number: true
         },
         <?php echo EMPL; ?>txt_primaseguro : {
