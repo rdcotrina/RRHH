@@ -70,4 +70,10 @@ class indexController extends Controller{
         echo json_encode($data);
     }
     
+    public function errorPage(){
+        Session::set('errorPage', true);
+       
+        Obj::run()->View->render('errorPage',false);
+    }
+    
 }

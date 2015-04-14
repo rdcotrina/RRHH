@@ -51,6 +51,7 @@ var GenerarContrato_ = function(){
     
     _public.getGridGenerarContrato = function (reload){
         var pHistoria   = simpleScript.getPermiso("GNCTRHIS");
+        var pBPDF   = simpleScript.getPermiso("GNCTRPDF");
 
         $("#"+tabs.GNCTR+"gridGenerarContrato").simpleGrid({
             tWidthFormat: "px",
@@ -75,6 +76,31 @@ var GenerarContrato_ = function(){
                 ajax: {
                     fn: "GenerarContrato.getFormHistorial",
                     serverParams: ["id_trabajador","nombrecompleto"]
+                }
+            },{
+                access: pBPDF.permiso,
+                icono: pBPDF.icono,
+                titulo: pBPDF.accion,
+                class: pBPDF.theme,
+                ajax: {
+                    fn: "GenerarContrato.getContratoPDF",
+                    serverParams: "id_trabajador"
+                },
+                callback: function(i,data,oSettings){
+                    var btn = $('<button></button>');
+                    btn.attr('type', 'button');
+                    btn.attr('id', oSettings.tObjectTable + '_btn' + i);
+                    btn.attr('title', oSettings.sAxions[i].titulo);
+                    btn.attr('onclick','GenerarContrato.getContratoPDF(this,\''+data.id_trabajador+'\');');
+                    btn.attr('class', oSettings.sAxions[i].class);
+                    btn.html('<i class="' + oSettings.sAxions[i].icono + '"></i>');
+                    
+                    if(data.id_tipocontrato < 2){
+                        btn.attr('disabled',true);
+                    }
+                    if(oSettings.sAxions[i].access){
+                        return btn;
+                    }
                 }
             }],
             ajaxSource: _private.config.modulo+"getGridGenerarContrato",
@@ -173,7 +199,7 @@ var GenerarContrato_ = function(){
         });
     };
     
-    _public.getFormHistorial = function(btn,id){
+    _public.getFormHistorial = function(btn,id,name){
         _private.idTrabajdor = id;
         
         simpleAjax.send({
@@ -184,6 +210,27 @@ var GenerarContrato_ = function(){
                 $("#cont-modal").append(data);  /*los formularios con append*/
                 $("#"+tabs.GNCTR+"formHistorial").modal("show");
                 GenerarContrato.getGridHistorial(true);
+                $("#"+tabs.GNCTR+"name-empl").html(name);
+            }
+        });
+    };
+    
+    _public.getContratoPDF = function(btn,idtrabajador){
+        simpleAjax.send({
+            element: btn,
+            root: _private.config.modulo + 'getContratoPDF',
+            fnServerParams: function(sData){
+                sData.push({name: "_idTrabajador", value: idtrabajador});
+            },
+            fnCallback: function(data) {
+                if(parseInt(data.result) === 1 && parseInt(data.contrato) > 1){
+                    $('#'+tabs.GNCTR+'btnDowPDF').attr("onclick","window.open('public/files/"+data.archivo+"','_blank');GenerarContrato.deleteArchivo('"+data.archivo+"');");
+                    $('#'+tabs.GNCTR+'btnDowPDF').click();
+                }else if(parseInt(data.contrato) < 2){
+                    simpleScript.notify.error({
+                        content: lang.GenerarContrato.NOCT
+                    });
+                }
             }
         });
     };
@@ -235,6 +282,17 @@ var GenerarContrato_ = function(){
                 });
             }
         });
+    };
+    
+    _public.deleteArchivo = function(archivo){
+        setTimeout(function(){
+            simpleAjax.send({
+                root: _private.config.modulo + 'deleteArchivo',
+                fnServerParams: function(sData){
+                    sData.push({name: "_archivo", value: archivo});
+                }
+            });
+        },7000);
     };
     
     return _public;

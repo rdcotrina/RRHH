@@ -340,6 +340,7 @@
                         var titulo = (oSettings.sAxions[i].titulo !== undefined) ? oSettings.sAxions[i].titulo : '';
                         var icono = (oSettings.sAxions[i].icono !== undefined) ? oSettings.sAxions[i].icono : '';
                         var klass = (oSettings.sAxions[i].class !== undefined) ? oSettings.sAxions[i].class : '';
+                        var callback = (oSettings.sAxions[i].callback !== undefined) ? oSettings.sAxions[i].callback : '';
                         /*parametros para ajax*/
                         var ajax = (oSettings.sAxions[i].ajax !== undefined) ? oSettings.sAxions[i].ajax : '';       /*ajax para <td>*/
                         var fn = '';
@@ -384,6 +385,10 @@
                         }
                         /*verificar si tiene acceso*/
                         if(access){
+                            /*ejecutar funcion anonima*/
+                            if(callback !== ''){
+                                btn = callback(i,data[r],oSettings);
+                            }
                             td.append(btn);
                         }
                     }
@@ -2026,10 +2031,8 @@
                                     resizeHeader(oSettings);
                                 });
                                 
-                                /*se descuadra checkall, ejecutar click en cavecera para ordenar*/
-                                if (oSettings.sCheckbox.start){
-                                    $('#'+idS).click();
-                                }
+                                /*ejecutar click en cabecera para ajustarlo*/
+                                $('#'+idS).click();
                             }
                         });
                         

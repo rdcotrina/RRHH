@@ -20,6 +20,7 @@ define('LABEL_DESC','Iingresar descripción');
 define('BTN_GUARDAR','Guardar');
 define('LBL_SELECCIONAR','Seleccionar');
 define('LBL_PENDIENTE','Pendiente');
+define('LB_EMPRESA','Lancones - Piura');
 
 /*FORMULARIO LOGIN*/
 define('L_TITLE','Ingresar');
@@ -335,3 +336,4 @@ define('MTBA_5','Ingrese el motivo de baja');
 /*==============================CONTRATOS==============================*/
 define('GNCTR_1','Contratos');
 define('GNCTR_2','Generar Contratos');
+define('GNCTR_3','Histrorial - ');

@@ -94,7 +94,6 @@ $grabar = Session::getPermiso("EMPLGR");
                                 <i class="icon-append fa fa-question-circle"></i>
                                 <input type="text" id="<?php echo EMPL; ?>txt_email" name="<?php echo EMPL; ?>txt_email" >
                                 <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo EMPL_18; ?></b>
-                                <div class="obligar"></div>
                             </label>
                         </div>
                     </div>
@@ -360,7 +359,6 @@ $("#<?php echo EMPL; ?>formNewEmpleados").validate({
             minlength: 3
         },
         <?php echo EMPL; ?>txt_email : {
-            required : true,
             email: true
         },
         <?php echo EMPL; ?>lst_tipodoc : {

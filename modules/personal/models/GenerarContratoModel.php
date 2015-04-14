@@ -104,8 +104,15 @@ class GenerarContratoModel extends Model{
     }
     
     /*seleccionar registro a editar: GenerarContrato*/
-    public function findGenerarContrato(){
-        /*-----------------LOGICA PARA SELECT REGISTRO A EDITAR-----------------*/
+    public function findContrato(){
+        $query = "call sp_perPersonalConsultas(:flag,:key);";
+        
+        $parms = array(
+            ":flag" => 27,
+            ":key" => $this->_idTrabajador
+        );
+        $data = $this->queryOne($query,$parms);
+        return $data;
     }
     
 }

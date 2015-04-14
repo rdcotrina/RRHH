@@ -202,3 +202,4 @@ lang.GenerarContrato = {};
 lang.GenerarContrato.FEINI = 'Fecha de Inicio';
 lang.GenerarContrato.FEFIN = 'Fecha de Término';
 lang.GenerarContrato.VALCONT = 'Seleccione trabajadores e ingrese fechas de contrato';
+lang.GenerarContrato.NOCT = 'Debe seleccionar un tipo de contrato para el trabajador, en Empleados - Datos Laborales';

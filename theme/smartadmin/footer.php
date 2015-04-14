@@ -103,7 +103,7 @@
 
 
 </script>
-<?php if(Session::get('sys_usuario')):?>
+<?php if(Session::get('sys_usuario') && !Session::get('errorPage')):?>
 <script>
     simpleObject.init('index','index');
     
@@ -122,7 +122,7 @@
 //    test();
 
 </script>
-<?php else:?>
+<?php elseif(!Session::get('errorPage')):?>
 <script>
     /*CARGAR JS PARA LOGIN*/
     simpleObject.init('index','login');
