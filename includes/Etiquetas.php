@@ -21,6 +21,8 @@ define('BTN_GUARDAR','Guardar');
 define('LBL_SELECCIONAR','Seleccionar');
 define('LBL_PENDIENTE','Pendiente');
 define('LB_EMPRESA','Lancones - Piura');
+define('LBL_PORCENTAJE','Porcentaje');
+define('LBL_FIJO','Fijo');
 
 /*FORMULARIO LOGIN*/
 define('L_TITLE','Ingresar');

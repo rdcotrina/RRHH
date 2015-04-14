@@ -45,6 +45,11 @@ class EmpleadosController extends Controller{
                 $perm = '<label class="label label-success">Si</label>';
             }
             
+            $taplica = '<label class="label label-info">'.LBL_FIJO.'</label>';
+            if($value["tipo_aplicacionmonto"] == 'P'){
+                $taplica = '<label class="label label-warning">'.LBL_PORCENTAJE.'</label>';
+            }
+            
             $rows[] = array(
                 "id_conceptosplanillatrabajador"=>AesCtr::en($value["id_conceptosplanillatrabajador"]),
                 "permanente"=> $perm,
@@ -53,8 +58,7 @@ class EmpleadosController extends Controller{
                 "monto"=> number_format($value["monto"],2),
                 "conceptoplanilla"=> $value["conceptoplanilla"],
                 "estadocp"=> Functions::labelState($value["estadocp"]),
-                "comisionafp"=> number_format($value["comisionafp"],2),
-                "primaseguro"=> number_format($value["primaseguro"],2),
+                "tipo_aplicacionmonto"=> $taplica,
                 "total"=> $value["total"]
             );
         }

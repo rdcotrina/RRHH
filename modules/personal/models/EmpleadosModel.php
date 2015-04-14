@@ -49,18 +49,12 @@ class EmpleadosModel extends Model{
     private $_idConceptoPlanilla;
     private $_concepto;
     private $_tipoaplicacionmonto;
-    private $_tipoaplicacioncomisionafp;
-    private $_tipoaplicacionprima;
     private $_permanente;
     private $_fechaIniConcepto;
     private $_fechaFinConcepto;
     private $_montoConcepto;
     private $_variante;
     private $_variantemonto;
-    private $_varianteprimaseguro;
-    private $_variantecomisionafp;
-    private $_primaseguro;
-    private $_comisionAFP;
     private $_usuario;
     
     /*para el grid*/
@@ -116,14 +110,8 @@ class EmpleadosModel extends Model{
         $this->_activo =   SimpleForm::getParam(EMPL."chk_activo");
         $this->_variante =   SimpleForm::getParam(EMPL."chk_variante");
         $this->_variantemonto =   SimpleForm::getParam(EMPL."chk_variantemonto");
-        $this->_variantecomisionafp =   SimpleForm::getParam(EMPL."chk_variantecomisionafp");
-        $this->_varianteprimaseguro =   SimpleForm::getParam(EMPL."chk_varianteprima");
-        $this->_primaseguro =   SimpleForm::getParam(EMPL."txt_primaseguro");
-        $this->_comisionAFP =   SimpleForm::getParam(EMPL."txt_comisionafp");
         $this->_idConceptoPlanilla   = Aes::de(SimpleForm::getParam("_idConceptoPlanilla"));    /*se decifra*/
         $this->_concepto =   SimpleForm::getParam(EMPL."lst_concepto");
-        $this->_tipoaplicacioncomisionafp =   SimpleForm::getParam(EMPL."lst_tipoaplicacioncomisionafp");
-        $this->_tipoaplicacionprima =   SimpleForm::getParam(EMPL."lst_tipoaplicacionprima");
         $this->_tipoaplicacionmonto =   SimpleForm::getParam(EMPL."lst_tipoaplicacionmonto");
         
         $this->_permanente =   SimpleForm::getParam(EMPL."chk_permanente");
@@ -277,17 +265,11 @@ class EmpleadosModel extends Model{
                 . ":idEmpleado,"
                 . ":idConcepto,"
                 . ":tipoAplicacionmonto,"
-                . ":tipoAplicacioncomisionafp,"
-                . ":tipoAplicacionprima,"
                 . ":permanente,"
                 . ":fechaInicio,"
                 . ":fechaFin,"
                 . ":monto,"
                 . ":variantemonto,"
-                . ":varianteprima,"
-                . ":variantecomision,"
-                . ":comisionAFP,"
-                . ":prima,"
                 . ":usuario"
             . ");";
         
@@ -297,17 +279,11 @@ class EmpleadosModel extends Model{
             ":idEmpleado" => $this->_idEmpleados,
             ":idConcepto" => $this->_concepto,
             ":tipoAplicacionmonto" => $this->_tipoaplicacionmonto,
-            ":tipoAplicacioncomisionafp" => $this->_tipoaplicacioncomisionafp,
-            ":tipoAplicacionprima" => $this->_tipoaplicacionprima,
             ":permanente" => (!empty($this->_permanente))?$this->_permanente:'0',
             ":fechaInicio" => $this->_fechaIniConcepto,
             ":fechaFin" => $this->_fechaFinConcepto,
             ":monto" => $this->_montoConcepto,
             ":variantemonto" => (!empty($this->_variantemonto))?$this->_variantemonto:'0',
-            ":varianteprima" => (!empty($this->_varianteprimaseguro))?$this->_varianteprimaseguro:'0',
-            ":variantecomision" => (!empty($this->_variantecomisionafp))?$this->_variantecomisionafp:'0',
-            ":comisionAFP" => $this->_comisionAFP,
-            ":prima" => $this->_primaseguro,
             ":usuario" => $this->_usuario
         );
         $data = $this->queryOne($query,$parms);

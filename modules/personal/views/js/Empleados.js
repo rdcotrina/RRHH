@@ -247,9 +247,8 @@ var Empleados_ = function(){
             tColumns: [
                 {title: lang.ConceptoPlanilla.CONC,campo: "conceptoplanilla",width: "200",sortable: true},
                 {title: lang.Empleados.PRM, campo: "permanente", width: "70", sortable: true, class: "center"},
-                {title: lang.Empleados.MTO , campo: "monto", width: "80", sortable: true, class: "right"},
-                {title: lang.Empleados.COM, campo: "comisionafp", width: "80", sortable: true, class: "right"},
-                {title: lang.Empleados.PRI, campo: "primaseguro", width: "80", sortable: true, class: "right"}
+                {title: lang.Empleados.TTAP , campo: "tipo_aplicacionmonto", width: "80", sortable: true, class: "center"},
+                {title: lang.Empleados.MTO , campo: "monto", width: "80", sortable: true, class: "right"}
             ],
             pPaginate: true,
             sAxions: [{
@@ -835,8 +834,6 @@ var Empleados_ = function(){
                     });
                     Empleados.getGridConceptos(false);
                     simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_concepto'});
-                    simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_tipoaplicacionprima'});
-                    simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_tipoaplicacioncomisionafp'});
                     simpleScript.updateChosen({element:'#'+tabs.EMPL+'lst_tipoaplicacionmonto'});
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){
                     simpleScript.notify.error({
