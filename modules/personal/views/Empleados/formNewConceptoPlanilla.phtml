@@ -8,6 +8,10 @@
 
 /*prefijo: EMPL debe ser alias en tabla men_menuprincipal*/
 $grabar = Session::getPermiso("EMPLGR");
+    $data = array(
+                                        array('value'=>'F','etiquet'=>'Fijo'),
+                                        array('value'=>'P','etiquet'=>'Porcentaje')
+                                    );
     
 ?>
 <form id="<?php echo EMPL; ?>formNewConceptoPlanilla" name="<?php echo EMPL; ?>formNewConceptoPlanilla" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -44,32 +48,7 @@ $grabar = Session::getPermiso("EMPLGR");
                         </div>
                     </div>
                 </section>
-                <section>
-                    <div class="row">
-                        <label class="label col col-3"><?php echo EMPL_73; ?></label>
-                        <div class="col col-3">
-                            <label class="select">  
-                                <?php
-                                    $data = array(
-                                        array('value'=>'F','etiquet'=>'Fijo'),
-                                        array('value'=>'P','etiquet'=>'Porcentaje')
-                                    );
-
-                                    echo Functions::selectHtml(array(
-                                        'data'=>$data,
-                                        'atributes'=>array(
-                                            'id'=>EMPL.'lst_tipoaplicacionprima',
-                                            'name'=>EMPL.'lst_tipoaplicacionprima'
-                                        ),
-                                        'etiqueta'=>'etiquet',
-                                        'value'=>'value',
-                                        'txtSelect'=>true
-                                    ));
-                                ?>
-                            </label>
-                        </div>
-                    </div>
-                </section>
+                
                 
                 <section>
                     <div class="row">
@@ -122,6 +101,27 @@ $grabar = Session::getPermiso("EMPLGR");
                         <div class="col col-6">
                 <fieldset>
                     <legend>AFP</legend>
+                    <section>
+                    <div class="row">
+                        <label class="label col col-3"><?php echo EMPL_73; ?></label>
+                        <div class="col col-3">
+                            <label class="select">  
+                                <?php
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>EMPL.'lst_tipoaplicacionprima',
+                                            'name'=>EMPL.'lst_tipoaplicacionprima'
+                                        ),
+                                        'etiqueta'=>'etiquet',
+                                        'value'=>'value',
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
                 <section>
                     <div class="row">
                         <label class="label col col-3"><?php echo EMPL_78 ?></label>
