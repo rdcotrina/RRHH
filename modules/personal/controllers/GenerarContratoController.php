@@ -64,6 +64,7 @@ class GenerarContratoController extends Controller{
                 "id_contrato"=>AesCtr::en($value["id_contrato"]),
                 "fecha_inicio"=> $value["fecha_inicio"],
                 "fecha_fin"=> $value["fecha_fin"],
+                "contrato"=> $value["contrato"],
                 "total"=> $value["total"]
             );
         }

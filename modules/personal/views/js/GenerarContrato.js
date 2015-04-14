@@ -157,8 +157,9 @@ var GenerarContrato_ = function(){
             tScrollY: "200px",
             tReload: reload,
             tColumns: [
-                {title: lang.GenerarContrato.FEINI,campo: "fecha_inicio",width: "80", class: "center",sortable: true,search: {operator:"LIKE"}},
-                {title: lang.GenerarContrato.FEFIN,campo: "fecha_fin",width: "80", class: "center",sortable: true,search: {operator:"LIKE"}}
+                {title: lang.TipoContrato.TIPOCON,campo: "contrato",width: "200",sortable: true},
+                {title: lang.GenerarContrato.FEINI,campo: "fecha_inicio",width: "80", class: "center",sortable: true},
+                {title: lang.GenerarContrato.FEFIN,campo: "fecha_fin",width: "80", class: "center",sortable: true}
             ],
             pPaginate: true,
             sAxions: [{
