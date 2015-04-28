@@ -357,11 +357,17 @@ var simpleScript_ = function() {
             _private.tabs.find("#cont-tabs-sys").append(li);
             _private.tabs.find('#cont-main').append("<div id='" + obj.id + "_CONTAINER'><p>" + tabContentHtml + "</p></div>");
             _private.tabs.tabs("refresh");
-
+            
             if (obj.fnCallback !== undefined) {
                 obj.fnCallback();
             }
+        }else{
+            /*solo se ejecuta el callback*/
+            if (obj.fnCallback !== undefined && obj.reload === true) {
+                obj.fnCallback();
+            }
         }
+        
         $('#li-' + obj.id).find('a').click();
     };
 

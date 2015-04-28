@@ -61,7 +61,6 @@ var Vacaciones_ = function(){
             tScrollY: "200px",
             tReload: reload,
             tColumns: [
-                {title: lang.Vacaciones.IDTRABAJADOR,campo: "id_trabajador",width: "100",sortable: true,search: {operator:"LIKE"}},
                 {title: lang.Vacaciones.APATERNO,campo: "apellidopaterno",width: "200",sortable: true,search: {operator:"LIKE"}},
                 {title: lang.Vacaciones.AMATERNO,campo: "apellidomaterno",width: "200",sortable: true,search: {operator:"LIKE"}},
                 {title: lang.Vacaciones.PNOMBRE,campo: "primernombre",width: "200",sortable: true,search: {operator:"LIKE"}},
@@ -98,10 +97,10 @@ var Vacaciones_ = function(){
             dPrimaryKey: 'id_ausencias_trabajador',
             //id_vac_movimiento
             tColumns: [
-                {title: lang.Vacaciones.TIPOVAC,campo: "tipo_ausencia",width: "100",sortable: true},
-                {title: lang.Vacaciones.FECHAI,campo: "fecha_inicio",width: "200",sortable: true},
-                {title: lang.Vacaciones.FECHAF,campo: "fecha_fin",width: "200",sortable: true},
-                {title: lang.Vacaciones.DIAS,campo: "dias_ausencia",width: "200",sortable: true}
+                {title: lang.Vacaciones.TIPOVAC,campo: "tipo_ausencia",width: "300",sortable: true},
+                {title: lang.Vacaciones.FECHAI,campo: "fecha_inicio",width: "100",sortable: true,class:"center"},
+                {title: lang.Vacaciones.FECHAF,campo: "fecha_fin",width: "100",sortable: true,class:"center"},
+                {title: lang.Vacaciones.DIAS,campo: "dias_ausencia",width: "80",sortable: true,class:"right"}
                 //dias_vac
             ],
             pPaginate: true,
@@ -130,6 +129,7 @@ var Vacaciones_ = function(){
         simpleScript.addTab({
             id : tabs.VACA+'_GESTIONAR',
             label: lang.Vacaciones.GST,
+            reload: true,
             fnCallback: function(){
                 Vacaciones.getIndexGesionar(btn,id);
             }
@@ -182,6 +182,7 @@ var Vacaciones_ = function(){
                         content: lang.mensajes.MSG_3,
                         callback: function(){
                             Vacaciones.getGridGestionar(false);
+                            simpleScript.updateChosen({element: '#'+tabs.VACA+'lst_tipovac'});
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){

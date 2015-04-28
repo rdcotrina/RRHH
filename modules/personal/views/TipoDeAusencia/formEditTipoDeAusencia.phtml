@@ -38,7 +38,7 @@ $found = Obj::run()->TipoDeAusenciaController->findTipoDeAusencia();
                 <section>
                     <div class="row">
                         <label class="label col col-3"><?php echo TAUS_5; ?></label>
-                        <div class="col col-8">
+                        <div class="col col-4">
                             <label class="input"> 
                                 <i class="icon-append fa fa-question-circle"></i>
                                 <input type="text" id="<?php echo TAUS; ?>txt_grupoausencia" name="<?php echo TAUS; ?>txt_grupoausencia" value="<?php echo $found['grupo_ausencia']?>"  >
@@ -89,6 +89,10 @@ $("#<?php echo TAUS; ?>formEditTipoDeAusencia").validate({
         <?php echo TAUS; ?>txt_tipoausencia : {
             required : true,
             minlength: 3
+        },
+        <?php echo TAUS; ?>txt_grupoausencia : {
+            required : true,
+            minlength: 2
         }
     },
 
