@@ -33,3 +33,6 @@ tabs.SISPE = '<?php echo SISPE; ?>';
 tabs.TPLL = '<?php echo TPLL; ?>';
 tabs.MTBA = '<?php echo MTBA; ?>';
 tabs.GNCTR = '<?php echo GNCTR; ?>';
+tabs.MSGN = '<?php echo MSGN; ?>';
+tabs.TAUS = '<?php echo TAUS; ?>';
+tabs.VACA = '<?php echo VACA; ?>';

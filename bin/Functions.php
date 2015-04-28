@@ -401,4 +401,19 @@ class Functions{
         return $new_date;
     }
     
+    public static function getAnios(){
+        $anioActual = date('Y');
+        $range = 10;
+        $fin = $anioActual + $range;
+        
+        $data = array();
+        for($i=$anioActual;$i<=$fin;$i++) {
+            $data[] = array(
+                'etiqueta'=>$i,
+                'value'=>$i
+            );
+        }
+        return $data;
+    }
+    
 }

@@ -203,3 +203,30 @@ lang.GenerarContrato.FEINI = 'Fecha de Inicio';
 lang.GenerarContrato.FEFIN = 'Fecha de Término';
 lang.GenerarContrato.VALCONT = 'Seleccione trabajadores e ingrese fechas de contrato';
 lang.GenerarContrato.NOCT = 'Debe seleccionar un tipo de contrato para el trabajador, en Empleados - Datos Laborales';
+
+/*---------------------CONTROL DE ASISTENCIA/GENERAR MES--------------------*/
+lang.GenerarMes = {};
+lang.GenerarMes.EXIST = 'Año ya existe';
+
+/*---------------------GESTIONAR AUSENCIAS/TIPO DE AUSENCIA--------------------*/
+lang.TipoDeAusencia = {};
+lang.TipoDeAusencia.TIPOAUSENCIA = 'Tipo de Ausencia';
+lang.TipoDeAusencia.GRUPO = 'Grupo de Ausencia';
+lang.TipoDeAusencia.EXIST = 'Ausencia ya existe';
+
+/*---------------------GESTIONAR AUSENCIAS/VACACIONES LISTA--------------------*/
+lang.Vacaciones = {};
+lang.Vacaciones.IDTRABAJADOR = 'Id Trbajador';
+lang.Vacaciones.APATERNO = 'Apellido Paterno';
+lang.Vacaciones.AMATERNO = 'Apellido Materno';
+lang.Vacaciones.PNOMBRE = 'Primer Nombre';
+lang.Vacaciones.SNOMBRE = 'Segundo Nombre';
+lang.Vacaciones.GST = 'Gestionar Ausencias';
+lang.Vacaciones.EXIST = 'Existe una ausencia con las fechas ingresadas';
+
+/*---------------------GESTIONAR AUSENCIAS/VACACIONES --------------------*/
+//lang.Vacaciones = {};
+lang.Vacaciones.TIPOVAC = 'Tipo Ausencia';
+lang.Vacaciones.FECHAI = 'Fecha Inicio';
+lang.Vacaciones.FECHAF = 'Fecha Fin';
+lang.Vacaciones.DIAS = 'Días';

@@ -32,3 +32,6 @@ define("SISPE","SISPE");             /*tab opción SISTEMAPENSION*/
 define("TPLL","TPLL");             /*tab opción TIPOPLANILLA*/
 define("MTBA","MTBA");             /*tab opción MOTIVOBAJA*/
 define("GNCTR","GNCTR");             /*tab opción GENERARCONTRATO*/
+define("MSGN","MSGN");             /*tab opción GENERARMES*/
+define("TAUS","TAUS");             /*tab opción TIPODEAUSENCIA*/
+define("VACA","VACA");             /*tab opción VACACIONES*/

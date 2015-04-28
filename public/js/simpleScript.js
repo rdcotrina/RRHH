@@ -576,6 +576,33 @@ var simpleScript_ = function() {
         $(obj.element).val(va).trigger("chosen:updated");
     };
 
+    _public.restarFechas = function(f1,f2){
+        var aFecha1 = f1.split('-'); 
+        var aFecha2 = f2.split('-'); 
+        var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]); 
+        var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]); 
+        var dif = fFecha2 - fFecha1;
+        var dias = Math.floor(dif / (1000 * 60 * 60 * 24))+1; 
+        return dias;
+    };
+
+    _public.addDay = function(de,fecha){
+        var Fecha = new Date();
+        var sFecha = fecha || (Fecha.getDate() + "/" + (Fecha.getMonth() +1) + "/" + Fecha.getFullYear());
+        var sep = sFecha.indexOf('/') != -1 ? '/' : '-'; 
+        var aFecha = sFecha.split(sep);
+        var fecha = aFecha[2]+'/'+aFecha[1]+'/'+aFecha[0];
+        fecha= new Date(fecha);
+        fecha.setDate(fecha.getDate()+parseInt(de)-1);
+        var anno=fecha.getFullYear();
+        var mes= fecha.getMonth()+1;
+        var dia= fecha.getDate();
+        mes = (mes < 10) ? ("0" + mes) : mes;
+        dia = (dia < 10) ? ("0" + dia) : dia;
+        var fechaFinal = dia+sep+mes+sep+anno;
+        return (fechaFinal);
+    };
+
     return _public;
 
 };

@@ -503,6 +503,7 @@ var Empleados_ = function(){
                         content: lang.mensajes.MSG_3,
                         callback: function(){
                             Empleados.getGridEmpleados(false);
+                            simpleScript.closeModal("#"+tabs.EMPL+"formNewEmpleados");
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){

@@ -1281,7 +1281,7 @@
                                 var c = $.trim($(this).html());
                                 objTd[index].push(c);
                             });
-                            fn(objTd,index,key);
+                            fn(oSettings.data,index,key);
                         });
                     });
                 };

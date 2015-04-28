@@ -340,3 +340,27 @@ define('MTBA_5','Ingrese el motivo de baja');
 define('GNCTR_1','Contratos');
 define('GNCTR_2','Generar Contratos');
 define('GNCTR_3','Histrorial - ');
+
+/*==============================GENERAR MES==============================*/
+define('MSGN_1','Generar Mes');
+define('MSGN_2','Generar Nuevo Período');
+define('MSGN_3','Año');
+
+
+/*==============================TIPO DE AUSENCIA=============================*/
+define('TAUS_1','Tipo de Ausencia');
+define('TAUS_2','Nuevo Tipo de Ausencia');
+define('TAUS_3','Editar Tipo de Ausencia');
+define('TAUS_4','Ingrese Tipo de Ausencia');
+define('TAUS_5','Grupo Tipo de Ausencia');
+define('TAUS_6','Ingrese Grupo de Tipo de Ausencia');
+
+/*==============================AUSENCIA=============================*/
+define('VACA_1','Ausencia');
+define('VACA_2','Tipo de Ausencia');
+define('VACA_3','Fecha Inicio');
+define('VACA_4','Fecha Fin');
+define('VACA_5','Días');
+define('VACA_6','Fecha Proceso');
+define('VACA_7','Comentario');
+define('VACA_8','Datos del Trabajador');
