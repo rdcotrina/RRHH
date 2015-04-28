@@ -225,8 +225,12 @@ lang.Vacaciones.GST = 'Gestionar Ausencias';
 lang.Vacaciones.EXIST = 'Existe una ausencia con las fechas ingresadas';
 
 /*---------------------GESTIONAR AUSENCIAS/VACACIONES --------------------*/
-//lang.Vacaciones = {};
 lang.Vacaciones.TIPOVAC = 'Tipo Ausencia';
 lang.Vacaciones.FECHAI = 'Fecha Inicio';
 lang.Vacaciones.FECHAF = 'Fecha Fin';
 lang.Vacaciones.DIAS = 'Días';
+
+/*---------------------CONTROL ASISTENCIA/GENERAR MES--------------------*/
+lang.GenerarMes = {};
+lang.GenerarMes.ANIO = 'Año';
+lang.GenerarMes.MES  = 'Mes';

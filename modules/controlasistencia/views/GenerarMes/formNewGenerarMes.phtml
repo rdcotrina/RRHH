@@ -1,0 +1,87 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 18-04-2015 22:04:14 
+* Descripcion : formNewGenerarMes.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: MSGN debe ser alias en tabla men_menuprincipal*/
+$grabar = Session::getPermiso("MSGNGR");
+    
+?>
+<form id="<?php echo MSGN; ?>formNewGenerarMes" name="<?php echo MSGN; ?>formNewGenerarMes" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 30%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo MSGN_2?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo MSGN_3; ?></label>
+                        <div class="col col-8">
+                            <label class="select"> 
+                                <?php
+                                    $data = Functions::getAnios();
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$data,
+                                        'atributes'=>array(
+                                            'id'=>MSGN.'lst_anio',
+                                            'name'=>MSGN.'lst_anio'
+                                        ),
+                                        'etiqueta'=>'etiqueta',
+                                        'value'=>'value',
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($grabar["permiso"]):?>
+                <button id="<?php echo MSGN; ?>btnGrGenerarMes" type="submit" class="<?php echo $grabar["theme"]; ?>">
+                    <i class="<?php echo $grabar["icono"]; ?>"></i> <?php echo $grabar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$grabar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo MSGN; ?>formNewGenerarMes");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo MSGN; ?>formNewGenerarMes").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo MSGN; ?>lst_anio : {
+            required : true
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        GenerarMes.postNewGenerarMes();
+    }   
+});
+</script>
+</form>
