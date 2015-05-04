@@ -125,14 +125,4 @@ class VacacionesModel extends Model{
         return $data;
     }
     
-    /*editar registro: Vacaciones*/
-    public function editVacaciones(){
-        /*-------------------------LOGICA PARA EL UPDATE------------------------*/
-    }
-    
-    /*eliminar varios registros: Vacaciones*/
-    public function deleteVacacionesAll(){
-        /*--------------------------LOGICA PARA DELETE--------------------------*/
-    }
-    
 }
