@@ -8,7 +8,7 @@ require_once (ROOT . 'bin' . DS . 'Config.php');
 Session::init();
 
 try{
-    /*registro de clases*/
+    /*registro de clases_*/
     Registry::anonimous('Request');
     Registry::anonimous('Database');
     Registry::anonimous('View');
