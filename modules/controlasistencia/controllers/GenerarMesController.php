@@ -24,9 +24,26 @@ class GenerarMesController extends Controller{
         $data =  self::$GenerarMesModel->getGridGenerarMes();
         foreach ($data as $value) {
             $rows[] = array(
-                "id_asistenciames"=>AesCtr::en($value["id_asistenciames"]),
+                "mesanio"=>AesCtr::en($value["mesanio"]),
                 "anio"=> $value["anio"],
                 "mes"=> $value["mes"],
+                "feriados"=>$value["feriados"],
+                "total"=> $value["total"]
+            );
+        }
+        echo json_encode($rows);
+    }
+    
+    public function getGridDiasNoLaborables(){
+        $rows = array();
+        $data =  self::$GenerarMesModel->getGridDiasNoLaborables();
+        foreach ($data as $value) {
+            $rows[] = array(
+                "id_asistenciames"=>AesCtr::en($value["id_asistenciames"]),
+                "fecha"=> $value["fecha"],
+                "dia"=> $value["dia"],
+                "nomdia"=> $value["nomdia"],
+                "Feriado"=> $value["Feriado"],
                 "total"=> $value["total"]
             );
         }
@@ -43,6 +60,13 @@ class GenerarMesController extends Controller{
         Obj::run()->View->render();
     }
     
+    public function postUpdateFeriado(){
+        $data = self::$GenerarMesModel->mantenimientoAsistenciaMes();
+        
+        echo json_encode($data);
+    }
+
+
     /*busca data para editar registro: GenerarMes*/
     public function findGenerarMes(){
         $data = self::$GenerarMesModel->findGenerarMes();

@@ -345,6 +345,7 @@ define('GNCTR_3','Histrorial - ');
 define('MSGN_1','Generar Mes');
 define('MSGN_2','Generar Nuevo Período');
 define('MSGN_3','Año');
+define('MSGN_4','Días no Laborables');
 
 
 /*==============================TIPO DE AUSENCIA=============================*/

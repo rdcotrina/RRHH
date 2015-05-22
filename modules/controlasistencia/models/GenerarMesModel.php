@@ -57,6 +57,23 @@ class GenerarMesModel extends Model{
         return $data;
     }
     
+    /*data para el grid: Dias no laborables*/
+    public function getGridDiasNoLaborables(){
+        $query = "call sp_conasDiasNoLaborablesGrid(:mesAnio,:iDisplayStart,:iDisplayLength,:sOrder,:sSearch,:sFilterCols);";
+        
+        $parms = array(
+            ":mesAnio"=>$this->_idGenerarMes,
+            ":iDisplayStart" => $this->_pDisplayStart,
+            ":iDisplayLength" => $this->_pDisplayLength,
+            ":sOrder" => $this->_pOrder,
+            ":sSearch" => $this->_pSearch ,
+            ":sFilterCols" => $this->_sFilterCols
+        );
+       // print_r($parms);
+        $data = $this->queryAll($query,$parms);
+        return $data;
+    }
+    
     /*mantenimiento (CRUD) registro: GenerarMes*/
     public function mantenimientoGenerarMes(){
         $query = "call sp_conasGenerarMesMantenimiento(:flag,:key,:anio,:usuario);";
@@ -70,6 +87,18 @@ class GenerarMesModel extends Model{
         $data = $this->queryOne($query,$parms);
         return $data;
     }
+    
+    public function mantenimientoAsistenciaMes(){
+        $query = "call sp_maeAsistenciaMesMantenimiento(:flag,:key);";
+        
+        $parms = array(
+            ":flag" => $this->_flag,
+            ":key" => $this->_idGenerarMes
+        );
+        $data = $this->queryOne($query,$parms);
+        return $data;
+    }
+    
     
     /*seleccionar registro a editar: GenerarMes*/
     public function findGenerarMes(){

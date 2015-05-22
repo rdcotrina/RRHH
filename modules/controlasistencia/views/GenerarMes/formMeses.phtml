@@ -19,18 +19,18 @@ $found = Obj::run()->GenerarMesController->findGenerarMes();
                 <button type="button" class="close"  aria-hidden="true">
                     &times;
                 </button>
-                <h4 class="modal-title">TITULO DE FORMULARIO</h4>
+                <h4 class="modal-title"><?php echo MSGN_4;?></h4>
             </div>
-            <div class="modal-body smart-form"> 
-                CONTENIDO DEL FORM (utilizar constantes en Labels.php)
+            <div class="modal-body"> 
+                <table id="<?php echo MSGN; ?>gridDiasNoLaborables" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>
             </div>
             <div class="modal-footer">
                 <div class="foot-obligar"></div>
-                <?php if($editar["permiso"]):?>
+                <?php /* if($editar["permiso"]):?>
                 <button id="<?php echo MSGN; ?>btnEdGenerarMes" type="submit" class="<?php echo $editar["theme"]; ?>">
                     <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
                 </button>
-                <?php endif; ?>
+                <?php endif; */ ?>
                 <button type="button" class="<?php echo THEME_CLOSE; ?>">
                     <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
                 </button>

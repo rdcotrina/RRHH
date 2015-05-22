@@ -207,6 +207,8 @@ lang.GenerarContrato.NOCT = 'Debe seleccionar un tipo de contrato para el trabaj
 /*---------------------CONTROL DE ASISTENCIA/GENERAR MES--------------------*/
 lang.GenerarMes = {};
 lang.GenerarMes.EXIST = 'Año ya existe';
+lang.GenerarMes.DSNLB = 'Días No Laborables';
+lang.GenerarMes.FEC = 'Fecha';
 
 /*---------------------GESTIONAR AUSENCIAS/TIPO DE AUSENCIA--------------------*/
 lang.TipoDeAusencia = {};
@@ -234,3 +236,6 @@ lang.Vacaciones.DIAS = 'Días';
 lang.GenerarMes = {};
 lang.GenerarMes.ANIO = 'Año';
 lang.GenerarMes.MES  = 'Mes';
+lang.GenerarMes.FECHA  = 'Fecha';
+lang.GenerarMes.DNLAB  = 'Día No Laborable';
+lang.GenerarMes.DNLABCT  = 'Días No Laborables';
