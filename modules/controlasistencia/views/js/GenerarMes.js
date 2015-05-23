@@ -95,7 +95,7 @@ var GenerarMes_ = function() {
             pItemPaginas: 2,
             tColumns: [
                 {title: lang.GenerarMes.FECHA, campo: "nomdia", width: "40"},
-                {title: lang.GenerarMes.DNLAB, campo: "Feriado", width: "40"}
+                {title: lang.GenerarMes.DNLAB, campo: "Feriado",class:"center", width: "40"}
             ],
             pPaginate: true,
             sAxions: [{

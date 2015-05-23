@@ -38,12 +38,16 @@ class GenerarMesController extends Controller{
         $rows = array();
         $data =  self::$GenerarMesModel->getGridDiasNoLaborables();
         foreach ($data as $value) {
+            $fe = '<label class="label label-danger">'.$value["Feriado"].'</label>';
+            if($value["Feriado"] == 'Si'){
+                $fe = '<label class="label label-success">'.$value["Feriado"].'</label>';
+            }
             $rows[] = array(
                 "id_asistenciames"=>AesCtr::en($value["id_asistenciames"]),
                 "fecha"=> $value["fecha"],
                 "dia"=> $value["dia"],
                 "nomdia"=> $value["nomdia"],
-                "Feriado"=> $value["Feriado"],
+                "Feriado"=> $fe,
                 "total"=> $value["total"]
             );
         }
