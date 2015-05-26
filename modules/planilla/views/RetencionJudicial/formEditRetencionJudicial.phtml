@@ -1,0 +1,326 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 24-05-2015 01:05:46 
+* Descripcion : formEditRetencionJudicial.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: RTJD debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("RTJDACT");
+    
+$found = Obj::run()->RetencionJudicialController->findRetencionJudicial();
+
+?>
+<form id="<?php echo RTJD; ?>formEditRetencionJudicial" name="<?php echo RTJD; ?>formEditRetencionJudicial" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 55%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo RTJD_16;?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo RTJD_3; ?></label>
+                        <div class="col col-8">
+                            <label class="select"> 
+                                <?php
+                                $data = Obj::run()->RetencionJudicialController->getTrabajador();
+
+                                echo Functions::selectHtml(array(
+                                    'data' => $data,
+                                    'atributes' => array(
+                                        'id' => RTJD . 'lst_trabajador',
+                                        'name' => RTJD . 'lst_trabajador',
+                                        'onchange' => 'RetencionJudicial.getBeneficiario({                                                                
+                                                    idTrabajador: $(\'#' . RTJD . 'lst_trabajador\').val(),
+                                                    content: \'#' . RTJD . 'divBeneficiario\',
+                                                    idElement: \'' . RTJD . 'lst_beneficiario\',
+                                                    nameElement: \'' . RTJD . 'lst_beneficiario\'
+                                                });'
+                                    ),
+                                    'etiqueta' => 'nomTrabajador',
+                                    'value' => 'id_trabajador',
+                                    'defaultEtiqueta' => $found["id_trabajador"],
+                                    'txtSelect' => true
+                                ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo RTJD_4; ?></label>
+                        <div class="col col-8">
+                            <label class="select" id="<?php echo RTJD; ?>divBeneficiario"> 
+                                <?php
+                                $data = Obj::run()->RetencionJudicialController->getBeneficiario($found["id_trabajador"]);
+
+                                echo Functions::selectHtml(array(
+                                    'data' => $data,
+                                    'atributes' => array(
+                                        'id' => RTJD . 'lst_beneficiario',
+                                        'name' => RTJD . 'lst_beneficiario'
+                                    ),
+                                    'etiqueta' => 'nombres',
+                                    'value' => 'id_derechohabiente',
+                                    'defaultEtiqueta' => $found["id_derechohabiente"],
+                                    'txtSelect' => true
+                                ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <fieldset>
+                    <legend><?php echo RTJD_17; ?></legend>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-2"><?php echo RTJD_5; ?></label>
+                            <div class="col col-3">
+                                <label class="input">                                 
+                                    <i class="icon-append fa fa fa-calendar"></i>
+                                    <input type="text" id="<?php echo RTJD; ?>txt_fechainicio" name="<?php echo RTJD; ?>txt_fechainicio" value="<?php echo $found["fecha_inicio"];?>">
+                                    <div class="obligar"></div>
+                                </label>
+                            </div>
+
+                            <label class="label col col-2"><span style="float: right"><?php echo RTJD_6; ?></span></label>
+                            <div class="col col-3">
+                                <label class="input">                                 
+                                    <i class="icon-append fa fa fa-calendar"></i>
+                                    <input type="text" id="<?php echo RTJD; ?>txt_fechafin" name="<?php echo RTJD; ?>txt_fechafin" value="<?php echo $found["fecha_fin"];?>">
+                                    <div class="obligar"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-2"><?php echo RTJD_7; ?></label>
+                            <div class="col col-8">
+                                <label class="select"> 
+                                    <?php
+                                    $data = Obj::run()->RetencionJudicialController->getConcepto();
+
+                                    echo Functions::selectHtml(array(
+                                        'data' => $data,
+                                        'atributes' => array(
+                                            'id' => RTJD . 'lst_concepto',
+                                            'name' => RTJD . 'lst_concepto'
+                                        ),
+                                        'etiqueta' => 'conceptoplanilla',
+                                        'value' => 'id_conceptoplanilla',
+                                        'defaultEtiqueta' => $found["id_conceptoplanilla"],
+                                        'txtSelect' => true
+                                    ));
+                                    ?>
+                                    <div class="obligar"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-2"><?php echo RTJD_8; ?></label>
+                            <div class="col col-3">
+                                <label class="select"> 
+                                    <?php
+                                    $datax = array(array('etiqueta' => 'Fijo', 'value' => 'F'),
+                                        array('etiqueta' => 'Porcentaje', 'value' => 'P')
+                                    );
+                                    echo Functions::selectHtml(array(
+                                        'data' => $datax,
+                                        'atributes' => array(
+                                            'id' => RTJD . 'lst_tipoaplicacion',
+                                            'name' => RTJD . 'lst_tipoaplicacion'
+                                        ),
+                                        'etiqueta' => 'etiqueta',
+                                        'value' => 'value',
+                                        'defaultEtiqueta' => $found["tipo_aplicacion"],
+                                        'txtSelect' => true
+                                    ));
+                                    ?>
+                                    <div class="obligar"></div>
+                                </label>
+                            </div>
+
+                            <label class="label col col-2"><?php echo RTJD_9; ?></label>
+                            <div class="col col-3">
+                                <label class="input"> 
+                                    <i class="icon-append fa fa-question-circle"></i>
+                                    <input type="text" id="<?php echo RTJD; ?>txt_monto" name="<?php echo RTJD; ?>txt_monto" placeholder="<?php echo RTJD_11; ?>" class="right" value="<?php echo $found["monto"];?>" >
+                                    <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> <?php echo RTJD_10; ?></b>
+                                    <div class="obligar"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+                <fieldset>
+                    <legend><?php echo RTJD_17; ?></legend>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-2"><?php echo RTJD_12; ?></label>
+                            <div class="col col-8">
+                                <label class="select"> 
+                                    <?php
+                                    $data = Obj::run()->RetencionJudicialController->getBancos();
+
+                                    echo Functions::selectHtml(array(
+                                        'data' => $data,
+                                        'atributes' => array(
+                                            'id' => RTJD . 'lst_banco',
+                                            'name' => RTJD . 'lst_banco',
+                                            'onchange' => 'RetencionJudicial.getCuentaCorriente({                                                                
+                                                        idBanco: $(\'#' . RTJD . 'lst_banco\').val(),
+                                                        content: \'#' . RTJD . 'divBancos\',
+                                                        idElement: \'' . RTJD . 'lst_cuenta\',
+                                                        nameElement: \'' . RTJD . 'lst_cuenta\'
+                                                    });'
+                                        ),
+                                        'etiqueta' => 'banco',
+                                        'value' => 'id_banco',
+                                        'defaultEtiqueta' => $found["id_banco"],
+                                        'txtSelect' => true
+                                    ));
+                                    ?>
+                                    <div class="obligar"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-2"><?php echo RTJD_13; ?></label>
+                            <div class="col col-8">                                    
+                                <label class="select" id="<?php echo RTJD; ?>divBancos">
+                                    <?php
+                                    $data = Obj::run()->RetencionJudicialController->getCuentaCorriente($found["id_banco"]);
+
+                                    echo Functions::selectHtml(array(
+                                        'data' => $data,
+                                        'atributes' => array(
+                                            'id' => RTJD . 'lst_cuenta',
+                                            'name' => RTJD . 'lst_cuenta'
+                                        ),
+                                        'etiqueta' => 'cuentacorriente',
+                                        'value' => 'id_cuentacorriente',
+                                        'defaultEtiqueta' => $found["id_cuentacorriente"],
+                                        'txtSelect' => true
+                                    ));
+                                    ?>
+                                    <div class="obligar"></div>
+                                </label>                                    
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo RTJD_14; ?></label>
+                        <div class="col col-8">
+                            <label class="textarea"> 
+                                <i class="icon-append fa  fa-question-circle"></i>
+                                <textarea id="<?php echo RTJD; ?>txt_Observacion" name="<?php echo RTJD; ?>txt_Observacion" ><?php echo $found["observacion"];?></textarea>
+                                <b class="tooltip tooltip-top-right"><i class="fa  fa-question-circle txt-color-teal"></i> <?php echo RTJD_15; ?></b>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"></label>
+                        <div class="col col-3">
+                            <label class="checkbox">
+                                <input type="checkbox" name="<?php echo RTJD; ?>chk_activo" id="<?php echo RTJD; ?>chk_activo" value="A" <?php echo ($found['estado']=='A')?'checked':'' ?> />
+                                <i></i>
+                                <?php echo CK_ACTIVO; ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo RTJD; ?>btnEdRetencionJudicial" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo RTJD; ?>formEditRetencionJudicial");
+</script>
+<?php endif; ?>
+<script>
+    simpleScript.setEvent.dateRange({
+            ini: '#<?php echo RTJD; ?>txt_fechainicio',
+            fin: '#<?php echo RTJD; ?>txt_fechafin',
+            opt: 'minDate'
+        });
+        simpleScript.setEvent.dateRange({
+            ini: '#<?php echo RTJD; ?>txt_fechafin',
+            fin: '#<?php echo RTJD; ?>txt_fechainicio',
+            opt: 'maxDate'
+        });
+        
+    /*configurar validacion de formulario -- este codigo es de ejemplo*/
+    $("#<?php echo RTJD; ?>formEditRetencionJudicial").validate({
+        // Rules for form validation
+        rules : {
+            <?php echo RTJD; ?>lst_trabajador: {
+                    required: true
+                },
+                <?php echo RTJD; ?>lst_beneficiario : {
+                    required : true
+                },
+                <?php echo RTJD; ?>txt_fechainicio : {
+                    required : true,
+                    date :true
+                },
+                <?php echo RTJD; ?>txt_fechafin : {
+                    required : true,
+                    date :true
+                },
+                <?php echo RTJD; ?>lst_concepto : {
+                    required : true
+                },
+                <?php echo RTJD; ?>lst_tipoaplicacion : {
+                    required : true
+                },
+                <?php echo RTJD; ?>txt_monto : {
+                    required : true
+                },
+                <?php echo RTJD; ?>lst_banco : {
+                    required : true
+                },
+                <?php echo RTJD; ?>lst_cuenta : {
+                    required : true
+                }
+        },
+        // No cambie el código de abajo
+        errorPlacement : function(error, element) {
+            error.insertAfter(element.parent());
+        },
+
+        submitHandler: function(){
+            RetencionJudicial.postEditRetencionJudicial();
+        }   
+    });
+</script>
+</form>

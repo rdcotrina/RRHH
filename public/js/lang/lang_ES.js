@@ -239,3 +239,16 @@ lang.GenerarMes.MES  = 'Mes';
 lang.GenerarMes.FECHA  = 'Fecha';
 lang.GenerarMes.DNLAB  = 'Día No Laborable';
 lang.GenerarMes.DNLABCT  = 'Días No Laborables';
+
+
+/*---------------------PLANILLA/RETENCIONES JUDICIALES--------------------*/
+lang.RetencionJudicial = {};
+lang.RetencionJudicial.DNI = 'DNI';
+lang.RetencionJudicial.NOMBCOMP  = 'Apellidos y Nombres';
+lang.RetencionJudicial.CONCEPTO  = 'Concepto';
+lang.RetencionJudicial.BENEF  = 'Beneficiario';
+lang.RetencionJudicial.TIPAPL  = 'Tipo Aplicación';
+lang.RetencionJudicial.FECHAI  = 'Fecha Inicio';
+lang.RetencionJudicial.FECHAF  = 'Fecha Fin';
+lang.RetencionJudicial.MONTO  = 'Monto';
+lang.RetencionJudicial.EXIST  = 'Retención Judicial ya Existe';

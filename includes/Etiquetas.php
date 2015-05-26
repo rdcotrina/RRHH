@@ -365,3 +365,23 @@ define('VACA_5','Días');
 define('VACA_6','Fecha Proceso');
 define('VACA_7','Comentario');
 define('VACA_8','Datos del Trabajador');
+
+/*==============================RETENCION JUDICIAL==============================*/
+define('RTJD_1','Retención Judicial');
+define('RTJD_2','Nueva Retención Judicial');
+define('RTJD_3','Trabajador');
+define('RTJD_4','Beneficiario');
+define('RTJD_5','Fecha Inicio');
+define('RTJD_6','Fecha Término');
+define('RTJD_7','Concepto');
+define('RTJD_8','Tipo Aplicación');
+define('RTJD_9','Monto');
+define('RTJD_10','Ingrese el Monto');
+define('RTJD_11','0.00');
+define('RTJD_12','Banco');
+define('RTJD_13','Cuenta Corriente');
+define('RTJD_14','Observación');
+define('RTJD_15','Ingrese Observación');
+define('RTJD_16','Editar Retención Judicial');
+define('RTJD_17','Datos para el Depósito');
+define('RTJD_18','Datos de Depósito');
