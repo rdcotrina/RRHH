@@ -1,0 +1,146 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 28-05-2015 07:05:13 
+* Descripcion : formNewAsistenciaManual.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: ASMN debe ser alias en tabla men_menuprincipal*/
+$grabar = Session::getPermiso("ASMNGR");
+    
+?>
+<form id="<?php echo ASMN; ?>formNewAsistenciaManual" name="<?php echo ASMN; ?>formNewAsistenciaManual" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title"><?php echo ASMN_3;?></h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo ASMN_4; ?></label>
+                        <div class="col col-8">
+                            <label class="select"> 
+                                <?php
+                                $data = Obj::run()->AsistenciaManualController->getFechaxAnioActual();
+
+                                echo Functions::selectHtml(array(
+                                    'data' => $data,
+                                    'atributes' => array(
+                                        'id' => ASMN . 'lst_diaIngreso',
+                                        'name' => ASMN . 'lst_diaIngreso'
+                                    ),
+                                    'etiqueta' => 'fecha',
+                                    'value' => 'id_asistenciames',
+                                    'defaultEtiqueta' => '',
+                                    'txtSelect' => true
+                                ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo ASMN_5; ?></label>
+                        <div class="col col-4">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-clock-o"></i>
+                                <input class="form-control clockpicker" id="<?php echo ASMN; ?>txt_maniana_in" name="<?php echo ASMN; ?>txt_maniana_in" data-autoclose="true" data-default="now" type="text">
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                        <div class="col col-4">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-clock-o"></i>
+                                <input class="form-control clockpicker" id="<?php echo ASMN; ?>txt_maniana_sal" name="<?php echo ASMN; ?>txt_maniana_sal" data-autoclose="true" data-default="now" data-vibrate="true" type="text">
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo ASMN_6; ?></label>
+                        <div class="col col-4">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-clock-o"></i>
+                                <input class="form-control clockpicker" id="<?php echo ASMN; ?>txt_tarde_in" name="<?php echo ASMN; ?>txt_tarde_in" data-autoclose="true" data-default="now" type="text">
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                        <div class="col col-4">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-clock-o"></i>
+                                <input class="form-control clockpicker" id="<?php echo ASMN; ?>txt_tarde_sal" name="<?php echo ASMN; ?>txt_tarde_sal" data-autoclose="true" data-default="now" data-vibrate="true" type="text">
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($grabar["permiso"]):?>
+                <button id="<?php echo ASMN; ?>btnGrAsistenciaManual" type="submit" class="<?php echo $grabar["theme"]; ?>">
+                    <i class="<?php echo $grabar["icono"]; ?>"></i> <?php echo $grabar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$grabar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo ASMN; ?>formNewAsistenciaManual");
+</script>
+<?php endif; ?>
+<script>
+    simpleScript.setEvent.time({
+        element: '.clockpicker'
+    });
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo ASMN; ?>formNewAsistenciaManual").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo ASMN; ?>lst_diaIngreso: {
+            required : true
+        },
+        <?php echo ASMN; ?>txt_maniana_in : {
+            required : true,
+            time: true
+        },
+        <?php echo ASMN; ?>txt_maniana_sal : {
+            required : true,
+            time: true
+        },
+        <?php echo ASMN; ?>txt_tarde_in : {
+            required : true,
+            time: true
+        },
+        <?php echo ASMN; ?>txt_tarde_sal : {
+            required : true,
+            time: true
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        AsistenciaManual.postNewAsistenciaManual();
+    }   
+});
+</script>
+</form>

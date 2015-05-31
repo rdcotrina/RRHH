@@ -36,3 +36,4 @@ define("MSGN","MSGN");             /*tab opción GENERARMES*/
 define("TAUS","TAUS");             /*tab opción TIPODEAUSENCIA*/
 define("VACA","VACA");             /*tab opción VACACIONES*/
 define("RTJD","RTJD");             /*tab opción RETENCIONJUDICIAL*/
+define("ASMN","ASMN");             /*tab opción ASISTENCIAMANUAL*/

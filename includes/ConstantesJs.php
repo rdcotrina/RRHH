@@ -37,3 +37,4 @@ tabs.MSGN = '<?php echo MSGN; ?>';
 tabs.TAUS = '<?php echo TAUS; ?>';
 tabs.VACA = '<?php echo VACA; ?>';
 tabs.RTJD = '<?php echo RTJD; ?>';
+tabs.ASMN = '<?php echo ASMN; ?>';

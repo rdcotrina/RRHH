@@ -252,3 +252,17 @@ lang.RetencionJudicial.FECHAI  = 'Fecha Inicio';
 lang.RetencionJudicial.FECHAF  = 'Fecha Fin';
 lang.RetencionJudicial.MONTO  = 'Monto';
 lang.RetencionJudicial.EXIST  = 'Retención Judicial ya Existe';
+
+/*---------------------------ASISTENCIA MANUAL--------------------------*/
+lang.AsistenciaManual = {};
+lang.AsistenciaManual.ORIGEN  = 'Origen';
+lang.AsistenciaManual.FECHA  = 'Fecha';
+lang.AsistenciaManual.HINGM  = 'Hora Ingreso Mañana';
+lang.AsistenciaManual.HSALM  = 'Hora Salida Mañana';
+lang.AsistenciaManual.HINGT  = 'Hora Ingreso Tarde';
+lang.AsistenciaManual.HSALT  = 'Hora Salida Tarde';
+lang.AsistenciaManual.EXIST  = 'Asistencia ya registrado';
+lang.AsistenciaManual.VERITRAB  = 'Debe seleccionar un trabajador';
+lang.AsistenciaManual.VALMAN  = 'La hora de ingreso de la mañana no debe ser mayor a hora de salida';
+lang.AsistenciaManual.VALTAR  = 'La hora de ingreso de la tarde no debe ser mayor a hora de salida';
+lang.AsistenciaManual.VALTARMAN  = 'La hora de salida de la mañana no debe ser mayor a hora de ingreso de la tarde';

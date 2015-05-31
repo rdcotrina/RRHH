@@ -385,3 +385,12 @@ define('RTJD_15','Ingrese Observación');
 define('RTJD_16','Editar Retención Judicial');
 define('RTJD_17','Datos para el Depósito');
 define('RTJD_18','Datos de Depósito');
+
+/*==============================ASISTENCIA MANUAL==============================*/
+define('ASMN_1','Asistencia Manual');
+define('ASMN_2','Trabajador');
+define('ASMN_3','Nuevo Asistencia Manual');
+define('ASMN_4','Día');
+define('ASMN_5','Mañana');
+define('ASMN_6','Tarde');
+define('ASMN_7','Editar Asistencia Manual');
