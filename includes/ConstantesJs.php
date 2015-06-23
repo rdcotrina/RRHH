@@ -38,3 +38,4 @@ tabs.TAUS = '<?php echo TAUS; ?>';
 tabs.VACA = '<?php echo VACA; ?>';
 tabs.RTJD = '<?php echo RTJD; ?>';
 tabs.ASMN = '<?php echo ASMN; ?>';
+tabs.ASAUT = '<?php echo ASAUT; ?>';

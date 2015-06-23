@@ -394,3 +394,6 @@ define('ASMN_4','Día');
 define('ASMN_5','Mañana');
 define('ASMN_6','Tarde');
 define('ASMN_7','Editar Asistencia Manual');
+
+/*==============================ASISTENCIA AUTOMATICA==============================*/
+define('ASAUT_1','Asistencia Automática');

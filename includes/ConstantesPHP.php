@@ -37,3 +37,4 @@ define("TAUS","TAUS");             /*tab opción TIPODEAUSENCIA*/
 define("VACA","VACA");             /*tab opción VACACIONES*/
 define("RTJD","RTJD");             /*tab opción RETENCIONJUDICIAL*/
 define("ASMN","ASMN");             /*tab opción ASISTENCIAMANUAL*/
+define("ASAUT","ASAUT");             /*tab opción ASISTENCIAAUTOMATICA*/

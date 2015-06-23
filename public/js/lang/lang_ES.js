@@ -266,3 +266,11 @@ lang.AsistenciaManual.VERITRAB  = 'Debe seleccionar un trabajador';
 lang.AsistenciaManual.VALMAN  = 'La hora de ingreso de la mañana no debe ser mayor a hora de salida';
 lang.AsistenciaManual.VALTAR  = 'La hora de ingreso de la tarde no debe ser mayor a hora de salida';
 lang.AsistenciaManual.VALTARMAN  = 'La hora de salida de la mañana no debe ser mayor a hora de ingreso de la tarde';
+
+/*---------------------------ASISTENCIA AUTOMATICA--------------------------*/
+lang.AsistenciaAutomatica = {};
+lang.AsistenciaAutomatica.EXIST  = 'Asistencia ya registrado';
+lang.AsistenciaAutomatica.TNIDENT  = 'Trabajador no identificado';
+lang.AsistenciaAutomatica.HORAIC  = 'Hora de ingreso, cerrado';
+lang.AsistenciaAutomatica.FHORA  = 'Fuera de Horario';
+lang.AsistenciaAutomatica.DNLBRL  = 'Dia no laborable';
