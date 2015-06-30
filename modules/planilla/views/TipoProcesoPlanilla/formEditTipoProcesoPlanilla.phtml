@@ -1,0 +1,129 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 15-06-2015 20:06:41 
+* Descripcion : formEditTipoProcesoPlanilla.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: GTPP debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("GTPPACT");
+    
+$found = Obj::run()->TipoProcesoPlanillaController->findTipoProcesoPlanilla();
+//print_r($found);
+?>
+<form id="<?php echo GTPP; ?>formEditTipoProcesoPlanilla" name="<?php echo GTPP; ?>formEditTipoProcesoPlanilla" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">Editar Tipo de Proceso Planilla</h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo GTPP_1; ?></label>
+                        <div class="col col-5">
+                            <label class="select"> 
+                                <?php
+                                $data = Obj::run()->TipoProcesoPlanillaController ->getAllTipoPlanilla();
+                                
+                              //  print_r($data);
+                                echo Functions::selectHtml(array(
+                                    'data' => $data,
+                                    'atributes' => array(
+                                        'id' => GTPP.'lst_tipopla',
+                                        'name' => GTPP.'lst_tipopla'
+                                    ),
+                                    'etiqueta' => array('id_tipoplanilla', 'tipoplanilla'),
+                                    'value' => 'id_tipoplanilla' ,
+                                    'defaultEtiqueta' => $found['id_tipo_planilla'],
+                                    'txtSelect' => true
+                                ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo GTPP_2; ?></label>
+                        <div class="col col-5">
+                            <label class="select"> 
+                                
+                                <select id="<?php echo GTPP; ?>txt_num_mes_tipo_procesop" name="<?php echo GTPP; ?>txt_num_mes_tipo_procesop" >
+                                    <option value="01" <?php echo ($found['num_mes_tipo_procesop']=='1')?'selected="selected"':'' ?> >Enero</option>
+                                    <option value="02" <?php echo ($found['num_mes_tipo_procesop']=='2')?'selected="selected"':'' ?> >Febrero</option>
+                                    <option value="03" <?php echo ($found['num_mes_tipo_procesop']=='3')?'selected="selected"':'' ?> >Marzo</option>
+                                    <option value="04" <?php echo ($found['num_mes_tipo_procesop']=='4')?'selected="selected"':'' ?> >Abril</option>
+                                    <option value="05" <?php echo ($found['num_mes_tipo_procesop']=='5')?'selected="selected"':'' ?> >Mayo</option>
+                                    <option value="06" <?php echo ($found['num_mes_tipo_procesop']=='6')?'selected="selected"':'' ?> >Junio</option>
+                                    <option value="07" <?php echo ($found['num_mes_tipo_procesop']=='7')?'selected="selected"':'' ?> >Julio</option>
+                                    <option value="08" <?php echo ($found['num_mes_tipo_procesop']=='8')?'selected="selected"':'' ?> >Agosto</option>
+                                    <option value="09" <?php echo ($found['num_mes_tipo_procesop']=='9')?'selected="selected"':'' ?> >Setiembre</option>
+                                    <option value="10" <?php echo ($found['num_mes_tipo_procesop']=='10')?'selected="selected"':'' ?> >Octubre</option>
+                                    <option value="11" <?php echo ($found['num_mes_tipo_procesop']=='11')?'selected="selected"':'' ?> >Noviembre</option>
+                                    <option value="12" <?php echo ($found['num_mes_tipo_procesop']=='12')?'selected="selected"':'' ?> >Diciembre</option>
+                                </select>
+                                    <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo GTPP_3; ?></label>
+                        <div class="col col-5">
+                            <label class="select"> 
+                                <input type="text" id="<?php echo GTPP; ?>txt_ano_tipo_procesop" name="<?php echo GTPP; ?>txt_ano_tipo_procesop" value="<?php echo $found['ano_tipo_procesop']?>" >
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo GTPP; ?>btnEdTipoProcesoPlanilla" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo GTPP; ?>formEditTipoProcesoPlanilla");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo GTPP; ?>formEditTipoProcesoPlanilla").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo GTPP; ?>lst_tipopla : {
+            required : true
+        }
+    },
+           
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        TipoProcesoPlanilla.postEditTipoProcesoPlanilla();
+    }   
+});
+</script>
+</form>

@@ -24,7 +24,10 @@ class ConceptoPlanillaModel extends Model{
     private $_pSearch;
     private $_pOrder;
     private $_sFilterCols;
-    
+    private $_totalizador;
+    private $_monto;
+
+
     public function __construct() {
         parent::__construct();
         $this->_set();
@@ -37,6 +40,8 @@ class ConceptoPlanillaModel extends Model{
         $this->_descripcionCorta =   SimpleForm::getParam(PCNCP."txt_descorta");
         $this->_clasificacion =   SimpleForm::getParam(PCNCP."lst_clasificacion");
         $this->_activo =   SimpleForm::getParam(PCNCP."chk_activo");
+        $this->_totalizador =   SimpleForm::getParam(PCNCP."lst_totalizador");
+        $this->_monto =   SimpleForm::getParam(PCNCP."txt_monto");
         $this->_usuario     = Session::get("sys_idUsuario");
         
         $this->_pDisplayStart  =   SimpleForm::getParam("pDisplayStart"); 
@@ -64,7 +69,7 @@ class ConceptoPlanillaModel extends Model{
     
     /*mantenimiento registro: ConceptoPlanilla*/
     public function mantenimientoConceptoPlanilla(){
-        $query = "call sp_maeConceptoPlanillaMantenimiento(:flag,:idConceptoPlanilla,:concepto,:descripcionCorta,:clasificacion,:activo,:usuario);";
+        $query = "call sp_maeConceptoPlanillaMantenimiento(:flag,:idConceptoPlanilla,:concepto,:descripcionCorta,:clasificacion,:activo,:usuario,:monto,:totalizador);";
         $parms = array(
             ':flag' => $this->_flag,
             ':idConceptoPlanilla' => $this->_idConceptoPlanilla,
@@ -72,7 +77,9 @@ class ConceptoPlanillaModel extends Model{
             ':descripcionCorta' => $this->_descripcionCorta,
             ':clasificacion' => $this->_clasificacion,
             ':activo' => (!empty($this->_activo))?$this->_activo:'I',
-            ':usuario' => $this->_usuario
+            ':usuario' => $this->_usuario,
+            ':monto' => $this->_monto,
+            ':totalizador' => $this->_totalizador
         );
         $data = $this->queryOne($query,$parms);
         return $data;
@@ -86,7 +93,19 @@ class ConceptoPlanillaModel extends Model{
             ":flag" => 20,
             ":criterio" => $this->_idConceptoPlanilla
         );
+        
         $data = $this->queryOne($query,$parms);
+        return $data;
+    }
+    
+    public function getConceptosDos(){
+        $query = "call sp_maeMaestrosConsultas(:flag,:criterio);";
+        
+        $parms = array(
+            ":flag" => 27,
+            ":criterio" => ''
+        );
+        $data = $this->queryAll($query,$parms);
         return $data;
     }
     

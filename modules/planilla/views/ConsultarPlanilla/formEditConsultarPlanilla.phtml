@@ -1,0 +1,127 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 25-06-2015 01:06:47 
+* Descripcion : formEditConsultarPlanilla.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: CONPL debe ser alias en tabla men_menuprincipal*/
+$editar = Session::getPermiso("CONPLACT");
+                                                  
+$found = Obj::run()->ConsultarPlanillaController->findConsultarPlanilla();
+//print_r($found);
+?>
+<form id="<?php echo CONPL; ?>formEditConsultarPlanilla" name="<?php echo CONPL; ?>formEditConsultarPlanilla" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">CONSULTAR PLANILLA</h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <table border = "1" width="100%">
+                    <tr>
+                        <td colspan="2">Datos del pago</td><td colspan="4"><?php echo $found['tipo_proceso_planilla']?></td>
+                    </tr>
+                     <tr>
+                        <td colspan="2">Apellidos y Nombres</td><td colspan="4"><?php echo $found['nombrecompleto']?></td>
+                    </tr>
+                    
+                    <tr>
+                        <td >Sistema pensión</td><td colspan="2"><?php echo $found['sistemapension']?></td>
+                        <td >Fecha ingreso</td><td colspan="2"><?php echo $found['fecha_alta']?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">PERCIBOS</td><td colspan="2">DESCUENTOS</td><td colspan="2">CONTRIBUCIONES SOBRE REMUNERACIONES</td>
+                    </tr>
+                    <tr>
+                        <td>Basica</td><td><?php echo $found['ci_remun_basica']?></td><td>Aporte obligat.Sist.Pensión</td><td><?php echo $found['c_monto_aporte_sist_pension']?></td><td>EsSalud</td><td><?php echo $found['cd_essalud']?></td>
+                    </tr>
+                    <tr>
+                        <td>Reunif.</td><td><?php echo $found['c_reunif']?></td><td>Prima Seg.AFP</td><td><?php echo $found['c_monto_prima_seguro_afp']?></td><td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>Trans.para Homolog.</td><td><?php echo $found['c_transit_x_homolog']?></td><td>Comis.Variab.AFP</td><td><?php echo $found['c_monto_comision_var_afp']?></td><td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>Bonif.Pers.</td><td><?php echo $found['c_b_pers']?></td><td>CAFAE</td><td><?php echo $found['c_cafae']?></td><td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>Bonif. Famil.</td><td><?php echo $found['c_bonif_famil']?></td><td>Prestamo</td><td><?php echo $found['c_prestamos_total']?></td><td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>Mov. Y Refrig.</td><td><?php echo $found['c_bonif_x_movilidad']?></td><td>Dscto Judicial</td><td><?php echo $found['c_descto_judicial']?></td><td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Sub total</td><td><?php echo $found['sub_total_ingresos']?></td><td>I.R. 5ta Cat.</td><td><?php echo $found['c_quinta_categoria']?></td><td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>D:S. Nº 276-91</td><td><?php echo $found['c_dns_276_91']?></td><td>Adelanto</td><td><?php echo $found['c_adelanto']?></td><td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td></td><td></td><td>EsSalud Vida</td><td><?php echo $found['c_essalud_vida']?></td><td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>Total Percibos</td><td><?php echo $found['c_tot_ingresos']?></td><td>Total Descuentos</td><td><?php echo $found['c_tot_descuentos']?></td><td>Total contribuciones</td><td><?php echo $found['c_tot_contribuciones']?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Sueldo Neto</td><td><?php echo $found['c_sueldo_neto']?></td><td colspan="2"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($editar["permiso"]):?>
+                <button id="<?php echo CONPL; ?>btnEdConsultarPlanilla" type="submit" class="<?php echo $editar["theme"]; ?>">
+                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$editar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo CONPL; ?>formEditConsultarPlanilla");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo CONPL; ?>formEditConsultarPlanilla").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo CONPL; ?>txt_campo : {
+            required : true,
+            minlength: 3
+        }
+    },
+
+    // Msn para validacion -- es opcional -- se puede eliminar, validate tiene los msn configurados por defecto
+    messages : {
+        <?php echo CONPL; ?>txt_campo : {
+            required : "Campo requerido",
+            regular: "No se permite caracteres inválidos"
+        }
+    },
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        ConsultarPlanilla.postEditConsultarPlanilla();
+    }   
+});
+</script>
+</form>

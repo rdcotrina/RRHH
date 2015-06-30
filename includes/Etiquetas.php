@@ -397,3 +397,11 @@ define('ASMN_7','Editar Asistencia Manual');
 
 /*==============================ASISTENCIA AUTOMATICA==============================*/
 define('ASAUT_1','Asistencia Automática');
+
+/*==============================TIPO DE PROCESO PLANILLA=============================*/
+define('GTPP_1','Tipo Planilla');
+define('GTPP_2','Mes Proceso');
+define('GTPP_3','Año Proceso');
+
+/*==============================CONSULTA PROCESO PLANILLA=============================*/
+define('CONPL_1','Tipo Planilla');

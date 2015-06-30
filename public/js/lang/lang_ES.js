@@ -274,3 +274,28 @@ lang.AsistenciaAutomatica.TNIDENT  = 'Trabajador no identificado';
 lang.AsistenciaAutomatica.HORAIC  = 'Hora de ingreso, cerrado';
 lang.AsistenciaAutomatica.FHORA  = 'Fuera de Horario';
 lang.AsistenciaAutomatica.DNLBRL  = 'Dia no laborable';
+
+/*---------------------CONTROL ASISTENCIA/GENERAR MES--------------------*/
+lang.GenerarMes = {};
+lang.GenerarMes.ANIO = 'Año';
+lang.GenerarMes.MES  = 'Mes';
+
+/*---------------------TIPO PROCESO PLANILLA--------------------*/
+lang.TipoProcesoPlanilla = {};
+lang.TipoProcesoPlanilla.TPLANILLA = 'Tipo de Planilla';
+lang.TipoProcesoPlanilla.TPROCESO  = 'Tipo de Proceso Planilla';
+lang.TipoProcesoPlanilla.EXIST = 'Tipo de proceso planilla ya existe';
+
+/*---------------------PROCESAR PLANILLA--------------------*/
+lang.ProcesarPlanilla = {};
+lang.ProcesarPlanilla.TPLANILLA = 'Tipo de Planilla';
+lang.ProcesarPlanilla.TPROCESO  = 'Tipo de Proceso Planilla';
+lang.ProcesarPlanilla.EXIST = 'proceso planilla ya existe';
+lang.ProcesarPlanilla.MESS1 = '¿Esta seguro de procesar la planilla?';
+
+/*---------------------CONSULTAR PROCESAR PLANILLA--------------------*/
+lang.ConsultarPlanilla = {};
+lang.ConsultarPlanilla.APATERNO = 'Apellido Paterno';
+lang.ConsultarPlanilla.AMATERNO  = 'Apellido Materno';
+lang.ConsultarPlanilla.PNOMBRE = 'Primer Nombre';
+lang.ConsultarPlanilla.SNOMBRE = 'Segundo Nombre';

@@ -73,4 +73,10 @@ class ConceptoPlanillaController extends Controller{
         echo json_encode($data);
     }
     
+    public function getConceptosDos(){
+        $data = self::$ConceptoPlanillaModel->getConceptosDos();
+        
+        return $data;
+    }
+    
 }

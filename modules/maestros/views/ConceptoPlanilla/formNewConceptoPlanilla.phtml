@@ -1,4 +1,5 @@
-<?php /*
+<?php 
+/*
 * ---------------------------------------
 * --------- CREATED BY CREATOR ----------
 * fecha: 12-03-2015 08:03:42 
@@ -33,7 +34,7 @@ $grabar = Session::getPermiso("PCNCPGR");
                         </div>
                     </div>
                 </section>
-                <section>
+                <section class="hide">
                     <div class="row">
                         <label class="label col col-3"><?php echo PCNCP_6; ?></label>
                         <div class="col col-8">
@@ -71,6 +72,42 @@ $grabar = Session::getPermiso("PCNCPGR");
                                     ));
                                 ?>
                                 <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3">Asociar a totalizador</label>
+                        <div class="col col-8">
+                            <label class="select"> 
+                                <?php
+                                    $datac = Obj::run()->ConceptoPlanillaController->getConceptosDos();
+                                    
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$datac,
+                                        'atributes'=>array(
+                                            'id'=>PCNCP.'lst_totalizador',
+                                            'name'=>PCNCP.'lst_totalizador'
+                                        ),
+                                        'etiqueta'=>'conceptoplanilla',
+                                        'value'=>'id_conceptoplanilla',
+                                        'defaultEtiqueta'=>'',
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3">Monto</label>
+                        <div class="col col-3">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo PCNCP; ?>txt_monto" name="<?php echo PCNCP; ?>txt_monto" >
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> Ingrese monto de ser necesario</b>
                             </label>
                         </div>
                     </div>
@@ -117,13 +154,12 @@ $("#<?php echo PCNCP; ?>formNewConceptoPlanilla").validate({
             required : true,
             minlength: 3
         },
-        <?php echo PCNCP; ?>txt_descorta : {
-            required : true,
-            minlength: 3
-        },
         <?php echo PCNCP; ?>lst_clasificacion : {
             required : true
-        }
+        },
+        <?php echo PCNCP; ?>txt_monto : {
+            number : true
+        }        
     },
 
     // No cambie el código de abajo

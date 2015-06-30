@@ -39,3 +39,6 @@ tabs.VACA = '<?php echo VACA; ?>';
 tabs.RTJD = '<?php echo RTJD; ?>';
 tabs.ASMN = '<?php echo ASMN; ?>';
 tabs.ASAUT = '<?php echo ASAUT; ?>';
+tabs.GTPP = '<?php echo GTPP; ?>';
+tabs.PRPLL = '<?php echo PRPLL; ?>';
+tabs.CONPL = '<?php echo CONPL; ?>';

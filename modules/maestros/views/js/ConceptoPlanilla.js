@@ -137,6 +137,7 @@ var ConceptoPlanilla_ = function(){
                         callback: function(){
                             ConceptoPlanilla.getGridConceptoPlanilla(false);
                             simpleScript.updateChosen({element: '#'+tabs.PCNCP+'lst_clasificacion'});
+                            simpleScript.updateChosen({element: '#'+tabs.PCNCP+'lst_totalizador'});
                         }
                     });
                 }else if(!isNaN(data.result) && parseInt(data.result) === 2){

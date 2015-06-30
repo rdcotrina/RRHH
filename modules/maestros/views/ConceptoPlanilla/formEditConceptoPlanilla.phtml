@@ -8,7 +8,7 @@
 
 /*prefijo: PCNCP debe ser alias en tabla men_menuprincipal*/
 $editar = Session::getPermiso("PCNCPACT");
-    
+
 $found = Obj::run()->ConceptoPlanillaController->findConceptoPlanilla();
 
 ?>
@@ -35,7 +35,7 @@ $found = Obj::run()->ConceptoPlanillaController->findConceptoPlanilla();
                         </div>
                     </div>
                 </section>
-                <section>
+                <section class="hide">
                     <div class="row">
                         <label class="label col col-3"><?php echo PCNCP_6; ?></label>
                         <div class="col col-8">
@@ -79,6 +79,42 @@ $found = Obj::run()->ConceptoPlanillaController->findConceptoPlanilla();
                 </section>
                 <section>
                     <div class="row">
+                        <label class="label col col-3">Asociar a totalizador</label>
+                        <div class="col col-8">
+                            <label class="select"> 
+                                <?php
+                                    $datac = Obj::run()->ConceptoPlanillaController->getConceptosDos();
+                                    
+                                    echo Functions::selectHtml(array(
+                                        'data'=>$datac,
+                                        'atributes'=>array(
+                                            'id'=>PCNCP.'lst_totalizador',
+                                            'name'=>PCNCP.'lst_totalizador'
+                                        ),
+                                        'etiqueta'=>'conceptoplanilla',
+                                        'value'=>'id_conceptoplanilla',
+                                        'defaultEtiqueta'=>$found['id_concepto_totalizador'],
+                                        'txtSelect'=>true
+                                    ));
+                                ?>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-3">Monto</label>
+                        <div class="col col-3">
+                            <label class="input"> 
+                                <i class="icon-append fa fa-question-circle"></i>
+                                <input type="text" id="<?php echo PCNCP; ?>txt_monto" name="<?php echo PCNCP; ?>txt_monto" value="<?php echo $found['monto_asignado']?>">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-question-circle txt-color-teal"></i> Ingrese monto de ser necesario</b>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
                         <label class="label col col-3"></label>
                         <div class="col col-3">
                             <label class="checkbox">
@@ -116,10 +152,6 @@ $("#<?php echo PCNCP; ?>formEditConceptoPlanilla").validate({
     // Rules for form validation
     rules : {
         <?php echo PCNCP; ?>txt_concepto : {
-            required : true,
-            minlength: 3
-        },
-        <?php echo PCNCP; ?>txt_descorta : {
             required : true,
             minlength: 3
         },

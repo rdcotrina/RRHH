@@ -1,0 +1,129 @@
+<?php /*
+* ---------------------------------------
+* --------- CREATED BY CREATOR ----------
+* fecha: 15-06-2015 20:06:41 
+* Descripcion : formNewTipoProcesoPlanilla.phtml
+* ---------------------------------------
+*/
+
+/*prefijo: GTPP debe ser alias en tabla men_menuprincipal*/
+$grabar = Session::getPermiso("GTPPGR");
+    
+?>
+<form id="<?php echo GTPP; ?>formNewTipoProcesoPlanilla" name="<?php echo GTPP; ?>formNewTipoProcesoPlanilla" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"  aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">Genera Tipo de Proceso Planilla</h4>
+            </div>
+            <div class="modal-body smart-form"> 
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo GTPP_1; ?></label>
+                        <div class="col col-5">
+                            <label class="select"> 
+                                <?php
+                                $data = Obj::run()->TipoProcesoPlanillaController ->getAllTipoPlanilla();
+                                
+                              //  print_r($data);
+                                echo Functions::selectHtml(array(
+                                    'data' => $data,
+                                    'atributes' => array(
+                                        'id' => GTPP.'lst_tipopla',
+                                        'name' => GTPP.'lst_tipopla'
+                                    ),
+                                    'etiqueta' => array('id_tipoplanilla', 'tipoplanilla'),
+                                    'value' => 'id_tipoplanilla',
+                                    'defaultEtiqueta' => '',
+                                    'txtSelect' => true
+                                ));
+                                ?>
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo GTPP_2; ?></label>
+                        <div class="col col-5">
+                            <label class="select"> 
+                                
+                                <select id="<?php echo GTPP; ?>txt_num_mes_tipo_procesop" name="<?php echo GTPP; ?>txt_num_mes_tipo_procesop" >
+                                    <option value="01">Enero</option>
+                                    <option value="02">Febrero</option>
+                                    <option value="03">Marzo</option>
+                                    <option value="04">Abril</option>
+                                    <option value="05">Mayo</option>
+                                    <option value="06">Junio</option>
+                                    <option value="07">Julio</option>
+                                    <option value="08">Agosto</option>
+                                    <option value="09">Setiembre</option>
+                                    <option value="10">Octubre</option>
+                                    <option value="11">Noviembre</option>
+                                    <option value="12">Diciembre</option>
+                                </select>
+                                    <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <label class="label col col-2"><?php echo GTPP_3; ?></label>
+                        <div class="col col-5">
+                            <label class="select"> 
+                                <input type="text" id="<?php echo GTPP; ?>txt_ano_tipo_procesop" name="<?php echo GTPP; ?>txt_ano_tipo_procesop" >
+                                <div class="obligar"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="foot-obligar"></div>
+                <?php if($grabar["permiso"]):?>
+                <button id="<?php echo GTPP; ?>btnGrTipoProcesoPlanilla" type="submit" class="<?php echo $grabar["theme"]; ?>">
+                    <i class="<?php echo $grabar["icono"]; ?>"></i> <?php echo $grabar["accion"]; ?>
+                </button>
+                <?php endif; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>">
+                    <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+<!-- si no tiene permiso se anula submit desde cualquier input -->
+<?php if(!$grabar["permiso"]): ?>
+<script>
+    simpleScript.noSubmit("#<?php echo GTPP; ?>formNewTipoProcesoPlanilla");
+</script>
+<?php endif; ?>
+<script>
+/*configurar validacion de formulario -- este codigo es de ejemplo*/
+$("#<?php echo GTPP; ?>formNewTipoProcesoPlanilla").validate({
+    // Rules for form validation
+    rules : {
+        <?php echo GTPP; ?>lst_tipopla : {
+            required : true,
+            minlength: 1
+        }
+    },
+
+    
+
+    // No cambie el código de abajo
+    errorPlacement : function(error, element) {
+        error.insertAfter(element.parent());
+    },
+
+    submitHandler: function(){
+        TipoProcesoPlanilla.postNewTipoProcesoPlanilla();
+    }   
+});
+</script>
+</form>
