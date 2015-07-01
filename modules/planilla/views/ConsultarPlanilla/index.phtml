@@ -1,70 +1,50 @@
-<?php 
+<?php
 /*
-* ---------------------------------------
-* --------- CREATED BY CREATOR ----------
-* fecha: 25-06-2015 01:06:47 
-* Descripcion : indexConsultarPlanilla.phtml
-* ---------------------------------------
-*/
-$nuevo    = Session::getPermiso("CONPLNEW");
+ * ---------------------------------------
+ * --------- CREATED BY CREATOR ----------
+ * fecha: 25-06-2015 01:06:47 
+ * Descripcion : indexConsultarPlanilla.phtml
+ * ---------------------------------------
+ */
+$nuevo = Session::getPermiso("CONPLNEW");
 $eliminar = Session::getPermiso("CONPLDE");
-    
+
 echo Functions::widgetOpen(array(
-        "id"=>CONPL,
-        "title"=>"ConsultarPlanilla"
-    )); 
+    "id" => CONPL,
+    "title" => "ConsultarPlanilla"
+));
 ?>
 
-        <div class="row">
-            <label class="label col col-2"><?php echo CONPL_1; ?></label>
-                <label class="select"> 
-                    <?php
-                    $data = Obj::run()->ConsultarPlanillaController->getAllProcesoPlanilla();
-                    echo Functions::selectHtml(array(
-                        'data' => $data,
-                        'atributes' => array(
-                            'id' => CONPL.'nhtthyrlst_tipoplanilla',
-                            'name' => CONPL.'dfdflst_tipoplanilla'
-                        ),
-                        'etiqueta' => array('id_tipo_proceso_planilla', 'tipo_proceso_planilla'),
-                        'value' => 'id_tipo_proceso_planilla',
-                        'defaultEtiqueta' => '',
-                        'txtSelect' => true
-                    ));
-                    ?>
-                    <div class="obligar"></div>
-                </label>
-        </div>
-    
 <div id="<?php echo CONPL; ?>gridConsultarPlanilla_btns">
     <div class="row smart-form" >
-        <label class="label col col-2"><?php echo CONPL_1; ?></label>
-    <label class="select"> 
-                    <?php
-                    $data = Obj::run()->ConsultarPlanillaController->getAllProcesoPlanilla();
-                    echo Functions::selectHtml(array(
-                        'data' => $data,
-                        'atributes' => array(
-                            'id' => CONPL.'lst_tipoplanilla',
-                            'name' => CONPL.'lst_tipoplanilla'
-                        ),
-                        'etiqueta' => array('id_tipo_proceso_planilla', 'tipo_proceso_planilla'),
-                        'value' => 'id_tipo_proceso_planilla',
-                        'defaultEtiqueta' => '',
-                        'txtSelect' => true
-                    ));
-                    ?>
-                    
-                </label>
+        <label class="label col col-2" style="margin-left:-150px"><?php echo CONPL_1; ?></label>
+        <label class="select"> 
+            <?php
+            $data = Obj::run()->ConsultarPlanillaController->getAllProcesoPlanilla();
+            echo Functions::selectHtml(array(
+                'data' => $data,
+                'atributes' => array(
+                    'id' => CONPL . 'lst_tipoplanilla',
+                    'name' => CONPL . 'lst_tipoplanilla'
+                ),
+                'etiqueta' => array('id_tipo_proceso_planilla', 'tipo_proceso_planilla'),
+                'value' => 'id_tipo_proceso_planilla',
+                'defaultEtiqueta' => '',
+                'txtSelect' => true,
+                'chosen' => false
+            ));
+            ?>
+
+        </label>
     </div>
     <!-- verificar permisos -->
-   
+
 </div>
 <table id="<?php echo CONPL; ?>gridConsultarPlanilla" class="table table-striped table-hover table-condensed dataTable table-bordered" ></table>    
 <?php echo Functions::widgetClose(); ?>
 <script>
-simpleScript.removeAttr.click({
-    container: "#"+tabs.CONPL+"gridConsultarPlanilla_tools",
-    typeElement: "button"
-});      
+    simpleScript.removeAttr.click({
+        container: "#" + tabs.CONPL + "gridConsultarPlanilla_tools",
+        typeElement: "button"
+    });
 </script>

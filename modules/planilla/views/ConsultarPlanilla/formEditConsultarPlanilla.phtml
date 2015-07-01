@@ -13,7 +13,7 @@ $found = Obj::run()->ConsultarPlanillaController->findConsultarPlanilla();
 //print_r($found);
 ?>
 <form id="<?php echo CONPL; ?>formEditConsultarPlanilla" name="<?php echo CONPL; ?>formEditConsultarPlanilla" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 60%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close"  aria-hidden="true">
@@ -21,57 +21,94 @@ $found = Obj::run()->ConsultarPlanillaController->findConsultarPlanilla();
                 </button>
                 <h4 class="modal-title">CONSULTAR PLANILLA</h4>
             </div>
-            <div class="modal-body smart-form"> 
-                <table border = "1" width="100%">
+            <div class="modal-body"> 
+                <table border = "1" width="100%" cellpadding="7" style="border-collapse: collapse;border: 1px solid #000">
                     <tr>
-                        <td colspan="2">Datos del pago</td><td colspan="4"><?php echo $found['tipo_proceso_planilla']?></td>
+                        <td colspan="2" style="background: #eee">Datos del pago</td>
+                        <td colspan="4"><?php echo $found['tipo_proceso_planilla']?></td>
                     </tr>
                      <tr>
-                        <td colspan="2">Apellidos y Nombres</td><td colspan="4"><?php echo $found['nombrecompleto']?></td>
+                        <td colspan="2" style="background: #eee">Apellidos y Nombres</td>
+                        <td colspan="4"><?php echo $found['nombrecompleto']?></td>
                     </tr>
                     
                     <tr>
-                        <td >Sistema pensión</td><td colspan="2"><?php echo $found['sistemapension']?></td>
-                        <td >Fecha ingreso</td><td colspan="2"><?php echo $found['fecha_alta']?></td>
+                        <td style="background: #eee">Sistema pensión</td>
+                        <td colspan="2"><?php echo $found['sistemapension']?></td>
+                        <td style="background: #eee">Fecha ingreso</td>
+                        <td colspan="2"><?php echo $found['fecha_alta']?></td>
                     </tr>
                     <tr>
-                        <td colspan="2">PERCIBOS</td><td colspan="2">DESCUENTOS</td><td colspan="2">CONTRIBUCIONES SOBRE REMUNERACIONES</td>
+                        <td colspan="2" style="background: #eee">PERCIBOS</td>
+                        <td colspan="2" style="background: #eee">DESCUENTOS</td>
+                        <td colspan="2" style="background: #eee">CONTRIBUCIONES SOBRE REMUNERACIONES</td>
                     </tr>
                     <tr>
-                        <td>Basica</td><td><?php echo $found['ci_remun_basica']?></td><td>Aporte obligat.Sist.Pensión</td><td><?php echo $found['c_monto_aporte_sist_pension']?></td><td>EsSalud</td><td><?php echo $found['cd_essalud']?></td>
+                        <td style="background: #eee">Basica</td>
+                        <td><?php echo $found['ci_remun_basica']?></td>
+                        <td style="background: #eee">Aporte obligat.Sist.Pensión</td>
+                        <td><?php echo $found['c_monto_aporte_sist_pension']?></td>
+                        <td style="background: #eee">EsSalud</td>
+                        <td><?php echo $found['cd_essalud']?></td>
                     </tr>
                     <tr>
-                        <td>Reunif.</td><td><?php echo $found['c_reunif']?></td><td>Prima Seg.AFP</td><td><?php echo $found['c_monto_prima_seguro_afp']?></td><td colspan="2"></td>
+                        <td style="background: #eee">Reunif.</td>
+                        <td><?php echo $found['c_reunif']?></td>
+                        <td style="background: #eee">Prima Seg.AFP</td>
+                        <td colspan="3"><?php echo $found['c_monto_prima_seguro_afp']?></td>
                     </tr>
                     <tr>
-                        <td>Trans.para Homolog.</td><td><?php echo $found['c_transit_x_homolog']?></td><td>Comis.Variab.AFP</td><td><?php echo $found['c_monto_comision_var_afp']?></td><td colspan="2"></td>
+                        <td style="background: #eee">Trans.para Homolog.</td>
+                        <td><?php echo $found['c_transit_x_homolog']?></td>
+                        <td style="background: #eee">Comis.Variab.AFP</td>
+                        <td colspan="3"><?php echo $found['c_monto_comision_var_afp']?></td>
                     </tr>
                     <tr>
-                        <td>Bonif.Pers.</td><td><?php echo $found['c_b_pers']?></td><td>CAFAE</td><td><?php echo $found['c_cafae']?></td><td colspan="2"></td>
+                        <td style="background: #eee">Bonif.Pers.</td>
+                        <td><?php echo $found['c_b_pers']?></td>
+                        <td style="background: #eee">CAFAE</td>
+                        <td colspan="3"><?php echo $found['c_cafae']?></td>
                     </tr>
                     <tr>
-                        <td>Bonif. Famil.</td><td><?php echo $found['c_bonif_famil']?></td><td>Prestamo</td><td><?php echo $found['c_prestamos_total']?></td><td colspan="2"></td>
+                        <td style="background: #eee">Bonif. Famil.</td>
+                        <td><?php echo $found['c_bonif_famil']?></td>
+                        <td style="background: #eee">Prestamo</td>
+                        <td colspan="3"><?php echo $found['c_prestamos_total']?></td>
                     </tr>
                     <tr>
-                        <td>Mov. Y Refrig.</td><td><?php echo $found['c_bonif_x_movilidad']?></td><td>Dscto Judicial</td><td><?php echo $found['c_descto_judicial']?></td><td colspan="2"></td>
+                        <td style="background: #eee">Mov. Y Refrig.</td>
+                        <td><?php echo $found['c_bonif_x_movilidad']?></td>
+                        <td style="background: #eee">Dscto Judicial</td>
+                        <td colspan="3"><?php echo $found['c_descto_judicial']?></td>
                     </tr>
                     <tr>
-                        <td></td><td></td><td></td><td></td>
+                        <td style="background: #eee">Sub total</td>
+                        <td><?php echo $found['sub_total_ingresos']?></td>
+                        <td style="background: #eee">I.R. 5ta Cat.</td>
+                        <td colspan="3"><?php echo $found['c_quinta_categoria']?></td>
                     </tr>
                     <tr>
-                        <td>Sub total</td><td><?php echo $found['sub_total_ingresos']?></td><td>I.R. 5ta Cat.</td><td><?php echo $found['c_quinta_categoria']?></td><td colspan="2"></td>
+                        <td style="background: #eee">D:S. Nº 276-91</td>
+                        <td><?php echo $found['c_dns_276_91']?></td>
+                        <td style="background: #eee">Adelanto</td>
+                        <td colspan="3"><?php echo $found['c_adelanto']?></td>
                     </tr>
                     <tr>
-                        <td>D:S. Nº 276-91</td><td><?php echo $found['c_dns_276_91']?></td><td>Adelanto</td><td><?php echo $found['c_adelanto']?></td><td colspan="2"></td>
+                        <td></td><td></td>
+                        <td style="background: #eee">EsSalud Vida</td>
+                        <td colspan="3"><?php echo $found['c_essalud_vida']?></td>
                     </tr>
                     <tr>
-                        <td></td><td></td><td>EsSalud Vida</td><td><?php echo $found['c_essalud_vida']?></td><td colspan="2"></td>
+                        <td style="background: #eee">Total Percibos</td>
+                        <td><?php echo $found['c_tot_ingresos']?></td>
+                        <td style="background: #eee">Total Descuentos</td>
+                        <td><?php echo $found['c_tot_descuentos']?></td>
+                        <td style="background: #eee">Total contribuciones</td>
+                        <td><?php echo $found['c_tot_contribuciones']?></td>
                     </tr>
                     <tr>
-                        <td>Total Percibos</td><td><?php echo $found['c_tot_ingresos']?></td><td>Total Descuentos</td><td><?php echo $found['c_tot_descuentos']?></td><td>Total contribuciones</td><td><?php echo $found['c_tot_contribuciones']?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">Sueldo Neto</td><td><?php echo $found['c_sueldo_neto']?></td><td colspan="2"></td>
+                        <td colspan="3" style="background: #eee">Sueldo Neto</td>
+                        <td colspan="3"><?php echo $found['c_sueldo_neto']?></td>
                     </tr>
                 </table>
             </div>
