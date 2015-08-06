@@ -17,6 +17,52 @@ var ConsultarPlanilla_ = function(){
     /*metodos privados*/
     var _private = {};
     
+    _private.generateHtmlExport = function(data){
+        var caption = $("#"+tabs.CONPL+"lst_tipoplanilla option:selected").text();
+   
+        var tableEx = '<table border="1">';
+        tableEx += '<thead>';
+        tableEx += '<tr><td></td></tr><tr><td colspan="10" style="text-align:center">'+caption+'</td></tr><tr><td></td></tr>';
+        tableEx += '<tr>';
+
+        tableEx += '<th>Nro.</th>';
+        /*recorrido de columnas*/
+        for(var i in data){
+            if(i == 0){
+                for(var j in data[i]){
+                    var title = (j !== undefined) ? j : '';
+                    tableEx += '<th>'+title+'</th>';
+                }
+            }
+        }
+        
+        /*================================*/
+        var lll = data.length,
+            n = 0;
+        if (data.length) {
+            /*recorrido de los registros del server*/
+            for (var ii in data) {
+                if(ii < lll){
+                    n++;
+                    tableEx += '<tr>';
+                    tableEx += '<td>'+n+'</td>';
+                    
+                    /*recorrido de columnas configuradas en js*/
+                    for(var jj in data[ii]){
+                        var zell = (data[ii][jj] == null)? '': data[ii][jj];
+                        tableEx += '<td>'+zell+'</td>';
+                    }
+                    tableEx += '</tr>';
+                }
+            }
+        }
+        /*=================================*/
+        tableEx += '<tr>';
+        tableEx += '</thead>';
+        tableEx += '</table>';
+        return tableEx;
+    };
+    
     _private.idConsultarPlanilla = 0;
     
     _private.config = {
@@ -99,11 +145,39 @@ var ConsultarPlanilla_ = function(){
         });
     };
     
+    _public.getExcel = function(btn){
+        if ($("#"+tabs.CONPL+"lst_tipoplanilla").val() == '')  {
+            simpleScript.notify.error({
+                        content: 'Seleccione Tipo de planilla a exportar'
+                        
+                    });
+                    return false;
+        }
+        simpleAjax.send({
+            element: btn,
+            root: _private.config.modulo + "getExcel",
+            fnServerParams: function(sData){
+                sData.push({name: "_idProcesoPlanilla", value: $("#"+tabs.CONPL+"lst_tipoplanilla").val()});
+            },
+            fnCallback: function(data){
+                if(data.length > 0){
+                    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(_private.generateHtmlExport(data)));
+                }else{
+                    simpleScript.notify.ok({
+                        content: 'No se encontraron registros.'
+                        
+                    });
+                }
+                
+            }
+        });
+    };
+    
     _public.getFormEditConsultarPlanilla = function(btn,id){
         _private.idConsultarPlanilla = id;
       //  alert($("#"+tabs.CONPL+"lst_tipoplanilla").val());
         if ($("#"+tabs.CONPL+"lst_tipoplanilla").val() == '')  {
-            simpleScript.notify.ok({
+            simpleScript.notify.error({
                         content: 'Seleccione Tipo de planilla a consultar'
                         
                     });

@@ -14,9 +14,11 @@ echo Functions::widgetOpen(array(
     "title" => "ConsultarPlanilla"
 ));
 ?>
+<button type="button" style="margin: 10px" onclick="ConsultarPlanilla.getExcel(this);" class="btn txt-color-white bg-color-blueDark"><i class="fa fa-file-o"></i> Excel</button>
 
 <div id="<?php echo CONPL; ?>gridConsultarPlanilla_btns">
-    <div class="row smart-form" >
+    <div class="row smart-form">
+        
         <label class="label col col-2" style="margin-left:-150px"><?php echo CONPL_1; ?></label>
         <label class="select"> 
             <?php
@@ -36,6 +38,7 @@ echo Functions::widgetOpen(array(
             ?>
 
         </label>
+        
     </div>
     <!-- verificar permisos -->
 

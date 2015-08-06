@@ -86,4 +86,17 @@ class ConsultarPlanillaModel extends Model{
         $data = $this->queryAll($query,$parms);
         return $data;
     }
+    
+    public function getExcel(){
+         $query = "call sp_maePlanillaTrabajadorConsultar(:flag,:tipoplanilla,:usuario);";
+        
+        $parms = array(
+            ":flag" => 1,
+            ":tipoplanilla" => $this->_idProcesoPlanilla,
+            ":usuario"=>  $this->_usuario
+        );
+        $data = $this->queryAll($query,$parms);
+        return $data;
+    }
+    
 }

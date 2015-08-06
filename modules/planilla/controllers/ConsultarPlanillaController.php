@@ -70,6 +70,12 @@ class ConsultarPlanillaController extends Controller{
         echo json_encode($data);
     }
     
+    public function getExcel(){
+        $data = self::$ConsultarPlanillaModel->getExcel();
+        
+        echo json_encode($data);
+    }
+    
     /*envia datos para eliminar registro: ConsultarPlanilla*/
     public function deleteConsultarPlanilla(){
         $data = self::$ConsultarPlanillaModel->mantenimientoConsultarPlanilla();
