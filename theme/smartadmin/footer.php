@@ -54,6 +54,9 @@
 <script src="<?php echo $rutaLayout['_js']; ?>plugin/datatables/media/js/TableTools.min.js"></script> 
 <script src="<?php echo $rutaLayout['_js']; ?>plugin/datatables/DT_bootstrap.js"></script> 
 
+<!-- JQUERY PRINT ELEMENT -->
+<script src="<?php echo BASE_URL ?>public/js/jquery.printElement.js"></script>
+
 <!-- FastClick: For mobile devices: you can disable this in app.js-->
 <script src="<?php echo $rutaLayout['_js']; ?>plugin/fastclick/fastclick.js"></script> 
 

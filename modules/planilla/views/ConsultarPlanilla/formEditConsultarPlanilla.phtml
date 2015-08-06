@@ -21,7 +21,7 @@ $found = Obj::run()->ConsultarPlanillaController->findConsultarPlanilla();
                 </button>
                 <h4 class="modal-title">CONSULTAR PLANILLA</h4>
             </div>
-            <div class="modal-body"> 
+            <div class="modal-body" id="toPrint"> 
                 <table border = "1" width="100%" cellpadding="7" style="border-collapse: collapse;border: 1px solid #000">
                     <tr>
                         <td colspan="2" style="background: #eee">Datos del pago</td>
@@ -45,80 +45,78 @@ $found = Obj::run()->ConsultarPlanillaController->findConsultarPlanilla();
                     </tr>
                     <tr>
                         <td style="background: #eee">Basica</td>
-                        <td><?php echo $found['ci_remun_basica']?></td>
+                        <td><?php echo number_format($found['ci_remun_basica'],2)?></td>
                         <td style="background: #eee">Aporte obligat.Sist.Pensión</td>
-                        <td><?php echo $found['c_monto_aporte_sist_pension']?></td>
+                        <td><?php echo number_format($found['c_monto_aporte_sist_pension'],2)?></td>
                         <td style="background: #eee">EsSalud</td>
-                        <td><?php echo $found['cd_essalud']?></td>
+                        <td><?php echo number_format($found['cd_essalud'],2)?></td>
                     </tr>
                     <tr>
                         <td style="background: #eee">Reunif.</td>
-                        <td><?php echo $found['c_reunif']?></td>
+                        <td><?php echo number_format($found['c_reunif'],2)?></td>
                         <td style="background: #eee">Prima Seg.AFP</td>
-                        <td colspan="3"><?php echo $found['c_monto_prima_seguro_afp']?></td>
+                        <td colspan="3"><?php echo number_format($found['c_monto_prima_seguro_afp'],2)?></td>
                     </tr>
                     <tr>
                         <td style="background: #eee">Trans.para Homolog.</td>
-                        <td><?php echo $found['c_transit_x_homolog']?></td>
+                        <td><?php echo number_format($found['c_transit_x_homolog'],2)?></td>
                         <td style="background: #eee">Comis.Variab.AFP</td>
-                        <td colspan="3"><?php echo $found['c_monto_comision_var_afp']?></td>
+                        <td colspan="3"><?php echo number_format($found['c_monto_comision_var_afp'],2)?></td>
                     </tr>
                     <tr>
                         <td style="background: #eee">Bonif.Pers.</td>
-                        <td><?php echo $found['c_b_pers']?></td>
+                        <td><?php echo number_format($found['c_b_pers'],2)?></td>
                         <td style="background: #eee">CAFAE</td>
-                        <td colspan="3"><?php echo $found['c_cafae']?></td>
+                        <td colspan="3"><?php echo number_format($found['c_cafae'],2)?></td>
                     </tr>
                     <tr>
                         <td style="background: #eee">Bonif. Famil.</td>
-                        <td><?php echo $found['c_bonif_famil']?></td>
+                        <td><?php echo number_format($found['c_bonif_famil'],2)?></td>
                         <td style="background: #eee">Prestamo</td>
-                        <td colspan="3"><?php echo $found['c_prestamos_total']?></td>
+                        <td colspan="3"><?php echo number_format($found['c_prestamos_total'],2)?></td>
                     </tr>
                     <tr>
                         <td style="background: #eee">Mov. Y Refrig.</td>
-                        <td><?php echo $found['c_bonif_x_movilidad']?></td>
+                        <td><?php echo number_format($found['c_bonif_x_movilidad'],2)?></td>
                         <td style="background: #eee">Dscto Judicial</td>
-                        <td colspan="3"><?php echo $found['c_descto_judicial']?></td>
+                        <td colspan="3"><?php echo number_format($found['c_descto_judicial'],2)?></td>
                     </tr>
                     <tr>
                         <td style="background: #eee">Sub total</td>
-                        <td><?php echo $found['sub_total_ingresos']?></td>
+                        <td><?php echo number_format($found['sub_total_ingresos'],2)?></td>
                         <td style="background: #eee">I.R. 5ta Cat.</td>
-                        <td colspan="3"><?php echo $found['c_quinta_categoria']?></td>
+                        <td colspan="3"><?php echo number_format($found['c_quinta_categoria'],2)?></td>
                     </tr>
                     <tr>
                         <td style="background: #eee">D:S. Nº 276-91</td>
-                        <td><?php echo $found['c_dns_276_91']?></td>
+                        <td><?php echo number_format($found['c_dns_276_91'],2)?></td>
                         <td style="background: #eee">Adelanto</td>
-                        <td colspan="3"><?php echo $found['c_adelanto']?></td>
+                        <td colspan="3"><?php echo number_format($found['c_adelanto'],2)?></td>
                     </tr>
                     <tr>
                         <td></td><td></td>
                         <td style="background: #eee">EsSalud Vida</td>
-                        <td colspan="3"><?php echo $found['c_essalud_vida']?></td>
+                        <td colspan="3"><?php echo number_format($found['c_essalud_vida'],2)?></td>
                     </tr>
                     <tr>
                         <td style="background: #eee">Total Percibos</td>
-                        <td><?php echo $found['c_tot_ingresos']?></td>
+                        <td><?php echo number_format($found['c_tot_ingresos'],2)?></td>
                         <td style="background: #eee">Total Descuentos</td>
-                        <td><?php echo $found['c_tot_descuentos']?></td>
+                        <td><?php echo number_format($found['c_tot_descuentos'],2)?></td>
                         <td style="background: #eee">Total contribuciones</td>
-                        <td><?php echo $found['c_tot_contribuciones']?></td>
+                        <td><?php echo number_format($found['c_tot_contribuciones'],2)?></td>
                     </tr>
                     <tr>
                         <td colspan="3" style="background: #eee">Sueldo Neto</td>
-                        <td colspan="3"><?php echo $found['c_sueldo_neto']?></td>
+                        <td colspan="3"><?php echo number_format($found['c_sueldo_neto'],2)?></td>
                     </tr>
                 </table>
             </div>
             <div class="modal-footer">
                 <div class="foot-obligar"></div>
-                <?php if($editar["permiso"]):?>
-                <button id="<?php echo CONPL; ?>btnEdConsultarPlanilla" type="submit" class="<?php echo $editar["theme"]; ?>">
-                    <i class="<?php echo $editar["icono"]; ?>"></i> <?php echo $editar["accion"]; ?>
+                <button type="button" class="<?php echo THEME_CLOSE; ?>" onclick="$('#toPrint').printElement({});">
+                    <i class="fa fa-print"></i> Imprimir
                 </button>
-                <?php endif; ?>
                 <button type="button" class="<?php echo THEME_CLOSE; ?>">
                     <i class="<?php echo ICON_CLOSE; ?>"></i> <?php echo BTN_CLOSE; ?>
                 </button>
